@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="petStore">
+<head>
+	<base href="/">
+	<meta charset="UTF-8">
+	<title>PetStore Demo with AngularJs+Express+NodeJs+MongoDb</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+	
+	
+	<script src="/app/app.module.js"></script>
+	<script src="/app/app.config.js"></script>
+	
+	<script src="/app/sample-module/sample-module.module.js"></script>
+	<script src="/app/sample-module/sample-module.component.js"></script>
+
+	</head>
+<body>
+
+	<div>
+		<div ng-view></div>
+	</div>
+
+</body>
+</html>
