@@ -1,0 +1,17 @@
+<div ng-controller="CustomerController">
+	<h2>Customer {{customer._id}}</h2>
+	<form action="">
+		<input type="hidden" name="dni" ng-model="customer._id" />
+		<input type="hidden" name="dni" ng-model="customer.__v" />
+		dni: <input type="text" name="dni" ng-model="customer.dni" placeholder="dni" /><br />
+		firstName: <input type="text" name="firstName" ng-model="customer.firstName" placeholder="firstName" /><br />
+		lastName: <input type="text" name="lastName" ng-model="customer.lastName" placeholder="lastName" /><br />
+		phone: <input type="text" name="phone" ng-model="customer.phone" placeholder="phone" /><br />
+		email: <input type="text" name="email" ng-model="customer.email" placeholder="email" /><br />
+		note: <input type="text" name="note" ng-model="customer.note" placeholder="note" /><br />
+
+		<input type="button" ng-click="remove()" value="Delete"/>
+		<input type="button" ng-click="submit()" value="Save"/>
+		<input type="button" ng-click="cancel()" value="Cancel"/>
+	</form>
+</div>
