@@ -6,7 +6,14 @@ module.exports = (router) => {
 	 * FindAll
 	 */
 	router.get('/customers', function(req, res, next) {
-		Customer.find({}, (err, customers) => {
+		var search = {};
+		if(req.query.searchTerm) {
+			var regexp = new RegExp(req.query.searchTerm, "i")
+			search.firstName = regexp;
+			search.lastName = regexp;
+		}
+		console.log("Search customers:", search);
+		Customer.find(search, (err, customers) => {
 			if (err) {
 				res.json(err);
 			} else {

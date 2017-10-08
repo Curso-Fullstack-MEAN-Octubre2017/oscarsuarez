@@ -1,5 +1,9 @@
 <div ng-controller="CustomerListController">
 	<h2>Customer List</h2>
+
+	<input type="text" name="searchTerm" ng-model="search.searchTerm" />
+	<input type="submit" ng-click="searchCustomers()" value="Search">
+
 	<table border="1">
 		<tr>
 			<td>id</td>

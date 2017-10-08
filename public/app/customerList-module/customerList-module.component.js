@@ -10,10 +10,21 @@ angular.module('customerListModule')
     .controller('CustomerListController',function($scope, $http, $location, $routeParams){
         console.log("CustomerListController");
     	$scope.customerList = [];
-    	$http.get("/api/customers").then(function(response) {
+    	 
+		$scope.search = {};
+		if($location.search().searchTerm) {
+			$scope.search.searchTerm = $location.search().searchTerm;
+		}
+    	$http.get("/api/customers", {params: $scope.search}).then(function(response) {
     		$scope.customerList = response.data;
     	});
 
+    	$scope.searchCustomers = function() {
+    		$location.search("searchTerm", $scope.search.searchTerm);
+        	$http.get("/api/customers", {params: $scope.search}).then(function(response) {
+        		$scope.customerList = response.data;
+        	});
+    	};
     })
     ;
 
