@@ -23,9 +23,14 @@
 	<script src="/app/customerList-module/customerList-module.component.js"></script>
 	<script src="/app/customer-module/customer-module.module.js"></script>
 	<script src="/app/customer-module/customer-module.component.js"></script>
+	<script src="/app/pet-module/pet-module.module.js"></script>
+	<script src="/app/pet-module/pet-module.component.js"></script>
 	</head>
 <body>
-
+	<a href="/">Home</a><br />
+	<a ng-href='customers'>Customer List</a> | <a ng-href='customers/new'>New Customer</a> |
+    <a ng-href='pets'>Pet List</a> | <a ng-href='pets/new'>New Pet</a>	
+    
 	<div>
 		<div ng-view></div>
 	</div>

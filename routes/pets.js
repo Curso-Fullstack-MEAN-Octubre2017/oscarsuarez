@@ -1,24 +1,22 @@
-const Customer = require('../models/customer');
+const Pet = require('../models/pet');
 
 module.exports = (router) => {
 
 	/**
 	 * FindAll
 	 */
-	router.get('/customers', function(req, res, next) {
+	router.get('/pets', function(req, res, next) {
 		var search = {};
 		if(req.query.searchTerm) {
-			var regexp = new RegExp(req.query.searchTerm, "i")
-			search.firstName = regexp;
-			search.lastName = regexp;
+			search.name = new RegExp(req.query.searchTerm, "i");
 		}
-		console.log("Search customers:", search);
-		Customer.find(search, (err, customers) => {
+		console.log("Search pets:", search);
+		Pet.find(search, (err, pets) => {
 			if (err) {
 				console.log(err);
 				res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)
 			} else {
-				res.json(customers);
+				res.json(pets);
 			}
 		}).sort({'_id' : -1});
 	});
@@ -27,13 +25,17 @@ module.exports = (router) => {
 	/**
 	 * Get one
 	 */
-	router.route('/customers/:id').get(function(req, res) {
-		Customer.findById(req.params.id, function(err, customer) {
+	router.route('/pets/:id').get(function(req, res) {
+		Pet.findById(req.params.id, function(err, pet) {
 			if (err) {
 				console.log(err);
 				res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)
 			} else {
-				res.json(customer);
+				// hidratar el customer
+				Customer.populate(pet, {path : "owner"}, (err, client) => {
+					res.json(pet);
+				})
+
 			}
 		});
 	});
@@ -41,15 +43,16 @@ module.exports = (router) => {
 	/**
 	 * Insert
 	 */
-	router.post('/customers', (req, res, next) => {
+	router.post('/pets', (req, res, next) => {
 		//TODO añadir validacion
-		const customer = new Customer(req.body);
-		customer.save((err) => {
+		const pet = new Pet(req.body);
+		console.log(pet);
+		pet.save((err) => {
 			if (err) {
 				console.log(err);
 				res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)
 			} else {
-				res.json(customer);
+				res.json(pet);
 			}
 		})
 	});
@@ -57,35 +60,35 @@ module.exports = (router) => {
 	/**
 	 * Update
 	 */
-	router.put('/customers/:id', (req, res, next) => {
-		Customer.findOne({_id : req.params.id }, function(err, customer) {
+	router.put('/pets/:id', (req, res, next) => {
+		Pet.findOne({_id : req.params.id }, function(err, pet) {
 			if (err) {
 				return res.send(err);
 			}
-
+			
 			// rellenamos los datos que vienen en la peticion
 			for(prop in req.body){
-				customer[prop] = req.body[prop];
+				pet[prop] = req.body[prop];
 			}
 
 			// save
-			customer.save(function(err) {
+			pet.save(function(err) {
 				if (err) {
 					console.log(err);
 					res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)
 				} else {
-					res.json(customer);
+					res.json(pet);
 				}
 			});
 		});
 	});	
 	
 	/**
-	 * Get one
+	 * Delete
 	 */
-	router.route('/customers/:id').delete(function(req, res) {
-		console.log("/customers/" + req.params.id);
-		Customer.findByIdAndRemove(req.params.id, function(err, customer) {
+	router.route('/pets/:id').delete(function(req, res) {
+		console.log("/pets/" + req.params.id);
+		Pet.findByIdAndRemove(req.params.id, function(err, pet) {
 			if (err) {
 				console.log(err);
 				res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)

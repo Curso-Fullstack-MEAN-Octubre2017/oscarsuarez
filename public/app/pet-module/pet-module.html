@@ -1,0 +1,20 @@
+<div ng-controller="PetController">
+	<h2>Pet {{pet._id}}</h2>
+	<form action="">
+		<input type="hidden" name="dni" ng-model="pet._id" />
+		<input type="hidden" name="dni" ng-model="pet.__v" />
+		
+		name: <input type="text" name="name" ng-model="pet.name" placeholder="name" /><br />
+		birthdate: <input type="text" name="birthdate" ng-model="pet.birthdate" placeholder="birthdate" /><br />
+		chipNumber: <input type="text" name="chipNumber" ng-model="pet.chipNumber" placeholder="chipNumber" /><br />
+		specie: <input type="text" name="dni" ng-model="pet.specie" placeholder="specie" /><br />
+		race: <input type="text" name="race" ng-model="pet.race" placeholder="race" /><br />
+		description: <input type="text" name="description" ng-model="pet.description" placeholder="description" /><br />
+		photoUrl: <input type="text" name="photoUrl" ng-model="pet.photoUrl" placeholder="photoUrl" /><br />
+		owner: <input type="text" name="owner" ng-model="pet.owner" placeholder="owner" /><br />
+
+		<input type="button" ng-click="remove()" value="Delete"/>
+		<input type="button" ng-click="submit()" value="Save"/>
+		<input type="button" ng-click="cancel()" value="Cancel"/>
+	</form>
+</div>
