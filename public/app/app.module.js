@@ -5,6 +5,6 @@ angular.module('petStore', [
     'ngRoute',
     'customerListModule',
     'customerModule',
-//    'petListModule',
+    'petListModule',
     'petModule',
 ]);

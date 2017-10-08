@@ -1,4 +1,5 @@
 const Pet = require('../models/pet');
+const Customer = require('../models/customer');
 
 module.exports = (router) => {
 
@@ -32,9 +33,9 @@ module.exports = (router) => {
 				res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)
 			} else {
 				// hidratar el customer
-				Customer.populate(pet, {path : "owner"}, (err, client) => {
+				// Customer.populate(pet, {path : "owner"}, (err, client) => {
 					res.json(pet);
-				})
+				//})
 
 			}
 		});

@@ -1,0 +1,32 @@
+<div ng-controller="PetListController">
+	<h2>Pet List</h2>
+
+	<input type="text" name="searchTerm" ng-model="search.searchTerm" />
+	<input type="submit" ng-click="searchPets()" value="Search">
+
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th>name</th>
+			<th>birthdate</th>
+			<th>chipNumber</th>
+			<th>race</th>
+			<th>specie</th>
+			<th>description</th>
+			<th>photoUrl</th>
+			<th>owner</th>	
+		</tr>
+		<tr ng-repeat="pet in petList">
+			<td><a ng-href="/pets/{{pet._id}}">{{pet._id}}</a></td>
+			<td>{{pet.name}}</td>
+			<td>{{pet.birthdate}}</td>
+			<td>{{pet.chipNumber}}</td>
+			<td>{{pet.race}}</td>
+			<td>{{pet.specie}}</td>
+			<td>{{pet.description}}</td>
+			<td>{{pet.photoUrl}}</td>
+			<td>{{pet.owner}}</td>
+		</tr>
+	</table>
+	<a ng-href="/pets/new">Add New</a>
+</div>
