@@ -1,5 +1,7 @@
 'use strict';
 
+angular.module('petListModule', []);
+
 angular.module('petListModule')
     .component('petListModule', {
         templateUrl:'/app/petList-module/petList-module.html',

@@ -1,5 +1,7 @@
 'use strict';
 
+angular.module('customerModule', []);
+
 angular.module('customerModule')
     .component('customerModule', {
         templateUrl:'/app/customer-module/customer-module.html',
