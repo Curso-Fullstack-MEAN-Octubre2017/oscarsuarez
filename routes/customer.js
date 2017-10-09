@@ -1,17 +1,20 @@
 'use strict'
-const Customers = require('../models/customers')
+
+//cargando el modulo express
+var express = require('express');
+
+//Aqui se importa el controlador de customer
+var CustomerController = require('../controllers/customer')
+
+//asignando el router de express a variable api
+var api = express.Router();
 
 
+// Aqui se crea las rutas por cada metodos definidos en el controlador
+
+api.get('/customers', CustomerController.getCustomers);
+api.post('/newcustomer', CustomerController.saveCustomer);
 
 
-
-/*
-const express = require('express')
- 
-const api = express.Router();
-
-api.get('/customer',customerControllers.getCustomers)
-api.post('/customer',customerControllers.saveCustomer)
-
-
-module.exports = api */
+// exportando el modulo
+module.exports = api;
