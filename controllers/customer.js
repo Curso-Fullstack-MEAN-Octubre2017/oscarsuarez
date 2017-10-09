@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 //importamos el modelo customer
@@ -9,8 +9,8 @@ var Customer = require('../models/customer');
 function getCustomers(req, res) {
 
     Customer.find({}, (err, customers) => {
-        if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`})
-        if (!customers) return res.status(404).send({message: `No existen clientes`})
+        if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
+        if (!customers) return res.status(404).send({message: `No existen clientes`});
 
         res.send(200, {customer: customers})
     })
@@ -38,17 +38,13 @@ function saveCustomer(req, res) {
     //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
     customer.save((err, customerStored) => {
         //si existe un error
-        if (err) {
-            res.status(500).send({message: "Error al guardar el cliente"});
-        } else {
-            //si el usuario guardado no existe
-            if (!customerStored) {
-                res.status(404).send({message: "No se ha registrado el cliente"});
-            } else {
-                //si OK devuelve un objeto customer con los datos guardados en la bdat
-                res.status(200).send({customer: customerStored});
-            }
-        }
+        if (err) return res.status(500).send({message: "Error al guardar el cliente"});
+        //si el usuario guardado no existe
+        if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
+
+        //si OK devuelve un objeto customer con los datos guardados en la bdat
+        res.status(200).send({customer: customerStored});
+
     });
 
 

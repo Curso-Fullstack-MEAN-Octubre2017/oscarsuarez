@@ -1,33 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<base href="/">
-	<meta charset="UTF-8">
-	<title>PetStore Demo with AngularJs+Express+NodeJs+MongoDb</title>
-	<link rel="stylesheet" href="/stylesheets/style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>PetStore Demo with AngularJs+Express+NodeJs+MongoDb</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
-	
-	
-	<script src="/app/app.module.js"></script>
-	<script src="/app/app.config.js"></script>
-	
-	<script src="/app/sample-module/sample-module.module.js"></script>
-	<script src="/app/sample-module/sample-module.component.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-	</head>
+    <script src="/app/app.module.js"></script>
+    <script src="/app/app.config.js"></script>
+
+    <script src="/app/sample-module/sample-module.module.js"></script>
+    <script src="/app/sample-module/sample-module.component.js"></script>
+
+</head>
 <body>
 
-	<div>
-	<h1>hola</h1>
-	</div>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Clinica veterinaria</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="sass.html">Clientes</a></li>
+            <li><a href="badges.html">Citas</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col m0 s0 l2"></div>
+    <div class="col s12 m12 l8">
+        <div class="card">
+            <div class="card-image">
+                <img src="http://lorempixel.com/640/300/animals/">
+                <span class="card-title">Listado Clientes</span>
+            </div>
+            <div ng-view>
+
+            </div>
+        </div>
+    </div>
+    <div class="col m0 s0 l2"></div>
+</div>
+
 
 </body>
 </html>
