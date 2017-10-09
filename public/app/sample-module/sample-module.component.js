@@ -1,4 +1,5 @@
 'use strict';
+angular.module('sampleModule', []);
 
 angular.module('sampleModule')
     .component('sampleModule', {
@@ -6,6 +7,4 @@ angular.module('sampleModule')
         controller: function($scope, $http) {
             console.log("Incializando sample-module")
         }
-    });
-
-    
+});

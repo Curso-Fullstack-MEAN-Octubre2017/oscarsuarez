@@ -4,10 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 //var sample = require('./routes/sample');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost/petstore',{useMongoClient:true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +26,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //// Nuevas Rutas van aqui:
 //app.use('/sample', sample);
+
+const Customers = new Customer({
+	//json
+});
 
 //Front End
 app.all("*", (req, res) => {
