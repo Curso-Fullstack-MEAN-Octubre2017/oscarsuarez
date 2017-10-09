@@ -3,5 +3,5 @@
 angular.module('petStore', [
     'ngResource',
     'ngRoute',
-    'sampleModule'
+    'customerModule'
 ]);
