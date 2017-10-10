@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="MainController">
+<html lang="es" ng-app="petStore">
 <head>
     <base href="/">
     <meta charset="UTF-8">
@@ -18,12 +18,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="/app/app.module.js"></script>
     <script src="/app/app.config.js"></script>
-
-    <script src="/app/sample-module/sample-module.module.js"></script>
-    <script src="/app/sample-module/sample-module.component.js"></script>
+    <script src="/app/customer-module/customer-module.component.js"></script>
 
 </head>
 <body>
@@ -32,7 +30,7 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center">Clinica veterinaria</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Clientes</a></li>
+            <li><a href="customers">Clientes</a></li>
             <li><a href="badges.html">Citas</a></li>
         </ul>
     </div>
@@ -44,11 +42,11 @@
         <div class="card">
             <div class="card-image">
                 <img src="http://lorempixel.com/640/300/animals/">
-                <span class="card-title">Listado Clientes</span>
+                <ng-view>
+                    <!-- lista de clientes -->
+                </ng-view>
             </div>
-            <div ng-view>
 
-            </div>
         </div>
     </div>
     <div class="col m0 s0 l2"></div>
