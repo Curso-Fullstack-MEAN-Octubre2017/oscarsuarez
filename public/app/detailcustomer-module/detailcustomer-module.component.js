@@ -19,9 +19,13 @@ angular.module('detailcustomerModule', [])
             $scope.petList = [];
             $http.get('api/pets/' + id).then(function (res) {
                 $scope.petList = res.data;
-
                 console.log($scope.petList);
             });
+        /*
+            $scope.put('api/pets/'+id).then(function (res) {
+               $scope.petList
+            });
+            */
         }
 
     });

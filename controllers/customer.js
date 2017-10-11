@@ -64,6 +64,8 @@ function saveCustomer(req, res) {
 
 function updateCustomer(req, res) {
 
+
+
 }
 
 //export las funciones
