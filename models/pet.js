@@ -10,9 +10,10 @@ const PetSchema = Schema({
     name: String,
     species: String,
     sex: String,
-    owner: {type: Schema.ObjectId, ref: 'Customer'},
+    picUrl: String,
+    owner: String,
     race: String,
-    birthDate: Date,
+    birthDate: String,
     description: String
 });
 

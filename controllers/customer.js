@@ -7,18 +7,23 @@ var Customer = require('../models/customer');
 //funciones del controlador
 function getCustomers(req, res) {
 
-    Customer.find({}, (err, customers) => {
-        if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-        //if (!customers) return res.status(404).send({message: `No existen clientes`});
-        res.send(200, customers);
-    })
+    var query = Customer.find({});
+    query.select('firstName lastName')
+        .exec(function (err, customers) {
+            if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
+
+            res.send(200, customers);
+        });
 }
 
-function searchCustomers(req, res) {
-    //var name = req.params._id;
+function getCustomerById(req, res) {
+
     var id = req.params.id;
 
-    Customer.findbyId(customerId, (err, customers) => {
+    console.log(id);
+
+    Customer.findById(id, (err, customers) => {
+        console.log(customers);
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!customers) return res.status(404).send({message: `No existen clientes`});
         res.send(200, customers);
@@ -43,7 +48,6 @@ function saveCustomer(req, res) {
     customer.email = params.email;
     customer.note = params.note;
 
-
     //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
     customer.save((err, customerStored) => {
         //si existe un error
@@ -58,10 +62,15 @@ function saveCustomer(req, res) {
 
 }
 
+function updateCustomer(req, res) {
+
+}
+
 //export las funciones
 
 module.exports = {
     saveCustomer,
     getCustomers,
-    searchCustomers
+    getCustomerById,
+    updateCustomer
 };

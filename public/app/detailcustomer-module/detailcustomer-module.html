@@ -1,0 +1,60 @@
+ <form class="col s12 m6 l6">
+        <h5>Datos cliente</h5>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="first Name" id="first_name" type="text" class="validate"
+                       value="{{searchcustomersList.firstName}}">
+                <label class="active" for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="last_name" type="text" value="{{searchcustomersList.lastName}}">
+                <label class="active" for="last_name">Last Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Placeholder" id="dni" type="text" class="validate"
+                       value="{{searchcustomersList.dni}}">
+                <label class="active" for="Dni">Dni</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="phone" type="text" class="validate" value="{{searchcustomersList.phone}}">
+                <label class="active" for="phone">Phone</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate" value="{{searchcustomersList.email}}">
+                <label class="active" for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="note" type="note"
+                          class="validate materialize-textarea">{{searchcustomersList.note}}</textarea>
+                <label class="active" for="note" data-error="wrong" data-success="right">Notes</label>
+            </div>
+        </div>
+    </form>
+
+    <div class=" col s12 m6 l6">
+        <h5>Datos mascotas</h5>
+        <div class="collection">
+            <ul>
+                <a class="collection-item avatar" href="pet/{{p._id}}" ng-repeat="p in petList">
+                    <li>
+                        <img src="{{p.picUrl}}" alt="" class="circle">
+                        <span class="title">{{p.name}}</span>
+                        <p>{{p.species}}</p>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+
+ <!-- button save -->
+ <div class="row">
+     <div class="fixed-action-btn">
+         <a class="btn-floating btn-large red" ng-click="">
+             <i class="large material-icons">save</i>
+         </a>
+     </div>
