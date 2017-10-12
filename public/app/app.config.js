@@ -11,7 +11,11 @@ angular.module('petStore')
             .when("/customers", {
                 template: "<customer-module></customer-module>"
             })
+            .when("/customers/:id",
+                {
+                    template: "<detailcustomer-module></detailcustomer-module>"
+                })
             .otherwise({
-                template: "Other"
+                template: "<h4>Error 404</h4></h2>La página no existe</h2>"
             });
     });

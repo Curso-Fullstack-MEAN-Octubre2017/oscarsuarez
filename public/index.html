@@ -21,7 +21,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="/app/app.module.js"></script>
     <script src="/app/app.config.js"></script>
+
     <script src="/app/customer-module/customer-module.component.js"></script>
+    <script src="/app/detailcustomer-module/detailcustomer-module.component.js"></script>
 
 </head>
 <body>
@@ -41,12 +43,11 @@
     <div class="col s12 m12 l8">
         <div class="card">
             <div class="card-image">
-                <img src="http://lorempixel.com/640/300/animals/">
-                <ng-view>
-                    <!-- lista de clientes -->
-                </ng-view>
+                <img src="http://lorempixel.com/1000/350/animals/">
             </div>
-
+            <ng-view>
+                <!-- lista de clientes -->
+            </ng-view>
         </div>
     </div>
     <div class="col m0 s0 l2"></div>
