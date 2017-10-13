@@ -10,7 +10,6 @@ var PetController = require('../controllers/pet');
 //asignando el router de express a variable api
 var api = express.Router();
 
-
 // Aqui se crea las rutas por cada metodos definidos en el controlador
 
 //customers
@@ -20,9 +19,10 @@ api.post('/customers', CustomerController.saveCustomer);
 api.put('/customers/:id', CustomerController.updateCustomer);
 
 //pets
-api.get('/pets', PetController.getPets);
-api.get('/customers/:id/pets', PetController.getPetById);
-api.post('/pets', PetController.savePet);
+api.get('/customers/:id/pets', PetController.getPetByOwnerId);
+api.get('/pet/:id',PetController.getPetById);
+api.post('/pet', PetController.savePet);
+api.put('/pet/:id',PetController.updatePet);
 
-// exportando el modulo
+//exportando el modulo
 module.exports = api;

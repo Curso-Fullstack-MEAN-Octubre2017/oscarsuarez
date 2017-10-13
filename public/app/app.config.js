@@ -9,5 +9,7 @@ angular.module('petStore')
             .when("/customers", {template: "<customer-module></customer-module>"})
             .when("/customers/:id/pets", {template: "<detailcustomer-module></detailcustomer-module>"})
             .when("/customers/newcustomer", {template: "<detailcustomer-module></detailcustomer-module>"})
+            .when("/pet/:id", {template: "<detailpet-module></detailpet-module>"})
+            .when("/pet/newpet", {template: "<detailpet-module></detailpet-module>"})
             .otherwise({template: "<h4>Error 404</h4></h2>La página no existe</h2>"});
     });

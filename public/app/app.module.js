@@ -4,5 +4,6 @@ angular.module('petStore', [
     'ngResource',
     'ngRoute',
     'customerModule',
-    'detailcustomerModule'
+    'detailcustomerModule',
+    'detailpetModule'
 ]);

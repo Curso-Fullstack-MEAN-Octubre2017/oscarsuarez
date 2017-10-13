@@ -1,0 +1,52 @@
+<form class="col s12 m12 l12" name="formPet">
+    <h5>Datos mascota</h5>
+    <div class="row">
+        <div class="input-field col s6">
+            <input id="chipNumber" type="text" class="validate" ng-model="chipNumber">
+            <label class="active" for="chipNumber">Chip number</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="name" type="text" ng-model="name">
+            <label class="active" for="name">Name</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <input id="species" type="text" class="validate" ng-model="species">
+            <label class="active" for="species">Species</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="sex" type="text" class="validate" ng-model="sex">
+            <label class="active" for="sex">Sex</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="picUrl" type="text" class="validate" ng-model="picUrl">
+            <label class="active" for="picUrl">Picture Url</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="race" type="text" class="validate" ng-model="race" />
+            <label class="active" for="race" data-error="wrong" data-success="right">Race</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="birthDate" type="text" class="validate" ng-model="birthDate">
+            <label class="active" for="birthDate">BirthDate</label>
+        </div>
+        <div class="input-field col s12">
+            <textarea id="description" type="text" class="validate materialize-textarea" ng-model="description"></textarea>
+            <label class="active" for="description" data-error="wrong" data-success="right">Description</label>
+        </div>
+    </div>
+
+    <!-- button save -->
+    <div class="row">
+        <div class="fixed-action-btn">
+            <button class="btn-floating btn-large red" data-ng-click="submit(formPet)">
+                <i class="large material-icons">save</i>
+            </button>
+        </div>
+    </div>
+</form>

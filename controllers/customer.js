@@ -28,7 +28,6 @@ function getCustomerById(req, res) {
         if (!customers) return res.status(404).send({message: `No existen clientes`});
         res.send(200, customers);
     });
-
 }
 
 function saveCustomer(req, res) {
