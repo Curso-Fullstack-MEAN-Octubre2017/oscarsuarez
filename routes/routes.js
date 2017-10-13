@@ -17,10 +17,11 @@ var api = express.Router();
 api.get('/customers', CustomerController.getCustomers);
 api.get('/customers/:id', CustomerController.getCustomerById);
 api.post('/customers', CustomerController.saveCustomer);
+api.put('/customers/:id', CustomerController.updateCustomer);
 
 //pets
 api.get('/pets', PetController.getPets);
-api.get('/pets/:id', PetController.getPetById);
+api.get('/customers/:id/pets', PetController.getPetById);
 api.post('/pets', PetController.savePet);
 
 // exportando el modulo

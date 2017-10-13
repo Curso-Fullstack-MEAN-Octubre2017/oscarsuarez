@@ -27,7 +27,8 @@ function getCustomerById(req, res) {
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!customers) return res.status(404).send({message: `No existen clientes`});
         res.send(200, customers);
-    })
+    });
+
 }
 
 function saveCustomer(req, res) {
@@ -64,7 +65,28 @@ function saveCustomer(req, res) {
 
 function updateCustomer(req, res) {
 
+    Customer.findById(req.params.id, (err, customer) => {
 
+        customer.dni = req.body.dni;
+        customer.firstName = req.body.firstName;
+        customer.lastName = req.body.lastName;
+        customer.phone = req.body.phone;
+        customer.email = req.body.email;
+        customer.note = req.body.note;
+
+        //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
+        customer.save((err, customerStored) => {
+            //si existe un error
+            if (err) return res.status(500).send({message: "Error al guardar el cliente"});
+            //si el usuario guardado no existe
+            if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
+
+            //si OK devuelve un objeto customer con los datos guardados en la bdat
+            res.status(200).send({customer: customerStored});
+
+        });
+
+    })
 
 }
 

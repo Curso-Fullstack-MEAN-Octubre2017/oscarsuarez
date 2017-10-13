@@ -1,5 +1,5 @@
 'use strict';
-console.log('hola estoy en detail')
+
 angular.module('detailcustomerModule', [])
     .component('detailcustomerModule', {
 
@@ -9,23 +9,65 @@ angular.module('detailcustomerModule', [])
 
             var id = $routeParams.id;
 
-            $scope.searchcustomersList = [];
-            $http.get('api/customers/' + id).then(function (res) {
-                $scope.searchcustomersList = res.data;
+            console.log("id " + id);
 
-                console.log($scope.searchcustomersList);
-            });
+            if (id != null) {
 
-            $scope.petList = [];
-            $http.get('api/pets/' + id).then(function (res) {
-                $scope.petList = res.data;
-                console.log($scope.petList);
-            });
-        /*
-            $scope.put('api/pets/'+id).then(function (res) {
-               $scope.petList
-            });
-            */
+                $scope.searchcustomersList = [];
+                $http.get('api/customers/' + id).then(function (res) {
+
+                    $scope.dni = res.data.dni;
+                    $scope.firstName = res.data.firstName;
+                    $scope.lastName = res.data.lastName;
+                    $scope.phone = res.data.phone;
+                    $scope.email = res.data.email;
+                    $scope.note = res.data.note;
+
+                    console.log($scope.searchcustomersList);
+                });
+
+                $scope.petList = [];
+                $http.get('api/customers/' + id + '/pets/').then(function (res) {
+                    $scope.petList = res.data;
+                    console.log($scope.petList);
+                });
+
+            }
+
+            $scope.submit = function (formCustomer) {
+                var data = {
+                    firstName: $scope.firstName,
+                    lastName: $scope.lastName,
+                    dni: $scope.dni,
+                    phone: $scope.phone,
+                    email: $scope.email,
+                    note: $scope.note
+                };
+
+                if (id != null) {
+                    $http({
+                        method: 'PUT',
+                        url: "api/customers/" + id,
+                        data: JSON.stringify(data),
+                        headers: {'Content-Type': 'application/json'}
+                    }).success(function (data, status, headers, config) {
+                        console.log('Ok')
+                    }).error(function (status) {
+                        console.log('Error ' + status);
+                    })
+                } else {
+                    $http({
+                        method: 'POST',
+                        url: "api/customers/",
+                        data: JSON.stringify(data),
+                        headers: {'Content-Type': 'application/json'}
+                    }).success(function (data, status, headers, config) {
+                        console.log('Ok')
+                    }).error(function (status) {
+                        console.log('Error ' + status);
+                    })
+                }
+            }
         }
 
     });

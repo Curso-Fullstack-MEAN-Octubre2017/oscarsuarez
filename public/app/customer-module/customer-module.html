@@ -11,13 +11,13 @@
 </nav>
 
 <div class="collection">
-    <a ng-repeat="cli in customersList | filter:search"  href="customers/{{cli._id}}" class="collection-item">{{cli.firstName}}
+    <a ng-repeat="cli in customersList | filter:search" href="customers/{{cli._id}}/pets" class="collection-item">{{cli.firstName}}
         {{cli.lastName}}</a>
 </div>
 
 <div class="row">
     <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red" ng-click="">
+        <a class="btn-floating btn-large red" ng-href="customers/newcustomer">
             <i class="large material-icons">add</i>
         </a>
     </div>
