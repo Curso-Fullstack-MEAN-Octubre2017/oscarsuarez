@@ -35,10 +35,6 @@ angular.module('detailpetModule', [])
                     console.log($scope.petList);
                 });
 
-            } else {
-                // $scope.goToNewPet = function () {
-                //     Navigator.goTo('/pet', {_id: id});
-                // };
             }
 
             $scope.submit = function (formPet) {
@@ -62,8 +58,12 @@ angular.module('detailpetModule', [])
                         headers: {'Content-Type': 'application/json'}
                     }).success(function (data, status, headers, config) {
                         console.log('Ok: ' + data);
+                        alert('guardado correctamente');
+                        history.back();
+
                     }).error(function (status) {
                         console.log('Error ' + status);
+                        alert('Error al guardar');
                     })
                 } else {
                     $http({

@@ -52,6 +52,9 @@ angular.module('detailcustomerModule', [])
                         headers: {'Content-Type': 'application/json'}
                     }).success(function (data, status, headers, config) {
                         console.log('Ok')
+                        alert('guardado correctamente');
+                        history.back();
+
                     }).error(function (status) {
                         console.log('Error ' + status);
                     })
@@ -63,6 +66,9 @@ angular.module('detailcustomerModule', [])
                         headers: {'Content-Type': 'application/json'}
                     }).success(function (data, status, headers, config) {
                         console.log('Ok')
+                        alert('guardado correctamente');
+                        history.back();
+
                     }).error(function (status) {
                         console.log('Error ' + status);
                     })
