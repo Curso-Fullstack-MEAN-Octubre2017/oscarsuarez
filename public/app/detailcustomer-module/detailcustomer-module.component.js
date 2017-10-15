@@ -8,10 +8,11 @@ angular.module('detailcustomerModule', [])
             console.log("estoy en el componente detail customer");
 
             var id = $routeParams.id;
+            var action = $routeParams.action;
+            $scope.action = action;
 
-            console.log("id " + id);
 
-            if (id != null) {
+            if (action == 'edit') {
 
                 $scope.searchcustomersList = [];
                 $http.get('api/customers/' + id).then(function (res) {
@@ -38,7 +39,7 @@ angular.module('detailcustomerModule', [])
                     note: $scope.note
                 };
 
-                if (id != null) {
+                if (action == 'edit') {
                     $http({
                         method: 'PUT',
                         url: "api/customers/" + id,
@@ -52,7 +53,7 @@ angular.module('detailcustomerModule', [])
                     }).error(function (status) {
                         console.log('Error ' + status);
                     })
-                } else {
+                } else if (action == 'create') {
                     $http({
                         method: 'POST',
                         url: "api/customers/",
