@@ -91,9 +91,5 @@ function updateCustomer(req, res) {
 
 //export las funciones
 
-module.exports = {
-    saveCustomer,
-    getCustomers,
-    getCustomerById,
-    updateCustomer
-};
+module.exports = {saveCustomer, getCustomers, getCustomerById, updateCustomer};
+

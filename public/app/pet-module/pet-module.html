@@ -1,0 +1,16 @@
+<div class=" col s12 m6 l6">
+    <h5>Datos mascotas</h5>
+    <div class="collection">
+        <ul>
+            <a class="collection-item avatar" href="pet/edit/{{p._id}}" ng-repeat="p in petList">
+                <li>
+                    <img src="{{p.picUrl}}" alt="" class="circle">
+                    <span class="title">{{p.name}}</span>
+                    <p>{{p.species}}</p>
+                </li>
+            </a>
+        </ul>
+    </div>
+    <a class="btn-floating btn-small right waves-effect waves-light red" id="newpet" href="pet/create/{{customerId}}"><i
+            class="material-icons">add</i></a>
+</div>

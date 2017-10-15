@@ -26,12 +26,6 @@ angular.module('detailcustomerModule', [])
                     console.log($scope.searchcustomersList);
                 });
 
-                $scope.petList = [];
-                $http.get('api/customers/' + id + '/pets/').then(function (res) {
-                    $scope.petList = res.data;
-                    console.log($scope.petList);
-                });
-
             }
 
             $scope.submit = function (formCustomer) {

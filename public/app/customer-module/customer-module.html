@@ -11,7 +11,7 @@
 </nav>
 
 <div class="collection">
-    <a ng-repeat="cli in customersList | filter:search" href="customers/{{cli._id}}/pets" class="collection-item">{{cli.firstName}}
+    <a ng-repeat="cli in customersList | filter:search" href="customers/{{cli._id}}" class="collection-item">{{cli.firstName}}
         {{cli.lastName}}</a>
 </div>
 

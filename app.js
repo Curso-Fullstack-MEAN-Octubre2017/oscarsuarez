@@ -4,7 +4,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var routes = require('./routes/routes');//Aqui se importa todos los archivos de la carpeta rutas
+
+//Aqui se importa todos los archivos de la carpeta rutas
+var customerRoute = require('./routes/customer');
+var petRoute = require('./routes/pet');
 
 var app = express();
 
@@ -18,7 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Base route
 //Crea una ruta base para todas las rutas que corresponden a la api
-app.use('/api', routes);
+app.use('/api', customerRoute);
+app.use('/api', petRoute);
 
 //Front End
 app.all("*", (req, res) => {

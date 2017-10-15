@@ -41,20 +41,5 @@
     </div>
 </form>
 
-<div class=" col s12 m6 l6">
-    <h5>Datos mascotas</h5>
-    <div class="collection">
-        <ul>
-            <a class="collection-item avatar" href="pet/{{p._id}}" ng-repeat="p in petList">
-                <li>
-                    <img src="{{p.picUrl}}" alt="" class="circle">
-                    <span class="title">{{p.name}}</span>
-                    <p>{{p.species}}</p>
-                </li>
-            </a>
-        </ul>
-    </div>
-    <a class="btn-floating btn-small right waves-effect waves-light red" id="newpet"><i class="material-icons">add</i></a>
-</div>
-</div>
+<pet-module></pet-module>
 

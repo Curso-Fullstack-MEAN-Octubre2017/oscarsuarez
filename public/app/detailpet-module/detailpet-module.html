@@ -26,7 +26,7 @@
             <label class="active" for="picUrl">Picture Url</label>
         </div>
         <div class="input-field col s12">
-            <input id="race" type="text" class="validate" ng-model="race" />
+            <input id="race" type="text" class="validate" ng-model="race"/>
             <label class="active" for="race" data-error="wrong" data-success="right">Race</label>
         </div>
     </div>
@@ -36,17 +36,35 @@
             <label class="active" for="birthDate">BirthDate</label>
         </div>
         <div class="input-field col s12">
-            <textarea id="description" type="text" class="validate materialize-textarea" ng-model="description"></textarea>
+            <textarea id="description" type="text" class="validate materialize-textarea"
+                      ng-model="description"></textarea>
             <label class="active" for="description" data-error="wrong" data-success="right">Description</label>
         </div>
     </div>
 
     <!-- button save -->
-    <div class="row">
-        <div class="fixed-action-btn">
-            <button class="btn-floating btn-large red" data-ng-click="submit(formPet)">
-                <i class="large material-icons">save</i>
-            </button>
-        </div>
+
+    <div ng-if="!action" class="fixed-action-btn horizontal">
+        <button class="btn-floating btn-large red" data-ng-click="submit(formPet)">
+            <i class="large material-icons">save</i>
+        </button>
+    </div>
+
+    <div ng-if="action" class="fixed-action-btn horizontal">
+        <a class="btn-floating btn-large blue">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li>
+                <button class="btn-floating  green" data-ng-click="submit(formPet)">
+                    <i class="large material-icons">save</i>
+                </button>
+            </li>
+            <li>
+                <button class="btn-floating  red" data-ng-click="delete()">
+                    <i class="large material-icons">delete</i>
+                </button>
+            </li>
+        </ul>
     </div>
 </form>

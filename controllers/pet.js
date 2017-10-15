@@ -34,6 +34,15 @@ function getPetById(req, res) {
     });
 }
 
+function deletePet(req, res) {
+    var id = req.params.id;
+
+    Pet.remove({_id: id}, function (err) {
+        if (err) return res.status(500).send({message: `Error al borrar: ${err}`});
+        res.send(200, ({message: 'borrado correctamente'}));
+    });
+}
+
 function savePet(req, res) {
 
     var pet = new Pet();
@@ -54,16 +63,12 @@ function savePet(req, res) {
 
     //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
     pet.save((err, petStored) => {
-
         //si existe un error
         if (err) return res.status(500).send({message: "Error al guardar el cliente"});
-
         //si la mascota guardado no existe
         if (!petStored) return res.status(404).send({message: "No se ha registrado el cliente"});
-
         //si OK devuelve un objeto pet con los datos guardados en la bdat
         res.status(200).send({customer: petStored});
-
     });
 
 }
@@ -103,5 +108,6 @@ module.exports = {
     savePet,
     getPetById,
     updatePet,
-    getPetByOwnerId
+    getPetByOwnerId,
+    deletePet
 };
