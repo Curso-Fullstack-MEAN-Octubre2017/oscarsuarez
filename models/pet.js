@@ -13,7 +13,7 @@ const PetSchema = Schema({
     picUrl: String,
     owner: String,
     race: String,
-    birthDate: String,
+    birthDate: Date,
     description: String
 });
 

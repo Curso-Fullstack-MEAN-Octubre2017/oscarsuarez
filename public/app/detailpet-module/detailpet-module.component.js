@@ -10,21 +10,15 @@ angular.module('detailpetModule', [])
 
                 var id = $routeParams.id;
                 var action = $routeParams.action;
-                if(action =='edit'){
+                if (action == 'edit') {
                     $scope.action = true;
-                }else{
+                } else {
                     $scope.action = false;
                 }
 
                 console.log(action);
 
-                $scope.$on("myEvent", function () {
-                    console.log('my event occurred');
-                });
-
                 if (action == 'edit') {
-
-                    console.log('update pet');
 
                     $scope.searchpetsList = [];
                     $http.get('api/pet/' + id).then(function (res) {
@@ -36,7 +30,7 @@ angular.module('detailpetModule', [])
                         $scope.picUrl = res.data.picUrl;
                         $scope.owner = res.data.owner;
                         $scope.race = res.data.race;
-                        $scope.birthDate = res.data.birthDate;
+                        $scope.birthDate = moment(res.data.birthDate).format('DD-MMM-YYYY', 'es');
                         $scope.description = res.data.description;
 
                         console.log($scope.searchpetsList);
