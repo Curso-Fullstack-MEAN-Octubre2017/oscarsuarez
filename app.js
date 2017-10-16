@@ -4,8 +4,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var multer = require('multer');
-
 //Aqui se importa todos los archivos de la carpeta rutas
 var customerRoute = require('./routes/customer');
 var petRoute = require('./routes/pet');
