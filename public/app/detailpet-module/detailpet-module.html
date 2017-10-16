@@ -2,26 +2,26 @@
     <h5>Datos mascota</h5>
     <div class="row">
         <card class="center">
-            <img class="z-depth-3" width="300" ng-src="{{picUrl}}"/>
+            <img class="z-depth-3" width="300" ng-src="{{pet.picUrl}}"/>
         </card>
     </div>
     <div class="row">
         <div class="input-field col s6">
-            <input id="chipNumber" type="text" class="validate" ng-model="chipNumber">
+            <input id="chipNumber" type="text" class="validate" ng-model="pet.chipNumber">
             <label class="active" for="chipNumber">Chip number</label>
         </div>
         <div class="input-field col s6">
-            <input id="name" type="text" ng-model="name">
+            <input id="name" type="text" ng-model="pet.name">
             <label class="active" for="name">Name</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s6">
-            <input id="species" type="text" class="validate" ng-model="species">
+            <input id="species" type="text" class="validate" ng-model="pet.species">
             <label class="active" for="species">Species</label>
         </div>
         <div class="input-field col s6">
-            <input id="sex" type="text" class="validate" ng-model="sex">
+            <input id="sex" type="text" class="validate" ng-model="pet.sex">
             <label class="active" for="sex">Sex</label>
         </div>
     </div>
@@ -33,25 +33,25 @@
                 <input type="file">
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" ng-model="picUrl">
+                <input class="file-path validate" type="text" ng-model="pet.picUrl">
             </div>
         </div>
 
         <div class="input-field col s12">
-            <input id="race" type="text" class="validate" ng-model="race"/>
+            <input id="race" type="text" class="validate" ng-model="pet.race"/>
             <label class="active" for="race" data-error="wrong" data-success="right">Race</label>
         </div>
     </div>
     <div class="row">
 
         <div class="input-field col s12">
-            <input id="birthDate" type="text" class="datepicker" ng-model="birthDate">
+            <input id="birthDate" type="text" class="datepicker" ng-model="pet.birthDate">
             <label class="active" for="birthDate">BirthDate</label>
         </div>
 
         <div class="input-field col s12">
             <textarea id="description" type="text" class="validate materialize-textarea"
-                      ng-model="description"></textarea>
+                      ng-model="pet.description"></textarea>
             <label class="active" for="description" data-error="wrong" data-success="right">Description</label>
         </div>
     </div>

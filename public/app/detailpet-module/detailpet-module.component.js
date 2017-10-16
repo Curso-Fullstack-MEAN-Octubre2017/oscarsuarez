@@ -23,17 +23,9 @@ angular.module('detailpetModule', [])
                     $scope.searchpetsList = [];
                     $http.get('api/pet/' + id).then(function (res) {
 
-                        $scope.chipNumber = res.data.chipNumber;
-                        $scope.name = res.data.name;
-                        $scope.species = res.data.species;
-                        $scope.sex = res.data.sex;
-                        $scope.picUrl = res.data.picUrl;
-                        $scope.owner = res.data.owner;
-                        $scope.race = res.data.race;
-                        $scope.birthDate = moment(res.data.birthDate).format('DD-MMM-YYYY', 'es');
-                        $scope.description = res.data.description;
+                        $scope.pet = res.data;
+                        $scope.pet.birthDate = moment(res.data.birthDate).format('DD-MMM-YYYY', 'es');
 
-                        console.log($scope.searchpetsList);
                     });
 
                 }
@@ -51,17 +43,8 @@ angular.module('detailpetModule', [])
                 };
 
                 $scope.submit = function (formPet) {
-                    var data = {
-                        chipNumber: $scope.chipNumber,
-                        name: $scope.name,
-                        species: $scope.species,
-                        sex: $scope.sex,
-                        picUrl: $scope.picUrl,
-                        owner: $routeParams.id,
-                        race: $scope.race,
-                        birthDate: $scope.birthDate,
-                        description: $scope.description
-                    };
+
+                    var data = $scope.pet;
 
                     if (action == 'edit') {
                         $http({
