@@ -24,10 +24,7 @@ $('.datepicker').pickadate({
     today: 'Hoy',
     clear: 'Limpiar',
     close: 'Cerrar',
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
-    format: 'dd/mmm/yyyy',
+    format: 'dd-mmm-yyyy',
     closeOnSelect: false // Close upon selecting a date,
 });
 

@@ -1,4 +1,4 @@
-<form class="col s12 m12 l12" name="formPet">
+<form class="col s12 m12 l12" name="formPet" enctype="multipart/form-data">
     <h5>Datos mascota</h5>
     <div class="row">
         <card class="center">
@@ -30,7 +30,7 @@
         <div class="file-field input-field col s12">
             <div class="btn">
                 <span>Imagen</span>
-                <input type="file">
+                <input type="file" name="uploadImg" id="uploadImg">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text" ng-model="pet.picUrl">

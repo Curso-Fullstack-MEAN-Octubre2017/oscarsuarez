@@ -5,7 +5,7 @@ angular.module('petStore')
                       $routeProvider) {
         $locationProvider.html5Mode({enabled: true});
         $routeProvider
-            .when("/", {template: "<h2>Bienvenido a la App Clínica veterinaria</h2>"})
+            .when("/", {template: "<center><h2>Bienvenido a la app de gestion Clínica veterinaria</h2><h3>2017</h3></center>"})
             .when("/customers", {template: "<customer-module></customer-module>"})
             .when("/:action/customers/:id?", {template: "<detailcustomer-module></detailcustomer-module>"})
           //  .when("create/customers", {template: "<detailcustomer-module></detailcustomer-module>"})

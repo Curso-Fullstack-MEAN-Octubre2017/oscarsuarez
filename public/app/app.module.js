@@ -6,5 +6,6 @@ angular.module('petStore', [
     'customerModule',
     'detailcustomerModule',
     'detailpetModule',
-    'petModule'
+    'petModule',
+    //'customeDatepicker'
 ]);
