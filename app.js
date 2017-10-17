@@ -50,6 +50,8 @@ app.all("*", (req, res) => {
     res.sendFile(path.resolve("public/index.html"));
 });
 
+
+// insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
 //require('./insertdata/appointment');
 
 module.exports = app;

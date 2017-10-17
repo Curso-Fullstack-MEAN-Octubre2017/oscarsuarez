@@ -9,6 +9,10 @@ angular.module('detailpetModule', [])
             var id = $routeParams.id;
             var action = $routeParams.action;
 
+
+            // con esta condicion oculto en la vista la opcion de añadir mascota
+            // si el dueño no esta creado previamente
+
             if (action == 'edit') {
                 $scope.action = true;
             } else {
@@ -42,9 +46,11 @@ angular.module('detailpetModule', [])
 
             $scope.submit = function (formPet) {
 
-                var data = $scope.pet;
+                var data;
 
                 if (action == 'edit') {
+
+                    data = $scope.pet;
                     $http({
                         method: 'PUT',
                         url: "api/pet/" + id,
@@ -54,12 +60,16 @@ angular.module('detailpetModule', [])
                         console.log('Ok: ' + data);
                         alert('guardado correctamente');
                         history.back();
-
                     }).error(function (status) {
                         console.log('Error ' + status);
                         alert('Error al guardar');
                     })
+
                 } else if (action == 'create') {
+
+                    //Al ser un nuevo pet hay que asignarle la id del dueño para relacionarlo
+                    $scope.pet.owner = id;
+                    data = $scope.pet;
 
                     $http({
                         method: 'POST',

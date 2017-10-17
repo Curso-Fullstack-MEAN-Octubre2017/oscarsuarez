@@ -1,7 +1,5 @@
 'use strict';
 
-//importamos el modelo customer
-
 var Appointment = require('../models/appointment');
 var moment = require('moment');
 

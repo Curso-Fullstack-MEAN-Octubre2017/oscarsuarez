@@ -5,13 +5,13 @@
 var Customer = require('../models/customer');
 
 //funciones del controlador
-function getCustomers(req, res) {
 
+
+function getCustomers(req, res) {
     var query = Customer.find({});
     query.select('firstName lastName')
         .exec(function (err, customers) {
             if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-
             res.send(200, customers);
         });
 }
@@ -20,10 +20,7 @@ function getCustomerById(req, res) {
 
     var id = req.params.id;
 
-    console.log(id);
-
     Customer.findById(id, (err, customers) => {
-        console.log(customers);
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!customers) return res.status(404).send({message: `No existen clientes`});
         res.send(200, customers);
@@ -32,21 +29,10 @@ function getCustomerById(req, res) {
 
 function saveCustomer(req, res) {
 
-    var customer = new Customer();
-
     //se guarda los parametros que nos vienen por POST en el body
-    //se recoje el cuerpo de la peticion
+    //se recoje el cuerpo de la peticion y se asigna a un nuevo objeto customer
 
-    var params = req.body;
-
-    console.log(params);
-
-    customer.dni = params.dni;
-    customer.firstName = params.firstName;
-    customer.lastName = params.lastName;
-    customer.phone = params.phone;
-    customer.email = params.email;
-    customer.note = params.note;
+    var customer = new Customer(req.body);
 
     //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
     customer.save((err, customerStored) => {
@@ -54,7 +40,6 @@ function saveCustomer(req, res) {
         if (err) return res.status(500).send({message: "Error al guardar el cliente"});
         //si el usuario guardado no existe
         if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
-
         //si OK devuelve un objeto customer con los datos guardados en la bdat
         res.status(200).send({customer: customerStored});
 
@@ -64,29 +49,14 @@ function saveCustomer(req, res) {
 
 function updateCustomer(req, res) {
 
-    Customer.findById(req.params.id, (err, customer) => {
-
-        customer.dni = req.body.dni;
-        customer.firstName = req.body.firstName;
-        customer.lastName = req.body.lastName;
-        customer.phone = req.body.phone;
-        customer.email = req.body.email;
-        customer.note = req.body.note;
-
-        //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
-        customer.save((err, customerStored) => {
-            //si existe un error
-            if (err) return res.status(500).send({message: "Error al guardar el cliente"});
-            //si el usuario guardado no existe
-            if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
-
-            //si OK devuelve un objeto customer con los datos guardados en la bdat
-            res.status(200).send({customer: customerStored});
-
-        });
-
-    })
-
+    Customer.findByIdAndUpdate(req.params.id, req.body, (err, customerStored) => {
+        //si existe un error
+        if (err) return res.status(500).send({message: "Error al guardar el cliente"});
+        //si el usuario guardado no existe
+        if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
+        //si OK devuelve un objeto customer con los datos guardados en la bdat
+        res.status(200).send({customer: customerStored});
+    });
 }
 
 //export las funciones

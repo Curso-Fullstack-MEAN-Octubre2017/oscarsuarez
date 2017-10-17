@@ -1,11 +1,16 @@
 'use strict';
 
+
+// SCRIPT PARA RELLENAR 300 DIAS LABORABLES DE CITAS  PARA PROBAR CALENDARIO//
+
 const Appointment = require('../models/appointment');
 const moment = require('moment');
 
-var startdate = moment("2017-10-17T09:00:00");
+var startdate = moment().startOf('isoweek').set({hour: 9, minute: 0});
 
-for (var j = 0; j <= 5; j++) {
+console.log("Inicio fecha: " + startdate);
+
+for (var j = 0; j <= 200; j++) {
     for (var i = 0; i <= 24; i++) {
 
         var sampleAppointment = {
@@ -16,10 +21,15 @@ for (var j = 0; j <= 5; j++) {
         };
 
         startdate = moment(startdate).add(30, 'minutes');
-        console.log(sampleAppointment);
-        testInsertAppointment()
+
+        //con isoweek compruebo que el dia actual no sea ni sabado ni domingo
+        if (moment(startdate).isoWeekday() != 7 && moment(startdate).isoWeekday() != 6) {
+            console.log(sampleAppointment);
+            console.log(moment(startdate).isoWeekday());
+            testInsertAppointment()
+        }
     }
-    startdate = moment(startdate).set({hour: 9, minute:0}).toDate();
+    startdate = moment(startdate).set({hour: 9, minute: 0}).toDate();
     startdate = moment(startdate).add(1, 'days');
 }
 
@@ -28,12 +38,6 @@ function testInsertAppointment() {
 
     const appointment = new Appointment(sampleAppointment);
     appointment.save((err) => {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log("testInsertCustomer", appointment);
-        }
-    })
+        if (err) return console.error(err);
+    });
 }
-
-testInsertAppointment();
