@@ -3,6 +3,7 @@
 //importamos el modelo customer
 
 var Appointment = require('../models/appointment');
+var moment = require('moment');
 
 function getAppointment(req, res) {
 
@@ -42,5 +43,22 @@ function updateAppointment(req, res) {
     });
 }
 
-module.exports = {saveAppointment, getAppointment, getAppointmentById, updateAppointment};
+function getAppointmentsByDate(req, res) {
+
+    var from = req.params.from; //20171001
+    var to = req.params.to; //20171101
+
+    from = moment(from, "YYYYMM");
+    to = moment(to, 'YYYYMM');
+
+    var searchParams = {};
+    searchParams['dateTime'] = {$gte: from, $lte: to};
+    Appointment.find(searchParams).exec(function (err, appointments) {
+        if (err) return console.log('err', err);
+        res.status(200).send(appointments);
+    })
+
+}
+
+module.exports = {saveAppointment, getAppointment, getAppointmentById, updateAppointment, getAppointmentsByDate};
 
