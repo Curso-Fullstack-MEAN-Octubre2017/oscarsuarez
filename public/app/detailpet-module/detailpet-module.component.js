@@ -21,7 +21,7 @@ angular.module('detailpetModule', [])
 
                     $scope.pet = res.data;
                     /*
-                    PROPIEDAD MAGICA QUE NO SE DEBERIA IMPLEMENTAR QUEDA PENDIENTE DE CORREGIR
+                     * PROPIEDAD MAGICA QUE NO SE DEBERIA IMPLEMENTAR QUEDA PENDIENTE DE CORREGIR
                      */
                     $scope.pet.birthDate = moment(res.data.birthDate).format('DD-MMM-YYYY', 'es');
 
@@ -40,7 +40,7 @@ angular.module('detailpetModule', [])
                 });
             };
 
-            $scope.submit = function (ormPet) {
+            $scope.submit = function (formPet) {
 
                 var data = $scope.pet;
 
@@ -74,9 +74,7 @@ angular.module('detailpetModule', [])
                         console.log('Error ' + status);
                         alert('Error comprueba los campos');
                     })
-
                 }
             }
         }
-
     });
