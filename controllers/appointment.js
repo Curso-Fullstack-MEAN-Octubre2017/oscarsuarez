@@ -65,7 +65,7 @@ function getAppointmentsByDate(req, res) {
             populate: {
                 path: 'owner',
                 model: 'Customer',
-                select: 'firstName lastName',
+                select: 'firstName lastName'
             }
         }
     ).sort({'dateTime': 1})
