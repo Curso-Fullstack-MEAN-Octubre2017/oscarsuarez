@@ -22,17 +22,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-//app.use(moment);
-
-
-// app.use(formidable({
-//     encoding: 'utf-8',
-//     uploadDir: '/public/images',
-// }));
-// app.post('/upload', (req, res) => {
-//     req.fields; // contains non-file fields
-//     req.files; // contains files
-// });
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'files')));

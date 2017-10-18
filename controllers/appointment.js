@@ -1,6 +1,9 @@
 'use strict';
 
 var Appointment = require('../models/appointment');
+var Pet = require('../models/pet');
+var Customer = require('../models/customer');
+
 var moment = require('moment');
 
 function getAppointment(req, res) {
@@ -51,11 +54,21 @@ function getAppointmentsByDate(req, res) {
 
     var searchParams = {};
     searchParams['dateTime'] = {$gte: from, $lte: to};
-    Appointment.find(searchParams).exec(function (err, appointments) {
+    Appointment.find(searchParams, (err, appointmentsResult) => {
         if (err) return console.log('err', err);
-        res.status(200).send(appointments);
-    })
-
+        res.status(200).send(appointmentsResult);
+    }).populate(
+        {
+            path: 'petId',
+            model: 'Pet',
+            select: 'name species',
+            populate: {
+                path: 'owner',
+                model: 'Customer',
+                select: 'firstName lastName',
+            }
+        }
+    ).sort({'dateTime': 1})
 }
 
 module.exports = {saveAppointment, getAppointment, getAppointmentById, updateAppointment, getAppointmentsByDate};

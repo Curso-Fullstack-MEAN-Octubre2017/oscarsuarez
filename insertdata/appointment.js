@@ -23,19 +23,16 @@ for (var j = 0; j <= 200; j++) {
         startdate = moment(startdate).add(30, 'minutes');
 
         //con isoweek compruebo que el dia actual no sea ni sabado ni domingo
-        if (moment(startdate).isoWeekday() != 7 && moment(startdate).isoWeekday() != 6) {
-            console.log(sampleAppointment);
-            console.log(moment(startdate).isoWeekday());
-            testInsertAppointment()
+        if (moment(startdate).isoWeekday() < 6) {
+
+            saveAppointment();
         }
     }
     startdate = moment(startdate).set({hour: 9, minute: 0}).toDate();
     startdate = moment(startdate).add(1, 'days');
 }
 
-function testInsertAppointment() {
-
-
+function saveAppointment() {
     const appointment = new Appointment(sampleAppointment);
     appointment.save((err) => {
         if (err) return console.error(err);
