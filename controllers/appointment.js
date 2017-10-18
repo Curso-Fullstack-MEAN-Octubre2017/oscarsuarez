@@ -53,10 +53,37 @@ function getAppointmentsByDate(req, res) {
     to = moment(to, 'YYYYMM');
 
     var searchParams = {};
-    searchParams['dateTime'] = {$gte: from, $lte: to};
+    searchParams['dateTimeStart'] = {$gte: from, $lte: to};
     Appointment.find(searchParams, (err, appointmentsResult) => {
         if (err) return console.log('err', err);
-        res.status(200).send(appointmentsResult);
+
+        var result = appointmentsResult.map(function (item) {
+
+            var aux = item.dateTimeStart;
+            var date = moment(aux).format('YYYY-MM-DD');
+            var starthour = moment(aux).format('hh:MM');
+            var end = item.dateTimeEnd;
+            var endHour = moment(end).format('hh:MM');
+
+            var obj = {};
+
+            obj[date] = {
+                AppointmentId: item._id,
+                startHour: starthour,
+                endHour: endHour,
+                ownerId: item.petId.owner._id,
+                firstName: item.petId.owner.firstName,
+                lastName: item.petId.owner.lastName,
+                petId: item.petId._id,
+                petName: item.petId.name,
+                status: item.Status
+            };
+            return obj
+
+        });
+
+        res.status(200).send(result);
+
     }).populate(
         {
             path: 'petId',
@@ -68,8 +95,14 @@ function getAppointmentsByDate(req, res) {
                 select: 'firstName lastName'
             }
         }
-    ).sort({'dateTime': 1})
+    ).sort({'dateTimeStart': 1})
 }
 
-module.exports = {saveAppointment, getAppointment, getAppointmentById, updateAppointment, getAppointmentsByDate};
+module.exports = {
+    saveAppointment,
+    getAppointment,
+    getAppointmentById,
+    updateAppointment,
+    getAppointmentsByDate
+};
 

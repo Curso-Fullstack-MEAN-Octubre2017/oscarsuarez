@@ -18,12 +18,14 @@ console.log('final fecha:' + enddate);
 for (var j = 0; j <= 200; j++) {
     for (var i = 0; i <= 24; i++) {
 
+        var statusRandom = Math.random() < 0.5 ? -1 : 1;
+
         var sampleAppointment = {
             "dateTimeStart": startdate,
             "dateTimeEnd": enddate,
             "petId": '59ddda5b1669fa0150a84bff',
             "vetId": null,
-            "Status": 0
+            "Status": statusRandom
         };
 
         startdate = moment(startdate).add(AppointmentsTime, 'minutes');

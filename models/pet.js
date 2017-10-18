@@ -15,6 +15,7 @@ const PetSchema = Schema({
     race: String,
     birthDate: Date,
     description: String,
+    customer: {type: Schema.ObjectId, ref: "Customer", required: true},
 });
 
 module.exports = mongoose.model("Pet", PetSchema);

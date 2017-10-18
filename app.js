@@ -41,6 +41,6 @@ app.all("*", (req, res) => {
 
 
 // insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
-require('./insertdata/appointment');
+//require('./insertdata/appointment');
 
 module.exports = app;
