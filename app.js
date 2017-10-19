@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var moment = require('moment');
+var jquery = require('jquery');
 //var formidable = require('express-formidable');
 
 

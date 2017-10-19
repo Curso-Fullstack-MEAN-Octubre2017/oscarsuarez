@@ -52,39 +52,23 @@ function getAppointmentsByDate(req, res) {
     from = moment(from, "YYYYMM");
     to = moment(to, 'YYYYMM');
 
-    var searchParams = {};
-    searchParams['dateTimeStart'] = {$gte: from, $lte: to};
+    var searchParams = {'dateTimeStart': {$gte: from, $lte: to}, 'Status': {$gt: -1}};
+
     Appointment.find(searchParams, (err, appointmentsResult) => {
-        if (err) return console.log('err', err);
+            if (err) return console.log('err', err);
 
-        var result = appointmentsResult.map(function (item) {
+            var group_to_dates = appointmentsResult.reduce(function (obj, item) {
 
-            var aux = item.dateTimeStart;
-            var date = moment(aux).format('YYYY-MM-DD');
-            var starthour = moment(aux).format('hh:MM');
-            var end = item.dateTimeEnd;
-            var endHour = moment(end).format('hh:MM');
+                var date = moment(item.dateTimeStart).format('YYYY-MM-DD');
+                var starthour = moment(item.dateTimeStart).utc().format('HH:mm');
 
-            var obj = {};
-
-            obj[date] = {
-                AppointmentId: item._id,
-                startHour: starthour,
-                endHour: endHour,
-                ownerId: item.petId.owner._id,
-                firstName: item.petId.owner.firstName,
-                lastName: item.petId.owner.lastName,
-                petId: item.petId._id,
-                petName: item.petId.name,
-                status: item.Status
-            };
-            return obj
-
-        });
-
-        res.status(200).send(result);
-
-    }).populate(
+                if (obj[date] == null) obj[date] = {};
+                if (obj[date][starthour] == null) obj[date][starthour] = item;
+                return obj;
+            }, {});
+            res.status(200).send(group_to_dates);
+        }
+    ).populate(
         {
             path: 'petId',
             model: 'Pet',
@@ -105,4 +89,3 @@ module.exports = {
     updateAppointment,
     getAppointmentsByDate
 };
-
