@@ -7,5 +7,6 @@ angular.module('petStore', [
     'detailcustomerModule',
     'detailpetModule',
     'petModule',
-    //'customeDatepicker'
+    'appointmentscalendarModule'
+    //'customeDatepicker'  //directiva
 ]);

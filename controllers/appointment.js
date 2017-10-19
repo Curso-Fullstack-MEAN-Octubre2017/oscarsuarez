@@ -46,12 +46,8 @@ function updateAppointment(req, res) {
 
 function getAppointmentsByDate(req, res) {
 
-    var from = req.params.from; //20171001
-    var to = req.params.to; //20171101
-
-    from = moment(from, "YYYYMM");
-    to = moment(to, 'YYYYMM');
-
+    var from = moment(req.params.from,"YYYYMM");
+    var to = moment(req.params.to,"YYYYMM");
     var searchParams = {'dateTimeStart': {$gte: from, $lte: to}, 'Status': {$gt: -1}};
 
     Appointment.find(searchParams, (err, appointmentsResult) => {
@@ -64,6 +60,7 @@ function getAppointmentsByDate(req, res) {
 
                 if (obj[date] == null) obj[date] = {};
                 if (obj[date][starthour] == null) obj[date][starthour] = item;
+
                 return obj;
             }, {});
             res.status(200).send(group_to_dates);
