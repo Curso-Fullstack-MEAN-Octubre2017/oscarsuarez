@@ -8,5 +8,4 @@ angular.module('petStore', [
     'detailpetModule',
     'petModule',
     'appointmentscalendarModule'
-    //'customeDatepicker'  //directiva
 ]);

@@ -1,0 +1,29 @@
+<center>
+    <ul class="pagination">
+        <li class="disabled"><a href="appointments/{{lastmonth}}"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="">{{month}} {{year}}</a></li>
+        <li class="waves-effect"><a href="appointments/{{nextmonth}}"><i class="material-icons">chevron_right</i></a>
+        </li>
+    </ul>
+
+    <table class="responsive-table striped centered">
+        <thead>
+        <tr>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miercoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th>Sabado</th>
+            <th>Domingo</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="days in weeks">
+            <td ng-repeat="d in days track by $index">{{d}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</center>

@@ -9,7 +9,6 @@ angular.module('detailpetModule', [])
             var id = $routeParams.id;
             var action = $routeParams.action;
 
-
             // con esta condicion oculto en la vista la opcion de añadir mascota
             // si el dueño no esta creado previamente
 

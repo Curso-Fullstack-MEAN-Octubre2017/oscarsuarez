@@ -48,7 +48,7 @@ function getAppointmentsByDate(req, res) {
 
     var from = moment(req.params.from,"YYYYMM");
     var to = moment(req.params.to,"YYYYMM");
-    var searchParams = {'dateTimeStart': {$gte: from, $lte: to}, 'Status': {$gt: -1}};
+    var searchParams = {'dateTimeStart': {$gte: from, $lt: to}, 'Status': {$gt: -1}};
 
     Appointment.find(searchParams, (err, appointmentsResult) => {
             if (err) return console.log('err', err);
