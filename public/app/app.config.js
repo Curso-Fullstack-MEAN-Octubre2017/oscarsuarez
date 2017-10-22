@@ -17,7 +17,8 @@ angular.module('petStore')
             .when("/pet/:action/:id", {template: "<detailpet-module></detailpet-module>"})
 
             //ROUTES APPOINTMENTS
-            .when("/appointments/:yearmonth?", {template: "<appointmentscalendar-module></appointmentscalendar-module>"})
+            .when("/appointments/:date?", {template: "<appointmentscalendar-module></appointmentscalendar-module>"})
+            .when("/appointmentsof/:date", {template: "<appointmentsday-module></appointmentsday-module>"})
 
             //ROUTE NOT FOUND
             .otherwise({template: "<h4>Error 404</h4></h2>La página no existe</h2>"});

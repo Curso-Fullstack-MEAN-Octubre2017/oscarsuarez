@@ -6,24 +6,31 @@
         </li>
     </ul>
 
-    <table class="responsive-table striped centered">
+    <table class="centered">
         <thead>
         <tr>
-            <th>Lunes</th>
-            <th>Martes</th>
-            <th>Miercoles</th>
-            <th>Jueves</th>
-            <th>Viernes</th>
-            <th>Sabado</th>
-            <th>Domingo</th>
+            <th ng-repeat="dayname in weeksday">{{dayname}}</th>
         </tr>
         </thead>
 
         <tbody>
         <tr ng-repeat="days in weeks">
-            <td ng-repeat="d in days track by $index">{{d}}</td>
+            <td ng-repeat="day in days track by $index">
+                <a href="appointmentsof/{{day.day | date:'yyyyMMdd'}}" >
+                    <div ng-class="{true: 'z-depth-2 light-blue lighten-5',false: 'z-depth-1'}[day.appointments >0]">
+                        <h4>{{day.day |date: 'dd' }}</h4>
+                        <i ng-if="day.appointments > -1" class="material-icons">assignment</i> {{day.appointments}}
+                    </div>
+                </a>
+            </td>
+            <!-- "track by $index" indica que el ng-repeat muestre el dato por su indice en la lista en ver de por un id.
+             hashkey generado por angular que no permite duplicados  -->
         </tr>
         </tbody>
     </table>
 
 </center>
+
+<style>
+
+</style>
