@@ -4,7 +4,7 @@ angular.module('appointmentscalendarModule', [])
     .component('appointmentscalendarModule', {
 
         templateUrl: '/app/appointmentscalendar-module/appointmentscalendar-module.html',
-        controller: function ($scope, $http, $routeParams) {
+        controller: function ($scope, $http, $routeParams, appointmentsServices) {
 
             console.log("Componente appointments calendar");
 
@@ -29,7 +29,8 @@ angular.module('appointmentscalendarModule', [])
             //PETICION HTTP A LA API
             $http.get('api/appointments/' + date + '/' + yearnextmonth).then(function (res) {
                 $scope.appointments = res.data;
-                console.log('API GET RESULT \n' + $scope.appointments)
+                appointmentsServices.setAppointments(res.data);
+                console.log('API GET RESULT \n' + $scope.appointments);
 
 
                 //SCOPE CON MES SIGUIENTE Y MES ANTERIOR AL ACTUAL
@@ -42,8 +43,8 @@ angular.module('appointmentscalendarModule', [])
                  *  PINTAR CALENDARIO   *
                  ************************/
 
-                //PINTAR DIAS DE LAS SEMANA EN IDIOMA LOCAL
 
+                //PINTAR DIAS DE LAS SEMANA EN IDIOMA LOCAL
                 $scope.weeksday = [];
                 for (var i = 1; i <= 7; i++) {
                     $scope.weeksday.push(moment().isoWeekday(i).format('dddd').toUpperCase());
@@ -51,7 +52,6 @@ angular.module('appointmentscalendarModule', [])
 
 
                 //PINTAR DIAS DEL MES EN EL CALENDARIO
-
                 $scope.weeks = [];
                 var day = [];
                 var currDate = moment(date).startOf('month');

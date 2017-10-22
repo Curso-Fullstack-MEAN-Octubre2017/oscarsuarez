@@ -4,23 +4,23 @@ angular.module('appointmentsdayModule', [])
     .component('appointmentsdayModule', {
 
         templateUrl: '/app/appointmentsday-module/appointmentsday-module.html',
-        controller: function ($scope, $http, $routeParams) {
+        controller: function ($scope, $http, $routeParams, appointmentsServices) {
+
 
             console.log("Componente appointments day");
 
-            if ($routeParams.date) {
+            var dates = moment($routeParams.date, 'YYYYMMDD').format('YYYY-MM-DD');
+            var obj = appointmentsServices.getAppointments();
 
-                var date = moment($routeParams.date, 'YYYYMM');
-                $scope.year = moment(date).format('YYYY');
-                $scope.month = moment(date).format('MMMM').toUpperCase();
-                date = moment(date).format('YYYYMM');
+            if (obj[dates]) {
+
+                $scope.hoursList = obj[dates];
+                console.log('hours');
+                console.log($scope.hoursList);
 
             } else {
 
-                date = moment().startOf('month').format('YYYYMM');
-                $scope.month = moment().startOf('month').format('MMMM').toUpperCase();
-                $scope.year = moment().startOf('month').format('YYYY');
-
+                console.error('No hay citas');
             }
         }
     });

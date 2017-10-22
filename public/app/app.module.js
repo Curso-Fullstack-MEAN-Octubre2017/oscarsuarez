@@ -9,5 +9,5 @@ angular.module('petStore', [
     'petModule',
     'appointmentscalendarModule',
     'appointmentsdayModule',
-    //'appointmentsService'
+    'appointmentsServices'
 ]);
