@@ -10,7 +10,7 @@ function getAppointment(req, res) {
 
     Appointment.find({}).exec(function (err, appointments) {
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-        res.send(200, appointments);
+        res.json(appointments)
     });
 }
 
@@ -21,7 +21,7 @@ function getAppointmentById(req, res) {
         console.log(appointment);
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!appointment) return res.status(404).send({message: `No existen citass`});
-        res.send(200, appointment);
+        res.json(appointment);
     });
 }
 
@@ -31,7 +31,7 @@ function saveAppointment(req, res) {
     appointment.save((err, appointmentStored) => {
         if (err) return res.status(500).send({message: "Error al guardar la cita"});
         if (!appointmentStored) return res.status(404).send({message: "No se ha registrado la cita"});
-        res.status(200).send({appointment: appointmentStored});
+        res.json(appointmentStored);
     });
 }
 
@@ -40,14 +40,14 @@ function updateAppointment(req, res) {
     Appointment.findByIdAndUpdate(req.params.id, req.body, (err, appointment) => {
         if (err) return res.status(500).send({message: "Error al guardar el cliente"});
         if (!appointmentStored) return res.status(404).send({message: "No se ha registrado el cliente"});
-        res.status(200).send({customer: appointmentStored});
+        res.json(appointmentStored);
     });
 }
 
 function getAppointmentsByDate(req, res) {
 
-    var from = moment(req.params.from,"YYYYMM");
-    var to = moment(req.params.to,"YYYYMM");
+    var from = moment(req.params.from, "YYYYMM");
+    var to = moment(req.params.to, "YYYYMM");
     var searchParams = {'dateTimeStart': {$gte: from, $lt: to}, 'Status': {$gt: -1}};
 
     Appointment.find(searchParams, (err, appointmentsResult) => {
@@ -63,13 +63,13 @@ function getAppointmentsByDate(req, res) {
 
                 return obj;
             }, {});
-            res.status(200).send(group_to_dates);
+            res.json(group_to_dates);
         }
     ).populate(
         {
             path: 'petId',
             model: 'Pet',
-            select: 'name species',
+            select: 'name species picUrl',
             populate: {
                 path: 'owner',
                 model: 'Customer',

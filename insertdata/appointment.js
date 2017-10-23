@@ -8,7 +8,7 @@ const moment = require('moment');
 
 var AppointmentsTime = 30;
 
-var startdate = moment.utc().startOf('isoweek').set({hour: 9, minute: 0});
+var startdate = moment().utc().startOf('isoweek').set({hour: 9, minute: 0});
 var enddate = moment().utc().startOf('isoweek').set({hour: 9, minute: AppointmentsTime});
 
 
@@ -36,11 +36,10 @@ for (var j = 0; j <= 200; j++) {
             saveAppointment();
         }
     }
-    startdate = moment(startdate).set({hour: 9, minute: 0}).toDate();
-    startdate = moment(startdate).add(1, 'days');
-    enddate = moment(enddate).set({hour: 9, minute: 30}).toDate();
-    enddate = moment(enddate).add(1, 'days');
-
+    startdate = moment(startdate).utc().add(1, 'days');
+    startdate = moment(startdate).utc().set({hour: 9, minute: 0});
+    enddate = moment(enddate).utc().add(1, 'days');
+    enddate = moment(enddate).utc().set({hour: 9, minute: 30});
 }
 
 function saveAppointment() {

@@ -1,9 +1,9 @@
 <ul class="collection">
-    <li ng-repeat="h in hoursList" class="collection-item avatar">
-        <img src="images/yuna.jpg" alt="" class="circle">
-        <span class="title">{{h}}</span>
-        <p>First Line <br>
-            Second Line
+    <li ng-repeat="(k,v) in hoursList" class="collection-item avatar">
+        <img src="{{v.petId.picUrl}}" alt="{{v.petId.picUrl}}" class="circle">
+        <span class="title">{{v.petId.name}} {{k}}</span>
+        <p>{{v.petId.owner.firstName}} {{v.petId.owner.lastName}}<br>
+            Especie: {{v.petId.species}}
         </p>
         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
     </li>

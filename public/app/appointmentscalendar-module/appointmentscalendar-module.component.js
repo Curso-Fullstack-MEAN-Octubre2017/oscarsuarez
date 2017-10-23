@@ -8,41 +8,24 @@ angular.module('appointmentscalendarModule', [])
 
             console.log("Componente appointments calendar");
 
-            if ($routeParams.date) {
+            var date = moment().startOf('month');
+            if ($routeParams.date) date = moment($routeParams.date, 'YYYYMM');
 
-                var date = moment($routeParams.date, 'YYYYMM');
-                $scope.year = moment(date).format('YYYY');
-                $scope.month = moment(date).format('MMMM').toUpperCase();
-                date = moment(date).format('YYYYMM');
+            $scope.month = moment(date).startOf('month').format('MMMM').toUpperCase();
+            $scope.year = moment(date).startOf('month').format('YYYY');
 
-            } else {
-
-                date = moment().startOf('month').format('YYYYMM');
-                $scope.month = moment().startOf('month').format('MMMM').toUpperCase();
-                $scope.year = moment().startOf('month').format('YYYY');
-
-            }
-
-            var yearnextmonth = moment(date, 'YYYYMM').add(1, 'month').format('YYYYMM');
-
-
-            //PETICION HTTP A LA API
-            $http.get('api/appointments/' + date + '/' + yearnextmonth).then(function (res) {
-                $scope.appointments = res.data;
-                appointmentsServices.setAppointments(res.data);
-                console.log('API GET RESULT \n' + $scope.appointments);
-
+            appointmentsServices.getAppointmentsByMonth(date).then(function (res) {
+                $scope.appointments = res;
+                console.log('API GET RESULT \n' + res);
 
                 //SCOPE CON MES SIGUIENTE Y MES ANTERIOR AL ACTUAL
                 date = moment(date, 'YYYYMM');
                 $scope.nextmonth = moment(date).add(1, 'month').format('YYYYMM');
                 $scope.lastmonth = moment(date).subtract(1, 'month').format('YYYYMM');
 
-
-                /************************
-                 *  PINTAR CALENDARIO   *
-                 ************************/
-
+                /***********************
+                 *  PINTAR CALENDARIO  *
+                 ***********************/
 
                 //PINTAR DIAS DE LAS SEMANA EN IDIOMA LOCAL
                 $scope.weeksday = [];

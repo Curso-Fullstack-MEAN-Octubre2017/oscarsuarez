@@ -12,7 +12,7 @@ function getCustomers(req, res) {
     query.select('firstName lastName')
         .exec(function (err, customers) {
             if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-            res.send(200, customers);
+            res.json(customers)
         });
 }
 
@@ -23,7 +23,7 @@ function getCustomerById(req, res) {
     Customer.findById(id, (err, customers) => {
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!customers) return res.status(404).send({message: `No existen clientes`});
-        res.send(200, customers);
+        res.json(customers)
     });
 }
 
@@ -41,7 +41,7 @@ function saveCustomer(req, res) {
         //si el usuario guardado no existe
         if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
         //si OK devuelve un objeto customer con los datos guardados en la bdat
-        res.status(200).send({customer: customerStored});
+        res.json(customerStored)
 
     });
 
@@ -55,7 +55,7 @@ function updateCustomer(req, res) {
         //si el usuario guardado no existe
         if (!customerStored) return res.status(404).send({message: "No se ha registrado el cliente"});
         //si OK devuelve un objeto customer con los datos guardados en la bdat
-        res.status(200).send({customer: customerStored});
+        res.json(customerStored);
     });
 }
 

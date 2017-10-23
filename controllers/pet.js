@@ -11,7 +11,7 @@ function getPetByOwnerId(req, res) {
         console.log(pets);
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!pets) return res.status(404).send({message: `No existen mascotas`});
-        res.send(200, pets);
+        res.json(pets);
     });
 }
 
@@ -23,7 +23,7 @@ function getPetById(req, res) {
         console.log(pets);
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!pets) return res.status(404).send({message: `No existe la mascota`});
-        res.send(200, pets);
+        res.json(pets);
     });
 }
 
@@ -32,7 +32,7 @@ function deletePet(req, res) {
 
     Pet.remove({_id: id}, function (err) {
         if (err) return res.status(500).send({message: `Error al borrar: ${err}`});
-        res.send(200, ({message: 'borrado correctamente'}));
+        res.json({message: 'borrado correctamente'});
     });
 }
 
@@ -47,7 +47,7 @@ function savePet(req, res) {
         //si la mascota guardado no existe
         if (!petStored) return res.status(404).send({message: "No se ha registrado el cliente"});
         //si OK devuelve un objeto pet con los datos guardados en la bdat
-        res.status(200).send({customer: petStored});
+        res.json(petStored);
     });
 
 }
@@ -60,7 +60,7 @@ function updatePet(req, res) {
         //si el pet guardado no existe
         if (!petStored) return res.status(404).send({message: "No se ha registrado la mascota"});
         //si OK devuelve un objeto customer con los datos guardados en la bdat
-        res.status(200).send({customer: petStored});
+        res.json(petStored);
     });
 }
 
