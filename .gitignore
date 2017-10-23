@@ -1,0 +1,15 @@
+.metadata
+_windows
+code.style.schemes.xml
+colors.scheme.xml
+editor.xml
+filetypes.xml
+github_settings.xml
+ide.general.xml
+npm-debug.log
+ui.lnf.xml
+vcs.xml
+.idea/inspectionProfiles/
+.idea/workspace.xml
+debugger.xml
+/codestyles/
