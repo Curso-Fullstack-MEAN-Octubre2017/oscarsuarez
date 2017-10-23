@@ -14,30 +14,15 @@ angular.module('detailcustomerModule', [])
 
             if (action == 'edit') {
 
-                $scope.searchcustomersList = [];
                 $http.get('api/customers/' + id).then(function (res) {
-
-                    $scope.dni = res.data.dni;
-                    $scope.firstName = res.data.firstName;
-                    $scope.lastName = res.data.lastName;
-                    $scope.phone = res.data.phone;
-                    $scope.email = res.data.email;
-                    $scope.note = res.data.note;
-
-                    console.log($scope.searchcustomersList);
+                    $scope.customer = res.data;
                 });
 
             }
 
             $scope.submit = function (formCustomer) {
-                var data = {
-                    firstName: $scope.firstName,
-                    lastName: $scope.lastName,
-                    dni: $scope.dni,
-                    phone: $scope.phone,
-                    email: $scope.email,
-                    note: $scope.note
-                };
+
+                var data = $scope.customer;
 
                 if (action == 'edit') {
                     $http({
@@ -46,7 +31,6 @@ angular.module('detailcustomerModule', [])
                         data: JSON.stringify(data),
                         headers: {'Content-Type': 'application/json'}
                     }).success(function (data, status, headers, config) {
-                        console.log('Ok')
                         alert('guardado correctamente');
                         history.back();
 
@@ -60,10 +44,8 @@ angular.module('detailcustomerModule', [])
                         data: JSON.stringify(data),
                         headers: {'Content-Type': 'application/json'}
                     }).success(function (data, status, headers, config) {
-                        console.log('Ok')
                         alert('guardado correctamente');
                         history.back();
-
                     }).error(function (status) {
                         console.log('Error ' + status);
                     })
@@ -71,4 +53,5 @@ angular.module('detailcustomerModule', [])
             }
         }
 
-    });
+    })
+;

@@ -1,4 +1,4 @@
-<form class="col s12 m12 l12" name="formPet">
+<form class="col s12 m12 l12" name="formPet" enctype="multipart/form-data">
     <h5>Datos mascota</h5>
     <div class="row">
         <card class="center">
@@ -26,17 +26,21 @@
         </div>
     </div>
     <div class="row">
-
-        <div class="file-field input-field col s12">
-            <div class="btn">
-                <span>Imagen</span>
-                <input type="file">
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" ng-model="pet.picUrl">
-            </div>
+        <!--
+                <div class="file-field input-field col s12">
+                   <div class="btn">
+                       <span>Imagen</span>
+                       <input type="file" name="uploadImg" id="uploadImg">
+                   </div>
+                   <div class="file-path-wrapper">
+                       <input class="file-path validate" type="text" ng-model="pet.picUrl">
+                   </div>
+               </div>
+         -->
+        <div class="input-field col s12">
+            <input id="picUrl" type="text" class="validate" ng-model="pet.picUrl"/>
+            <label class="active" for="picUrl" data-error="wrong" data-success="right">Url Imagen</label>
         </div>
-
         <div class="input-field col s12">
             <input id="race" type="text" class="validate" ng-model="pet.race"/>
             <label class="active" for="race" data-error="wrong" data-success="right">Race</label>
@@ -45,7 +49,7 @@
     <div class="row">
 
         <div class="input-field col s12">
-            <input id="birthDate" type="text" class="datepicker" ng-model="pet.birthDate">
+            <input id="birthDate" type="text" class="datepicker" ng-model="pet.birthDate"> <!--| date : 'longDate'-->
             <label class="active" for="birthDate">BirthDate</label>
         </div>
 

@@ -1,0 +1,36 @@
+<center>
+    <ul class="pagination">
+        <li class="disabled"><a href="appointments/{{lastmonth}}"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="">{{month}} {{year}}</a></li>
+        <li class="waves-effect"><a href="appointments/{{nextmonth}}"><i class="material-icons">chevron_right</i></a>
+        </li>
+    </ul>
+
+    <table class="centered">
+        <thead>
+        <tr>
+            <th ng-repeat="dayname in weeksday">{{dayname}}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="days in weeks">
+            <td ng-repeat="day in days track by $index">
+                <a href="appointmentsof/{{day.day | date:'yyyyMMdd'}}" >
+                    <div ng-class="{true: 'z-depth-2 light-blue lighten-5',false: 'z-depth-1'}[day.appointments >0]">
+                        <h4>{{day.day |date: 'dd' }}</h4>
+                        <i ng-if="day.appointments > -1" class="material-icons">assignment</i> {{day.appointments}}
+                    </div>
+                </a>
+            </td>
+            <!-- "track by $index" indica que el ng-repeat muestre el dato por su indice en la lista en ver de por un id.
+             hashkey generado por angular que no permite duplicados  -->
+        </tr>
+        </tbody>
+    </table>
+
+</center>
+
+<style>
+
+</style>

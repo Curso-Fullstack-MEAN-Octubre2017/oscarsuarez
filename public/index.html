@@ -4,65 +4,77 @@
     <base href="/">
     <meta charset="UTF-8">
     <title>PetStore Demo with AngularJs+Express+NodeJs+MongoDb</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <!-- Hojas de estilos -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
+    <!--Archivos  CDN JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.8/angular-locale_es.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/locale/es.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Conf, Modulos y Servicios AngularJs -->
     <script src="/app/app.module.js"></script>
     <script src="/app/app.config.js"></script>
-
     <script src="/app/customer-module/customer-module.component.js"></script>
     <script src="/app/detailcustomer-module/detailcustomer-module.component.js"></script>
     <script src="/app/detailpet-module/detailpet-module.component.js"></script>
     <script src="app/pet-module/pet-module.component.js"></script>
+    <script src="app/appointmentscalendar-module/appointmentscalendar-module.component.js"></script>
+    <script src="app/appointmentsday-module/appointmentsday-module.js"></script>
+    <script src="app/appointments-services/appointments-services.js"></script>
+    <script src="app/appointmentsdetail-module/appointmentsdetail-module.js"></script>
+    <!-- <script src="app/directives/customeDatepicker.js"></script> -->
 
 </head>
 <body>
-
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Clinica veterinaria</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="customers">Clientes</a></li>
-            <li><a href="#">Citas</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="navbar-fixed">
+    <nav class="light-blue darken-2 flow-text fixed">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo center">Clinica Veterinaria</a>
+            <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="left hide-on-med-and-down">
+                <li><a href="customers">Clientes</a></li>
+                <li><a href="appointments/">Citas</a></li> <!-- calcular mes actual para url en formato YYYYMM -->
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="customers">Clientes</a></li>
+                <li><a href="appointments">Citas</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
 
 <div class="row">
     <div class="col m0 s0 l2"></div>
     <div class="col s12 m12 l8">
         <div class="card">
-            <div class="card-image">
-                <img src="http://lorempixel.com/1000/350/animals/">
-            </div>
             <ng-view>
-                <!-- lista de clientes -->
+                <!-- contenido de la web incrustado -->
             </ng-view>
         </div>
     </div>
     <div class="col m0 s0 l2"></div>
 </div>
 
-<form action="/" enctype="multipart/form-data" method="post">
-    <input type="file" name="upload" multiple>
-    <input type="submit" value="Upload">
-</form>
-
+<footer class="page-footer light-blue darken-2">
+    <div class="footer-copyright">
+        <div class="container flow-text">
+            © 2017 Copyright Oscar Suarez
+            <a class="grey-text text-lighten-4 right" href="http://github.com/suarezoscar">GitHub</a>
+        </div>
+    </div>
+</footer>
+<script>  $(".button-collapse").sideNav();</script>
 </body>
 </html>
