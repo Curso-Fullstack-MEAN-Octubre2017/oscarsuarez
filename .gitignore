@@ -9,7 +9,6 @@ ide.general.xml
 npm-debug.log
 ui.lnf.xml
 vcs.xml
-.idea/inspectionProfiles/
-.idea/workspace.xml
+.idea
 debugger.xml
 /codestyles/
