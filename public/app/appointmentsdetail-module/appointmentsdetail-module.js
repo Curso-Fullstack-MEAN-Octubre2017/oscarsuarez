@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('appointmentsdayModule', [])
-    .component('appointmentsdayModule', {
+angular.module('appointmentsdetailModule', [])
+    .component('appointmentsdetailModule', {
 
-        templateUrl: '/app/appointmentsday-module/appointmentsday-module.html',
+        templateUrl: '/app/appointmentsdetail-module/appointmentsdetail-module.html',
         controller: function ($scope, $http, $routeParams, appointmentsServices) {
 
             console.log("Componente appointments day");
