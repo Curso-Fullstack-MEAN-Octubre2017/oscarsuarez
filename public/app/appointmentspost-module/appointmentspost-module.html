@@ -1,0 +1,37 @@
+<div class="row center">
+    <h3>Cita para el {{datetime |date : 'dd/mm/yyyy'}} a las {{datetime |date : 'HH:mm'}} </h3>
+</div>
+
+<div class="row">
+    <div class="col l12">
+        <div class="nav-wrapper">
+            <input ng-model="search" ng-change="change()" name="search" id="search" type="search"
+                   placeholder="Buscar cliente" required>
+            <div ng-if="hide" class="collection">
+                <a ng-repeat="cli in customersList | filter:search" ng-click="customerclick(cli._id,cli.firstName)"
+                   class="collection-item">{{cli.firstName}}
+                    {{cli.lastName}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="col l6">
+        <ul class="collection">
+            <li ng-repeat="p in customersPets track by $index" class="collection-item avatar"
+                ng-click="petclick(p._id,p.name)">
+                <img src="{{p.picUrl}}" alt="" class="circle">
+                <span class="title">{{p.name}}</span>
+                <p>{{p.race}}<br>
+                    {{p.species}}
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">archive</i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="col l6">
+        <span class="flow-text">Resumen de la cita</span><br>
+        <div class="card">
+            <span>{{resumen.customerName}}</span>
+            <span>{{resumen.petName}}</span>
+        </div>
+    </div>
+</div>

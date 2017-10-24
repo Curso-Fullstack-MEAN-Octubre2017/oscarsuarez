@@ -17,7 +17,7 @@ angular.module('appointmentsdayModule', [])
                 var startHour = moment(dates).set({hour: 9});
                 var endHour = moment(dates).set({hour: 21});
 
-                while (startHour < endHour) {
+                while (startHour <= endHour) {
 
                     $scope.hoursList.push({
                         hour: startHour.toDate(),

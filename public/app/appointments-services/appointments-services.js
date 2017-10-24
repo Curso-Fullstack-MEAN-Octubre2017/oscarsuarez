@@ -10,13 +10,14 @@ angular.module('appointmentsServices', [])
 
         self.getAppointmentsByMonth = (date) => {
 
+            console.log('date ' + date);
+
             var q = $q.defer();
             var thisMonth = moment(date).format('YYYYMM');
             var nextMonth = moment(date).add(1, 'month').format('YYYYMM');
 
             // si ya tenemos los datos los devolvemos
             if (self._cache[thisMonth]) {
-
                 console.log('Uso de datos en cache');
                 q.resolve(self._cache[thisMonth]);
                 return q.promise;
