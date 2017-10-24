@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var moment = require('moment');
 var jquery = require('jquery');
-//var formidable = require('express-formidable');
-
 
 //Aqui se importa todos los archivos de la carpeta rutas
 var customerRoute = require('./routes/customer');
@@ -17,7 +15,7 @@ var appointmentRoute = require('./routes/appointment');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
+mongoose.connect(process.env.MONGODB_URI);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
