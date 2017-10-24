@@ -11,10 +11,6 @@ var AppointmentsTime = 30;
 var startdate = moment().utc().startOf('isoweek').set({hour: 9, minute: 0});
 var enddate = moment().utc().startOf('isoweek').set({hour: 9, minute: AppointmentsTime});
 
-
-console.log("Inicio fecha: " + startdate);
-console.log('final fecha:' + enddate);
-
 for (var j = 0; j <= 200; j++) {
     for (var i = 0; i <= 24; i++) {
 
@@ -46,5 +42,6 @@ function saveAppointment() {
     const appointment = new Appointment(sampleAppointment);
     appointment.save((err) => {
         if (err) return console.error(err);
+        console.log(appointment);
     });
 }

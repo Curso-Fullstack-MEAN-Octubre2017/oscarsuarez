@@ -10,5 +10,6 @@ npm-debug.log
 ui.lnf.xml
 vcs.xml
 .idea
+ignore.xml
 debugger.xml
 /codestyles/

@@ -8,9 +8,9 @@ angular.module('petStore')
 
         //INDEX
             .when("/", {
-                template: "<center><h2>Bienvenido a la app de gestion Clínica veterinaria</h2><h3>2017</h3>" +
+                template: "<center><h2>Gestion Clínica veterinaria</h2><h3>2017</h3>" +
                 "</center>" +
-                "<div class='card-image'><img src='banner.jpg'/></div>"
+                "<div class='card-image center'><img class='responsive-img' src='banner.jpg'/></div>"
             })
 
             //ROUTES CUSTOMERS

@@ -51,14 +51,6 @@ angular.module('detailpetModule', [])
 
                     data = $scope.pet;
 
-                    // $http.put("api/pet/" + id, data).then(function (res) {
-                    //     console.log('Ok: ' + res);
-                    //     alert('guardado correctamente');
-                    //     history.back();
-                    // }), function (err) {
-                    //     alert('Error al guardar');
-                    // }
-
                     $http({
                         method: 'PUT',
                         url: "api/pet/" + id,
