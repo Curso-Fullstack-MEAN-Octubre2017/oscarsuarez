@@ -14,8 +14,11 @@ var petRoute = require('./routes/pet');
 var appointmentRoute = require('./routes/appointment');
 
 var app = express();
+//connect to heroku with:
+//mongoose.connect(process.env.MONGODB_URI);
 
-mongoose.connect(process.env.MONGODB_URI);
+//localhost MongoDb
+mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

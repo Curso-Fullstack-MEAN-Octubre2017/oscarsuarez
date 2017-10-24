@@ -47,6 +47,19 @@ angular.module('appointmentsServices', [])
             return q.promise;
         };
 
+        self.addNewAppointment = (obj) => {
+            var q = $q.defer();
+
+            $http.post("api/appointments/", JSON.stringify(obj)).success(function (res) {
+                q.resolve(res);
+                // Borrar cache para refrescar nuevos datos //
+                self._cache = {};
+            }).error(function (err) {
+                q.reject(':(' + err);
+            });
+            return q.promise;
+        };
+
         return self;
     }])
 ;

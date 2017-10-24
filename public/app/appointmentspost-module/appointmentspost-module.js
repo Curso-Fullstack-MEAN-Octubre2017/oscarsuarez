@@ -3,7 +3,7 @@
 angular.module('appointmentspostModule', [])
     .component('appointmentspostModule', {
         templateUrl: '/app/appointmentspost-module/appointmentspost-module.html',
-        controller: function ($scope, $http, $filter, $routeParams, $location) {
+        controller: function ($scope, $http, $filter, $routeParams, $location, appointmentsServices) {
 
             $scope.search = '';
             $scope.customersList = [];
@@ -66,10 +66,9 @@ angular.module('appointmentspostModule', [])
                         Status: 0
                     };
 
-                $http.post("api/appointments/", JSON.stringify(newAppointment)).then(
+                appointmentsServices.addNewAppointment(newAppointment).then(
                     function (res) {
                         Materialize.toast('Cita guardada correctamente', 4000);
-                        console.log(res.data);
                         return $location.url('/appointments/');
                     },
                     function (error) {
@@ -77,6 +76,7 @@ angular.module('appointmentspostModule', [])
                         console.error(error);
                     }
                 );
+
             }
         }
     })
