@@ -16,9 +16,9 @@
         <tbody>
         <tr ng-repeat="days in weeks">
             <td ng-repeat="day in days track by $index">
-                <a href="appointmentsof/{{day.day | date:'yyyyMMdd'}}" >
-                    <div ng-class="{true: 'z-depth-2 light-blue lighten-5',false: 'z-depth-1'}[day.appointments >0]">
-                        <h4>{{day.day |date: 'dd' }}</h4>
+                <a href="appointments/day/{{day.day | date:'yyyyMMdd'}}" >
+                    <div ng-class="{true: 'light-blue z-depth-1 lighten-5 hoverable',false: 'z-depth-1 hoverable'}[day.appointments >0]">
+                        <span class="flow-text">{{day.day |date: 'dd' }}</span>
                         <i ng-if="day.appointments > -1" class="material-icons">assignment</i> {{day.appointments}}
                     </div>
                 </a>

@@ -22,7 +22,7 @@ angular.module('petStore')
 
             //ROUTES APPOINTMENTS
             .when("/appointments/:date?", {template: "<appointmentscalendar-module></appointmentscalendar-module>"})
-            .when("/appointmentsof/:date", {template: "<appointmentsday-module></appointmentsday-module>"})
+            .when("/appointments/day/:date", {template: "<appointmentsday-module></appointmentsday-module>"})
             .when("/appointments/detail/:id", {template: "<appointmentsdetail-module></appointmentsdetail-module>"})
 
             //ROUTE NOT FOUND

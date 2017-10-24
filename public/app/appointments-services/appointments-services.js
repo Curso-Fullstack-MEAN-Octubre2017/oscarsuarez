@@ -19,19 +19,28 @@ angular.module('appointmentsServices', [])
 
                 console.log('Uso de datos en cache');
                 q.resolve(self._cache[thisMonth]);
-
                 return q.promise;
             }
 
             $http.get('api/appointments/' + thisMonth + '/' + nextMonth)
                 .success(function (res) {
-
                     console.log('Nueva peticion get');
                     self._cache[thisMonth] = res;
                     q.resolve(self._cache[thisMonth]);
-
                 }).error(function (err) {
                 q.reject(':( ' + err)
+            });
+
+            return q.promise;
+        };
+
+        self.getAppointmentById = (id) => {
+            var q = $q.defer();
+
+            $http.get('api/appointments/' + id).success(function (res) {
+                q.resolve(res);
+            }).error(function (err) {
+                q.reject(':( ' + err);
             });
 
             return q.promise;

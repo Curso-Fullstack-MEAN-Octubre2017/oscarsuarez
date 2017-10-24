@@ -1,7 +1,9 @@
 <form ng-class="{'col s12 m6 l6' : action == 'edit' , 'col s12 m12 l12' : action == 'create'}" name="formCustomer">
+
     <h5>Datos cliente</h5>
 
     <div class="row">
+
         <div class="input-field col s6">
             <input id="first_name" type="text" class="validate" ng-model="customer.firstName">
             <label class="active" for="first_name">First Name</label>
@@ -10,8 +12,11 @@
             <input id="last_name" type="text" ng-model="customer.lastName">
             <label class="active" for="last_name">Last Name</label>
         </div>
+
     </div>
+
     <div class="row">
+
         <div class="input-field col s6">
             <input id="dni" type="text" class="validate" ng-model="customer.dni">
             <label class="active" for="Dni">Dni</label>
@@ -20,8 +25,11 @@
             <input id="phone" type="text" class="validate" ng-model="customer.phone">
             <label class="active" for="phone">Phone</label>
         </div>
+
     </div>
+
     <div class="row">
+
         <div class="input-field col s12">
             <input id="email" type="email" class="validate" ng-model="customer.email">
             <label class="active" for="email">Email</label>
@@ -30,16 +38,20 @@
             <textarea id="note" type="note" class="validate materialize-textarea" ng-model="customer.note"></textarea>
             <label class="active" for="note" data-error="wrong" data-success="right">Notes</label>
         </div>
+
     </div>
 
     <!-- button save -->
     <div class="row">
+
         <div class="fixed-action-btn">
             <button class="btn-floating btn-large red" data-ng-click="submit(formCustomer)">
                 <i class="large material-icons">save</i>
             </button>
         </div>
+
     </div>
+
 </form>
 <div ng-if="action == 'edit'">
     <pet-module></pet-module>

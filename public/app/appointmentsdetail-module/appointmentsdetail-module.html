@@ -1,39 +1,85 @@
 <div class="row">
     <form class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">First Name</label>
+        <div class="hoverable">
+            <h3 class="center">Cliente</h3>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input disabled placeholder="Nombre" id="first_name" type="text" ng-model="details.petId.owner.firstName" class="validate disabled">
+                    <label class="active" for="first_name">Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input disabled placeholder="Apellidos" id="last_name" ng-model="details.petId.owner.lastName" type="text" class="validate">
+                    <label class="active" for="last_name">Apellidos</label>
+                </div>
             </div>
-            <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Last Name</label>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input disabled placeholder="DNI" id="dni" ng-model="details.petId.owner.dni" type="text" class="validate">
+                    <label class="active" for="dni">DNI</label>
+                </div>
+                <div class="input-field col s4">
+                    <input disabled placeholder="Telefono" id="telefono" ng-model="details.petId.owner.phone" type="text" class="validate">
+                    <label class="active" for="telefono">Telefono</label>
+                </div>
+                <div class="input-field col s4">
+                    <input disabled placeholder="Email" id="email" type="email" ng-model="details.petId.owner.email" class="validate">
+                    <label class="active" for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <textarea disabled id="note" placeholder="Notas" type="note"  class="validate materialize-textarea"
+                          ng-model="details.petId.owner.note"></textarea>
+                    <label class="active" for="note">Notas</label>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                <label for="disabled">Disabled</label>
+
+        <hr/>
+        <div class="hoverable">
+            <h3 class="center">Mascotas</h3>
+            <div class="row">
+                <card class="center">
+                    <img class="z-depth-1 circle" ng-src="{{details.petId.picUrl}}"/>
+                </card>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input disabled id="chipNumber" placeholder="Numero Chip" type="text" class="validate" ng-model="details.petId.chipNumber">
+                    <label class="active" for="chipNumber">Chip number</label>
+                </div>
+                <div class="input-field col s6">
+                    <input disabled id="name" type="text" placeholder="Name" ng-model="details.petId.name">
+                    <label class="active" for="name">Name</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input disabled id="species" type="text" placeholder="Especie" class="validate" ng-model="details.petId.species">
+                    <label class="active" for="species">Species</label>
+                </div>
+                <div class="input-field col s6">
+                    <input disabled id="sex" type="text" placeholder="Sex" class="validate" ng-model="details.petId.sex">
+                    <label class="active" for="sex">Sex</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                This is an inline input field:
-                <div class="input-field inline">
-                    <input id="email" type="email" class="validate">
-                    <label for="email" data-error="wrong" data-success="right">Email</label>
+            <div class="row">
+
+                <div class="input-field col s12">
+                    <input disabled id="race" type="text" placeholder="Raza" class="validate" ng-model="details.petId.race"/>
+                    <label class="active" for="race" data-error="wrong" data-success="right">Raza</label>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="input-field col s12">
+                    <input disabled id="birthDate" type="text" placeholder="BirthDate" class="datepicker" ng-model="details.petId.birthDate | date:'dd/MM/yyyy'">
+                    <label class="active" for="birthDate">Fecha de nacimiento</label>
+                </div>
+
+                <div class="input-field col s12">
+            <textarea disabled id="description" type="text" placeholder="description" class="validate materialize-textarea"
+                      ng-model="details.petId.description"></textarea>
                 </div>
             </div>
         </div>
