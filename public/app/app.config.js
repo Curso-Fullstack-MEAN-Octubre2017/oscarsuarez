@@ -25,7 +25,8 @@ angular.module('petStore')
             .when("/appointments/day/:date", {template: "<appointmentsday-module></appointmentsday-module>"})
             .when("/appointments/detail/:id", {template: "<appointmentsdetail-module></appointmentsdetail-module>"})
             .when("/appointments/add/:datetime", {template: "<appointmentspost-module></appointmentspost-module>"})
+            .when("/appointments/edit/:id", {template: "<appointmentspost-module></appointmentspost-module>"})
+
             //ROUTE NOT FOUND
             .otherwise({template: "<h4>Error 404</h4></h2>La página no existe</h2>"});
-    })
-;
+    });

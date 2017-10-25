@@ -1,12 +1,14 @@
 <div class="row">
+
     <div class="col s12 m12 l12">
         <span class="center-align flow-text">{{datetime |date : 'dd/MM/yyyy'}} a las {{datetime |date : 'HH:mm'}}</span>
         <nav>
             <div class="nav-wrapper light-blue lighten-1">
                 <form>
                     <div class="input-field">
-                        <input ng-model="search"  ng-change="change()" name="search" id="search" type="search"/>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i> Busca por nombre de cliente</label>
+                        <input ng-model="search" ng-change="change()" name="search" id="search" type="search"/>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i> Busca por nombre de
+                            cliente</label>
                         <i class="material-icons">close</i>
                     </div>
                 </form>
@@ -17,6 +19,7 @@
             <a ng-repeat="cli in customersList | filter:search" ng-click="customerclick(cli._id,cli.firstName)"
                class="collection-item">{{cli.firstName}} {{cli.lastName}}</a>
         </div>
+
     </div>
 </div>
 <div class="col s12 m12  l6">
@@ -39,6 +42,11 @@
         <br><span ng-if="resumen.customerName">Cliente seleccionado: {{resumen.customerName}}</span>
         <br><span ng-if="resumen.petName">Mascota seleccionada: {{resumen.petName}}</span><br>
     </div>
-    <a class="waves-effect right waves-light btn-large" ng-click="confirmAppointment()"><i class="material-icons right">send</i>Confirmar cita</a>
+    <div class="row">
+        <div ng-if="edit" class="col s6 m6 l6"><a class="waves-effect red waves-light btn-large" ng-click="borrarAppointment()">
+            <i class="material-icons right">delete</i>Borrar cita</a></div>
+        <div class="col s6 m6 l6"><a class="waves-effect waves-light btn-large" ng-click="confirmAppointment()"><i
+                class="material-icons right">send</i>Confirmar cita</a></div>
+    </div>
 </div>
 </div>

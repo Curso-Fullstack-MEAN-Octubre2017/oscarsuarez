@@ -60,6 +60,18 @@ angular.module('appointmentsServices', [])
             return q.promise;
         };
 
+        self.updateAppointment = (obj) => {
+
+            var q = $q.defer();
+            $http.put("api/appointments/" + obj._id, JSON.stringify(obj)).success(function (res) {
+                q.resolve(res);
+                self._cache = {};
+            }).error(function (err) {
+                q.reject(':( ' + err);
+            });
+            return q.promise;
+        };
+
         return self;
     }])
 ;

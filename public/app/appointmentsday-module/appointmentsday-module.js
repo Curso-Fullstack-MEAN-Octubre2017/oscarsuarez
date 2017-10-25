@@ -14,8 +14,8 @@ angular.module('appointmentsdayModule', [])
                 res = res[dates.format('YYYY-MM-DD')] || {};
                 $scope.hoursList = [];
 
-                var startHour = moment(dates).set({hour: 9});
-                var endHour = moment(dates).set({hour: 21});
+                var startHour = moment(dates).set({hour: 9}).utc();
+                var endHour = moment(dates).set({hour: 21}).utc();
 
                 while (startHour <= endHour) {
 
@@ -24,8 +24,8 @@ angular.module('appointmentsdayModule', [])
                         obj: res[moment(startHour).format('HH:mm')]
                     });
                     startHour = moment(startHour).add(0.50, 'hour');
-                }
 
+                }
                 console.log($scope.hoursList);
             });
         }

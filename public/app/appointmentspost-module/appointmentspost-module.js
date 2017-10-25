@@ -7,8 +7,6 @@ angular.module('appointmentspostModule', [])
 
             $scope.search = '';
             $scope.customersList = [];
-            $scope.datetime = moment($routeParams.datetime, 'YYYYMMDDHHmm').toDate();
-            $scope.citaValida = false;
             $scope.resumen = {
                 customerId: null,
                 customerName: null,
@@ -16,6 +14,39 @@ angular.module('appointmentspostModule', [])
                 petId: null,
                 dateTime: $scope.datetime
             };
+            var Appointment = {};
+
+            if ($routeParams.id) {
+                var id = $routeParams.id;
+                console.log('estas en edit ' + id);
+                appointmentsServices.getAppointmentById(id).then(function (res) {
+                    console.log(res);
+                    $scope.datetime = res.dateTimeStart
+                    $scope.citaValida = true;
+                    $scope.edit = true;
+                    $scope.resumen = {
+                        customerId: res.petId.owner._id,
+                        customerName: res.petId.owner.firstName,
+                        petName: res.petId.name,
+                        petId: res.petId._id,
+                        dateTime: res.dateTimeStart
+                    };
+                    Appointment = {
+                        dateTimeStart: res.dateTimeStart,
+                        dateTimeEnd: res.dateTimeEnd,
+                        petId: res.petId,
+                        vetId: res.vetId,
+                        Status: res.Status,
+                        _id: res._id
+                    }
+                });
+
+            } else {
+                $scope.datetime = moment($routeParams.datetime, 'YYYYMMDDHHmm').toDate();
+                $scope.citaValida = false;
+                console.log('Estas en create ' + $routeParams.datetime);
+                $scope.edit = false;
+            }
 
             $scope.getData = function () {
                 return $filter('filter')($scope.customersList, $scope.search)
@@ -34,13 +65,13 @@ angular.module('appointmentspostModule', [])
                     $scope.resumen.petName = '';
                     $scope.citaValida = false;
                 });
-                Materialize.toast('Seleccionaste a ' + name, 4000)
+                Materialize.toast('Seleccionaste a ' + name, 2000)
             };
 
             $scope.petclick = function (id, name) {
                 $scope.resumen.petId = id;
                 $scope.resumen.petName = name;
-                Materialize.toast('Mascota seleccionada ' + name, 4000);
+                Materialize.toast('Mascota seleccionada ' + name, 2000);
                 $scope.citaValida = true;
             };
 
@@ -53,32 +84,37 @@ angular.module('appointmentspostModule', [])
             };
 
             $scope.confirmAppointment = function () {
-
-                var newAppointment =
-                    {
-                        //************************************************************//
-                        // PROBLEMA //!\\ AL ALMACENAR LAS FECHAS NO GUARDA EL GMT+2 //
-                        //**********************************************************//
-                        dateTimeStart: moment($scope.datetime).add(120, 'minute')._d,
-                        dateTimeEnd: moment($scope.datetime).add(150, 'minute')._d,
+                if (!$scope.edit) {
+                    Appointment = {
+                        dateTimeStart: $scope.datetime,
+                        dateTimeEnd: moment($scope.datetime).add(30, 'minute'),
                         petId: $scope.resumen.petId,
                         vetId: null,
                         Status: 0
                     };
-
-                appointmentsServices.addNewAppointment(newAppointment).then(
-                    function (res) {
-                        Materialize.toast('Cita guardada correctamente', 4000);
-                        return $location.url('/appointments/');
-                    },
-                    function (error) {
-                        Materialize.toast('Error al guardar la cita', 4000);
-                        console.error(error);
-                    }
-                );
+                    appointmentsServices.addNewAppointment(Appointment).then(
+                        function (res) {
+                            Materialize.toast('Cita guardada correctamente', 2000);
+                            return $location.url('/appointments/');
+                        },
+                        function (error) {
+                            Materialize.toast('Error al guardar la cita', 2000);
+                            console.error(error);
+                        }
+                    );
+                } else {
+                    Appointment.petId = $scope.resumen.petId;
+                    appointmentsServices.updateAppointment(Appointment).then(function (res) {
+                            Materialize.toast('Cita modificada correctamente', 2000);
+                            return $location.url('/appointments/');
+                        },
+                        function (error) {
+                            Materialize.toast('Error al modificar la cita', 2000);
+                            console.error(error);
+                        });
+                }
 
             }
         }
-    })
-;
+    });
 
