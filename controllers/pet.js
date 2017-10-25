@@ -3,6 +3,7 @@
 //importamos el modelo customer
 
 var Pet = require('../models/pet');
+var Q = require('q');
 
 function getPetByOwnerId(req, res) {
 
@@ -15,17 +16,14 @@ function getPetByOwnerId(req, res) {
     });
 }
 
-function getPetById(req, res) {
-
-    var id = req.params.id;
-
+function getPetById(id) {
+    var q = Q.defer();
     Pet.findById(id, (err, pets) => {
-        console.log(pets);
-        if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-        if (!pets) return res.status(404).send({message: `No existe la mascota`});
-        res.json(pets);
+        if (err) return q.reject(err);
+        q.resolve(pets);
     });
-}
+    return q.promise;
+};
 
 function deletePet(req, res) {
     var id = req.params.id;
@@ -65,10 +63,9 @@ function updatePet(req, res) {
 }
 
 //export las funciones
-
 module.exports = {
-    savePet,
     getPetById,
+    savePet,
     updatePet,
     getPetByOwnerId,
     deletePet

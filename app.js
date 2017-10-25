@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var moment = require('moment');
 var jquery = require('jquery');
+var q = require('q');
 
 //Aqui se importa todos los archivos de la carpeta rutas
 var customerRoute = require('./routes/customer');
