@@ -22,7 +22,15 @@ function getAppointmentById(req, res) {
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
         if (!appointment) return res.status(404).send({message: `No existen citass`});
         res.json(appointment);
-    });
+    }).populate(
+        {
+            path: 'petId',
+            model: 'Pet',
+            populate: {
+                path: 'owner',
+                model: 'Customer',
+            }
+        })
 }
 
 function saveAppointment(req, res) {
@@ -37,7 +45,7 @@ function saveAppointment(req, res) {
 
 function updateAppointment(req, res) {
 
-    Appointment.findByIdAndUpdate(req.params.id, req.body, (err, appointment) => {
+    Appointment.findByIdAndUpdate(req.params.id, req.body, (err, appointmentStored) => {
         if (err) return res.status(500).send({message: "Error al guardar el cliente"});
         if (!appointmentStored) return res.status(404).send({message: "No se ha registrado el cliente"});
         res.json(appointmentStored);
@@ -79,10 +87,20 @@ function getAppointmentsByDate(req, res) {
     ).sort({'dateTimeStart': 1})
 }
 
+function deleteAppointment(req, res) {
+    var id = req.params.id;
+    Appointment.remove({_id: id}, function (err) {
+        if (err) return res.status(500).send({message: `Error al borrar: ${err}`});
+        res.json({message: 'borrado correctamente'});
+    });
+}
+
+
 module.exports = {
     saveAppointment,
     getAppointment,
     getAppointmentById,
+    deleteAppointment,
     updateAppointment,
     getAppointmentsByDate
 };

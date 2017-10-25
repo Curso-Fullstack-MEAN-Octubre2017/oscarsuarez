@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var moment = require('moment');
 var jquery = require('jquery');
-//var formidable = require('express-formidable');
-
+var q = require('q');
 
 //Aqui se importa todos los archivos de la carpeta rutas
 var customerRoute = require('./routes/customer');
@@ -16,7 +15,10 @@ var petRoute = require('./routes/pet');
 var appointmentRoute = require('./routes/appointment');
 
 var app = express();
+//connect to heroku with:
+//mongoose.connect(process.env.MONGODB_URI);
 
+//localhost MongoDb
 mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
 
 app.use(logger('dev'));

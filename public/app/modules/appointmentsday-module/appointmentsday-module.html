@@ -45,7 +45,7 @@
             <a ng-if="l.obj" href="appointments/edit/{{l.obj._id}}"
                class=" btn-floating btn waves-effect waves-light red"><i
                     class="material-icons">edit</i></a>
-            <a ng-if="!l.obj" href="appointments/add/{{l.hour | date: 'HHmm'}}"
+            <a ng-if="!l.obj" href="appointments/add/{{l.hour | date: 'yyyyMMddHHmm'}}"
                class="  btn-floating btn waves-effect waves-light teal">
                 <i class="material-icons">add</i></a>
         </td>

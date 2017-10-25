@@ -1,15 +1,28 @@
-'use strict'
+'use strict';
 
 var express = require('express');
 
-var PetController = require('../controllers/pet');
+var Controller = require('../controllers/pet');
+var Pet = require('../models/pet');
 
 var api = express.Router();
 
-api.get('/customers/:id/pets', PetController.getPetByOwnerId);
-api.get('/pet/:id', PetController.getPetById);
-api.post('/pet', PetController.savePet);
-api.put('/pet/:id', PetController.updatePet);
-api.delete('/pet/:id',PetController.deletePet);
+const successCallback = function (res) {
+    return function (result) {
+        res.json(result)
+    }
+};
+const failCallback = function (res) {
+    return function (err) {
+        console.error(err);
+        res.sendStatus(500);//KO (TODO: elegir un codigo mas explicito)
+    }
+};
+
+api.get('/customers/:id/pets', Controller.getPetByOwnerId);
+api.get('/pet/:id', (req, res) => {Controller.getPetById(req.params.id).then(successCallback(res), failCallback(res));});
+api.post('/pet', Controller.savePet);
+api.put('/pet/:id', Controller.updatePet);
+api.delete('/pet/:id', Controller.deletePet);
 
 module.exports = api;
