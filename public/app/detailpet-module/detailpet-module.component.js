@@ -47,10 +47,14 @@ angular.module('detailpetModule', [])
 
                 var data;
 
+
                 if (action == 'edit') {
 
                     data = $scope.pet;
-
+                    const validationErrors = Validators.validatePet(data);
+                    if (validationErrors) {
+                        return Materialize.toast(validationErrors[Object.keys(validationErrors)[0]],2000);;
+                    }
                     $http({
                         method: 'PUT',
                         url: "api/pet/" + id,
@@ -70,7 +74,10 @@ angular.module('detailpetModule', [])
                     //Al ser un nuevo pet hay que asignarle la id del dueño para relacionarlo
                     $scope.pet.owner = id;
                     data = $scope.pet;
-
+                    // const validationErrors = Validators.validatePet(data);
+                    // if (validationErrors) {
+                    //     return Materialize.toast(validationErrors[Object.keys(validationErrors)[0]],2000);
+                    // }
                     $http({
                         method: 'POST',
                         url: "api/pet/",
@@ -82,7 +89,7 @@ angular.module('detailpetModule', [])
                         history.back();
                     }).error(function (status) {
                         console.log('Error ' + status);
-                        alert('Error comprueba los campos');
+                        alert('Error comprueba los campos ' + JSON.stringify(status));
                     })
                 }
             }

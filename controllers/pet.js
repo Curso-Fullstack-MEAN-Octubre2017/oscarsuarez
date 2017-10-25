@@ -3,6 +3,7 @@
 //importamos el modelo customer
 
 var Pet = require('../models/pet');
+var Validators = require('../public/app/validation/validators');
 var Q = require('q');
 
 function getPetByOwnerId(req, res) {
@@ -37,6 +38,11 @@ function deletePet(req, res) {
 function savePet(req, res) {
 
     var pet = new Pet(req.body);
+
+    const validationErrors = Validators.validatePet(pet);
+    if (validationErrors) {
+        return res.status(400).send({message: validationErrors[Object.keys(validationErrors)[0]]});
+    }
 
     //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
     pet.save((err, petStored) => {
