@@ -15,10 +15,10 @@ angular.module('petStore')
 
             //ROUTES CUSTOMERS
             .when("/customers", {template: "<customer-module></customer-module>"})
-            .when("/:action/customers/:id?", {template: "<detailcustomer-module></detailcustomer-module>"})
+            .when("/:action/customers/:id?", {template: "<customerdetail-module></customerdetail-module>"})
 
             //ROUTES PETS
-            .when("/pet/:action/:id", {template: "<detailpet-module></detailpet-module>"})
+            .when("/pet/:action/:id", {template: "<petdetail-module></petdetail-module>"})
 
             //ROUTES APPOINTMENTS
             .when("/appointments/:date?", {template: "<appointmentscalendar-module></appointmentscalendar-module>"})

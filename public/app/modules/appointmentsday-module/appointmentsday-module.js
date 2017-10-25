@@ -3,7 +3,7 @@
 angular.module('appointmentsdayModule', [])
     .component('appointmentsdayModule', {
 
-        templateUrl: '/app/appointmentsday-module/appointmentsday-module.html',
+        templateUrl: '/app/modules/appointmentsday-module/appointmentsday-module.html',
         controller: function ($scope, $http, $routeParams, appointmentsServices) {
 
             console.log("Componente appointments day");

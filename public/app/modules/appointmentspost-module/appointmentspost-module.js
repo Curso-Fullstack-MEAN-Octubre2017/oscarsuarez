@@ -2,7 +2,7 @@
 
 angular.module('appointmentspostModule', [])
     .component('appointmentspostModule', {
-        templateUrl: '/app/appointmentspost-module/appointmentspost-module.html',
+        templateUrl: '/app/modules/appointmentspost-module/appointmentspost-module.html',
         controller: function ($scope, $http, $filter, $routeParams, $location, appointmentsServices) {
 
             $scope.search = '';
@@ -21,7 +21,7 @@ angular.module('appointmentspostModule', [])
                 console.log('estas en edit ' + id);
                 appointmentsServices.getAppointmentById(id).then(function (res) {
                     console.log(res);
-                    $scope.datetime = res.dateTimeStart
+                    $scope.datetime = res.dateTimeStart;
                     $scope.citaValida = true;
                     $scope.edit = true;
                     $scope.resumen = {
@@ -99,7 +99,6 @@ angular.module('appointmentspostModule', [])
                         },
                         function (error) {
                             Materialize.toast('Error al guardar la cita', 2000);
-                            console.error(error);
                         }
                     );
                 } else {
@@ -113,7 +112,14 @@ angular.module('appointmentspostModule', [])
                             console.error(error);
                         });
                 }
-
+            };
+            $scope.deleteAppointment = function () {
+                appointmentsServices.deleteAppointment($routeParams.id).then(function (res) {
+                    Materialize.toast('Borrado correctamente', 2000);
+                    history.back();
+                }), function (err) {
+                    Materialize.toast('Error al borrar', 2000);
+                }
             }
         }
     });

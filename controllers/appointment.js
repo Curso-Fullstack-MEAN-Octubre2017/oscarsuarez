@@ -87,11 +87,20 @@ function getAppointmentsByDate(req, res) {
     ).sort({'dateTimeStart': 1})
 }
 
+function deleteAppointment(req, res) {
+    var id = req.params.id;
+    Appointment.remove({_id: id}, function (err) {
+        if (err) return res.status(500).send({message: `Error al borrar: ${err}`});
+        res.json({message: 'borrado correctamente'});
+    });
+}
+
 
 module.exports = {
     saveAppointment,
     getAppointment,
     getAppointmentById,
+    deleteAppointment,
     updateAppointment,
     getAppointmentsByDate
 };

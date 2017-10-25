@@ -52,8 +52,7 @@ angular.module('appointmentsServices', [])
 
             $http.post("api/appointments/", JSON.stringify(obj)).success(function (res) {
                 q.resolve(res);
-                // Borrar cache para refrescar nuevos datos //
-                self._cache = {};
+                self._cache = {}; // Borrar cache para refrescar nuevos datos //
             }).error(function (err) {
                 q.reject(':(' + err);
             });
@@ -65,9 +64,21 @@ angular.module('appointmentsServices', [])
             var q = $q.defer();
             $http.put("api/appointments/" + obj._id, JSON.stringify(obj)).success(function (res) {
                 q.resolve(res);
-                self._cache = {};
+                self._cache = {}; // Borrar cache para refrescar nuevos datos //
             }).error(function (err) {
                 q.reject(':( ' + err);
+            });
+            return q.promise;
+        };
+
+        self.deleteAppointment = (id) => {
+            var q = $q.defer();
+            $http.delete('api/appointments/' + id, {params: {_id: id}})
+                .success(function (res) {
+                    q.resolve(res);
+                    self._cache = {};
+                }).error(function (err) {
+                q.reject(err);
             });
             return q.promise;
         };

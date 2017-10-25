@@ -2,8 +2,8 @@
 
 angular.module('customerModule', [])
     .component('customerModule', {
-        templateUrl: '/app/customer-module/customer-module.html',
-        controller: function ($scope, $http, $filter) {
+        templateUrl: '/app/modules/customer-module/customer-module.html',
+        controller: function ($scope, $http, $filter, customersServices) {
 
             $scope.search = '';
             $scope.customersList = [];
@@ -12,8 +12,8 @@ angular.module('customerModule', [])
                 return $filter('filter')($scope.customersList, $scope.search)
             };
 
-            $http.get('api/customers').then(function (res) {
-                $scope.customersList = res.data;
+            customersServices.getCustomers().then(function (res) {
+                $scope.customersList = res;
             });
         }
     });

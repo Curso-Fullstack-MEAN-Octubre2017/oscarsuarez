@@ -11,5 +11,6 @@ api.get('/appointments/:id', AppointmentController.getAppointmentById);
 api.get('/appointments/:from/:to', AppointmentController.getAppointmentsByDate);
 api.post('/appointments', AppointmentController.saveAppointment);
 api.put('/appointments/:id', AppointmentController.updateAppointment);
+api.delete('/appointments/:id', AppointmentController.deleteAppointment);
 
 module.exports = api;

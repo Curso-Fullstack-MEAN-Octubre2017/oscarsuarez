@@ -6,14 +6,17 @@ angular.module('petStore', [
 
     //MODULES
     'customerModule',
-    'detailcustomerModule',
-    'detailpetModule',
+    'customerdetailModule',
     'petModule',
+    'petdetailModule',
     'appointmentscalendarModule',
     'appointmentsdayModule',
     'appointmentsdetailModule',
     'appointmentspostModule',
 
     // SERVICES
-    'appointmentsServices'
+    'appointmentsServices',
+    'petsServices',
+    'customersServices'
+
 ]);

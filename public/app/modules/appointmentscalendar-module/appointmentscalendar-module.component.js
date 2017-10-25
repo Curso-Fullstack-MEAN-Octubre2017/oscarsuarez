@@ -3,7 +3,7 @@
 angular.module('appointmentscalendarModule', [])
     .component('appointmentscalendarModule', {
 
-        templateUrl: '/app/appointmentscalendar-module/appointmentscalendar-module.html',
+        templateUrl: '/app/modules/appointmentscalendar-module/appointmentscalendar-module.html',
         controller: function ($scope, $http, $routeParams, appointmentsServices) {
 
             console.log("Componente appointments calendar");
@@ -17,7 +17,6 @@ angular.module('appointmentscalendarModule', [])
             appointmentsServices.getAppointmentsByMonth(date).then(function (res) {
                 $scope.appointments = res;
                 console.log('API GET RESULT \n' + res);
-
                 //SCOPE CON MES SIGUIENTE Y MES ANTERIOR AL ACTUAL
                 date = moment(date, 'YYYYMM');
                 $scope.nextmonth = moment(date).add(1, 'month').format('YYYYMM');
