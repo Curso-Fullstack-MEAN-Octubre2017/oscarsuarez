@@ -117,9 +117,9 @@ angular.module('appointmentspostModule', [])
                 appointmentsServices.deleteAppointment($routeParams.id).then(function (res) {
                     Materialize.toast('Borrado correctamente', 2000);
                     history.back();
-                }), function (err) {
+                }, function (err) {
                     Materialize.toast('Error al borrar', 2000);
-                }
+                })
             }
         }
     });

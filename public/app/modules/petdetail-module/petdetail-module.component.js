@@ -52,10 +52,10 @@ angular.module('petdetailModule', [])
                         function (res) {
                             Materialize.toast('Mascota creada correctamente', 2000);
                             history.back();
-                        }),
-                        function (err) {
+                        }, function (err) {
                             Materialize.toast('Error, comprueba los datos', 2000);
-                        }
+                        })
+
                 }
             }
         }

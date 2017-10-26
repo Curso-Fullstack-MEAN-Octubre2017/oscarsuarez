@@ -12,9 +12,7 @@ angular.module('customerModule', [])
                 return $filter('filter')($scope.customersList, $scope.search)
             };
 
-            customersServices.getCustomers().then(function (res) {
-                $scope.customersList = res;
-            });
+            $scope.customersList = customersServices.query();
         }
     });
 

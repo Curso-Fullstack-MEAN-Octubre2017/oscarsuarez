@@ -63,5 +63,4 @@ angular.module('petsServices', [])
         };
 
         return self;
-    }])
-;
+    }]);

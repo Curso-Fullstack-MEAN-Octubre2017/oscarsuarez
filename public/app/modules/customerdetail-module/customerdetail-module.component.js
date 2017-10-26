@@ -11,32 +11,21 @@ angular.module('customerdetailModule', [])
             var action = $routeParams.action;
             $scope.action = action;
 
-
-            if (action == 'edit') {
-                customersServices.getCustomerById(id).then(function (res) {
-                    $scope.customer = res;
-                });
-            }
+            if (action == 'edit') $scope.customer = customersServices.get({id: id});
 
             $scope.submit = function (formCustomer) {
 
                 var data = $scope.customer;
 
                 if (action == 'edit') {
-                    customersServices.putCustomer(data).then(function (res) {
-                        Materialize.toast('Guardado correctamente',2000);
-                        history.back();
-                    }), function (err) {
-                        Materialize.toast('Error al guardar');
-                    }
+                    customersServices.update({id: id}, data,
+                        (res) => {Materialize.toast('Guardado correctamente', 2000);history.back()},
+                        (err) => {Materialize.toast('Error al guardar los cambios', 2000);});
                 }
                 else if (action == 'create') {
-                    customersServices.postCustomer(data).then(function (res) {
-                        Materialize.toast('Guardado correctamente',2000);
-                        history.back();
-                    }), function (err) {
-                        Materialize.toast('Error al guardar');
-                    }
+                    customersServices.save({}, data,
+                        (res) => {Materialize.toast('Guardado correctamente', 2000);history.back()},
+                        (err) => {Materialize.toast('Error al guardar', 2000);});
                 }
             }
         }
