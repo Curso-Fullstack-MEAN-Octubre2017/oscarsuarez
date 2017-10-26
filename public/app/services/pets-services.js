@@ -57,7 +57,7 @@ angular.module('petsServices', [])
             $http.put("api/pet/" + obj._id, JSON.stringify(obj)).success(function (res) {
                 q.resolve(res);
             }).error(function (err) {
-                q.reject(':( ' + err);
+                q.reject(err);
             });
             return q.promise;
         };

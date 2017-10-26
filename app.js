@@ -29,21 +29,30 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'files')));
 
-
 //Base route
 //Crea una ruta base para todas las rutas que corresponden a la api
 app.use('/api', customerRoute);
 app.use('/api', petRoute);
 app.use('/api', appointmentRoute);
 
-
 //Front End
 app.all("*", (req, res) => {
     res.sendFile(path.resolve("public/index.html"));
 });
 
-
 // insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
 //require('./insertdata/appointment');
+
+// error handler
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // log the error
+    console.log(err)
+    res.sendStatus(err.status || 500);
+});
+
 
 module.exports = app;

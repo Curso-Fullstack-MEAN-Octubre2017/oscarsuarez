@@ -20,9 +20,22 @@ const failCallback = function (res) {
 };
 
 api.get('/customers/:id/pets', Controller.getPetByOwnerId);
-api.get('/pet/:id', (req, res) => {Controller.getPetById(req.params.id).then(successCallback(res), failCallback(res));});
+
+api.get('/pet/:id', (req, res) => {
+    Controller.getPetById(req.params.id).then(successCallback(res), failCallback(res));
+});
+
 api.post('/pet', Controller.savePet);
-api.put('/pet/:id', Controller.updatePet);
+
+api.put('/pet/:id', (req, res) => {
+    Controller.updatePet(req.body).then(function (result) {
+        if (result == null) {
+            return res.status(412).send({message: "Error de concurencia"});
+        }
+        res.json(result);
+    }, failCallback(res));
+});
+
 api.delete('/pet/:id', Controller.deletePet);
 
 module.exports = api;

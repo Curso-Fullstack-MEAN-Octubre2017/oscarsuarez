@@ -40,9 +40,9 @@ angular.module('petdetailModule', [])
                         function (res) {
                             Materialize.toast('Mascota modificada correctamente', 2000);
                             history.back();
-                        }), function (err) {
-                        Materialize.toast('Error, comprueba los datos', 2000);
-                    }
+                        }, function (err) {
+                            Materialize.toast(err.message, 2000);
+                        });
 
                 } else if (action == 'create') {
                     console.log('create');
@@ -54,8 +54,8 @@ angular.module('petdetailModule', [])
                             history.back();
                         }),
                         function (err) {
-                        Materialize.toast('Error, comprueba los datos', 2000);
-                    }
+                            Materialize.toast('Error, comprueba los datos', 2000);
+                        }
                 }
             }
         }

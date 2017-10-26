@@ -46,16 +46,26 @@ function savePet(req, res) {
     });
 }
 
-function updatePet(req, res) {
+function updatePet(json) {
+    var q = Q.defer();
 
-    Pet.findByIdAndUpdate(req.params.id, req.body, (err, petStored) => {
-        //funcion callback si no hay error devuelve el usuario guardado sino devuelve el error
-        if (err) return res.status(500).send({message: "Error al guardar la mascota"});
-        //si el pet guardado no existe
-        if (!petStored) return res.status(404).send({message: "No se ha registrado la mascota"});
-        //si OK devuelve un objeto customer con los datos guardados en la bdat
-        res.json(petStored);
-    });
+    var v = json.__v;
+    delete json.__v; // evitamos el conflicto entre $set e $inc
+
+    Pet.findOneAndUpdate(
+        {_id: json._id, __v: v}, // find current version
+        {$set: json, $inc: {__v: 1}}, // update and increment version
+        {new: true}, // return inserted version
+        function (err, pet) {
+            if (err) {
+                console.error(err);
+                q.reject(err);
+            } else {
+                q.resolve(pet);
+            }
+        });
+
+    return q.promise;
 }
 
 //export las funciones
