@@ -1,11 +1,32 @@
 'use strict';
 
 angular.module('petStore')
+    .factory('loadingInterceptor', function ($rootScope) {
+        var interceptor = {
+            'request': function (config) {
+                $rootScope.$broadcast("http:request", config);
+                return config;
+            }, 'response': function (response) {
+                $rootScope.$broadcast("http:response", response);
+                return response;
+            }, 'requestError': function (rejection) {
+                $rootScope.$broadcast("http:requestError", rejection);
+                return rejection;
+            }, 'responseError': function (rejection) {
+                $rootScope.$broadcast("http:responseError", rejection);
+                return rejection;
+            }
+        };
+        return interceptor;
+    })
+    .config(function ($locationProvider, $httpProvider, $routeProvider) {
+        $locationProvider.html5Mode({enabled: true});
+        $httpProvider.interceptors.push('loadingInterceptor');
+    })
     .config(function ($locationProvider,
                       $routeProvider) {
         $locationProvider.html5Mode({enabled: true});
         $routeProvider
-
         //INDEX
             .when("/", {
                 template: "<center><h2>Gestion Clínica veterinaria</h2><h3>2017</h3>" +

@@ -10,6 +10,8 @@
     </div>
 </nav>
 
+<eventModule></eventModule>
+
 <div class="collection">
     <a ng-repeat="cli in customersList | filter:search" href="edit/customers/{{cli._id}}" class="collection-item">{{cli.firstName}}
         {{cli.lastName}}</a>
