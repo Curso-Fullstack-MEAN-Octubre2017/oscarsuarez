@@ -42,28 +42,45 @@
 </head>
 <body>
 <div class="page-flexbox-wrapper">
+    <!--<header>-->
+    <!--<div class="navbar-fixed">-->
+    <!--<nav class="light-blue darken-2 flow-text fixed">-->
+    <!--<div class="nav-wrapper">-->
+    <!--<a href="/" class="brand-logo center">Clinica Veterinaria</a>-->
+    <!--<a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>-->
+    <!--<ul class="left hide-on-med-and-down">-->
+    <!--<li><a href="customers">Clientes</a></li>-->
+    <!--<li><a href="appointments/">Citas</a></li>-->
+    <!--&lt;!&ndash; calcular mes actual para url en formato YYYYMM &ndash;&gt;-->
+    <!--</ul>-->
+    <!--<ul class="side-nav" id="mobile-demo">-->
+    <!--<li><a href="customers">Clientes</a></li>-->
+    <!--<li><a href="appointments">Citas</a></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--</nav>-->
+    <!--</div>-->
+    <!--</header>-->
     <header>
-        <div class="navbar-fixed">
-            <nav class="light-blue darken-2 flow-text fixed">
-                <div class="nav-wrapper">
-                    <a href="/" class="brand-logo center">Clinica Veterinaria</a>
-                    <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul class="left hide-on-med-and-down">
-                        <li><a href="customers">Clientes</a></li>
-                        <li><a href="appointments/">Citas</a></li>
-                        <!-- calcular mes actual para url en formato YYYYMM -->
-                    </ul>
-                    <ul class="side-nav" id="mobile-demo">
-                        <li><a href="customers">Clientes</a></li>
-                        <li><a href="appointments">Citas</a></li>
-                    </ul>
+        <ul id="slide-out" class="side-nav fixed">
+            <li>
+                <div class="userView">
+                    <img class="background responsive-img" src="background1.jpg">
+                    <a href="/"><img class="circle" src="icon.jpg">
+                    <span class="white-text name">Clinica Veterinaria</span>
+                    <span class="white-text email">vet@gmail.com</span></a>
                 </div>
-            </nav>
-        </div>
+            </li>
+            <li><a class="waves-effect" href="appointments"><i class="material-icons">date_range</i>Calendario de citas</a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="waves-effect" href="customers"><i class="material-icons">pets</i>Mascotas y clientes</a></li>
+        </ul>
     </header>
     <main>
         <div class="row">
-            <div class="col m0 s0 l2"></div>
             <div class="col s12 m12 l12">
                 <div class="container">
                     <ng-view>
@@ -71,7 +88,6 @@
                     </ng-view>
                 </div>
             </div>
-            <div class="col m0 s0 l2"></div>
         </div>
     </main>
     <footer class="page-footer light-blue darken-2">
@@ -82,7 +98,7 @@
             </div>
         </div>
     </footer>
-    <script>  $(".button-collapse").sideNav();</script>
+    <script>   $(".button-collapse").sideNav();</script>
 </div>
 </body>
 </html>
