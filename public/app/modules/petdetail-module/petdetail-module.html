@@ -6,67 +6,25 @@
         </card>
     </div>
     <div class="row">
-        <div class="input-field col s6">
-            <input id="chipNumber" type="text" class="validate" ng-model="pet.chipNumber">
-            <label class="active" for="chipNumber">Chip number</label>
-        </div>
-        <div class="input-field col s6">
-            <input id="name" type="text" ng-model="pet.name">
-            <label class="active" for="name">Name</label>
-        </div>
+        <my-input data-size="s6" data-idfor="chipNumber" data-type="text" data-model="pet.chipNumber"
+                  data-label="Número de chip"/>
+        <my-input data-size="s6" data-idfor="name" data-type="text" data-model="pet.name" data-label="Nombre"/>
     </div>
     <div class="row">
-        <div class="input-field col s6">
-            <input id="species" type="text" class="validate" ng-model="pet.species">
-            <label class="active" for="species">Species</label>
-        </div>
-        <div class="input-field col s6">
-            <input id="sex" type="text" class="validate" ng-model="pet.sex">
-            <label class="active" for="sex">Sex</label>
-        </div>
+        <my-input data-size="s6" data-idfor="species" data-type="text" data-model="pet.species" data-label="Especie"/>
+        <my-input data-size="s6" data-idfor="sex" data-type="text" data-model="pet.sex" data-label="Sexo"/>
     </div>
     <div class="row">
-        <!--
-                <div class="file-field input-field col s12">
-                   <div class="btn">
-                       <span>Imagen</span>
-                       <input type="file" name="uploadImg" id="uploadImg">
-                   </div>
-                   <div class="file-path-wrapper">
-                       <input class="file-path validate" type="text" ng-model="pet.picUrl">
-                   </div>
-               </div>
-         -->
-        <div class="input-field col s12">
-            <input id="picUrl" type="text" class="validate" ng-model="pet.picUrl"/>
-            <label class="active" for="picUrl" data-error="wrong" data-success="right">Url Imagen</label>
-        </div>
-        <div class="input-field col s12">
-            <input id="race" type="text" class="validate" ng-model="pet.race"/>
-            <label class="active" for="race" data-error="wrong" data-success="right">Race</label>
-        </div>
+        <my-input data-size="s6" data-idfor="picUrl" data-type="text" data-model="pet.picUrl"
+                  data-label="Url de la imagen"/>
+        <my-input data-size="s6" data-idfor="race" data-type="text" data-model="pet.race" data-label="Raza"/>
     </div>
     <div class="row">
-
-        <div class="input-field col s12">
-            <input id="birthDate" type="text" class="datepicker" ng-model="pet.birthDate"> <!--| date : 'longDate'-->
-            <label class="active" for="birthDate">BirthDate</label>
-        </div>
-
-        <div class="input-field col s12">
-            <textarea id="description" type="text" class="validate materialize-textarea"
-                      ng-model="pet.description"></textarea>
-            <label class="active" for="description" data-error="wrong" data-success="right">Description</label>
-        </div>
+        <my-datepicker idfor="birthDate" data-size="s6" data-model="pet.birthDate" data-label="Fecha de cumpleaños"/>
+        <my-textarea data-size="s6" data-idfor="description" data-type="text" data-model="pet.description" data-label="Descripción"/>
     </div>
 
-    <!-- button save -->
-
-    <div ng-if="!action" class="fixed-action-btn horizontal">
-        <button class="btn-floating btn-large red" data-ng-click="submit(formPet)">
-            <i class="large material-icons">save</i>
-        </button>
-    </div>
+    <my-button ng-if="!action" data-size="large" data-color="red" data-icon="save" ng-click="submit(formPet)"/>
 
     <div ng-if="action" class="fixed-action-btn horizontal">
         <a class="btn-floating btn-large blue">
@@ -86,5 +44,3 @@
         </ul>
     </div>
 </form>
-
-<script src="../../../javascript/datepicker.js"></script>

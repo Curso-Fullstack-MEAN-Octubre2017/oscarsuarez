@@ -55,7 +55,6 @@ angular.module('petdetailModule', [])
                         }, function (err) {
                             Materialize.toast('Error, comprueba los datos', 2000);
                         })
-
                 }
             }
         }

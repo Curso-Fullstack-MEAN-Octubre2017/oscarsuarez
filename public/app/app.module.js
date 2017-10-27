@@ -18,5 +18,8 @@ angular.module('petStore', [
     // SERVICES
     'appointmentsServices',
     'petsServices',
-    'customersServices'
+    'customersServices',
+
+    //DIRECTIVES
+    'inputTemplates'
 ]);
