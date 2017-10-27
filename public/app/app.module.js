@@ -18,6 +18,7 @@ angular.module('petStore', [
     'appointmentsServices',
     'petsServices',
     'customersServices',
+    'inputTemplates',
 
     //EVENTS
     'loader'
