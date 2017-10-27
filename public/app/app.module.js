@@ -13,13 +13,12 @@ angular.module('petStore', [
     'appointmentsdayModule',
     'appointmentsdetailModule',
     'appointmentspostModule',
-    'eventModule',
 
     // SERVICES
     'appointmentsServices',
     'petsServices',
     'customersServices',
 
-    //DIRECTIVES
-    'inputTemplates'
+    //EVENTS
+    'loader'
 ]);
