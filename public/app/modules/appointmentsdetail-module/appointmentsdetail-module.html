@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row hoverable">
     <form class="col s12">
-        <div class="hoverable">
-            <h3 class="center">Cliente</h3>
+        <div class="">
+            <h3 class="center">Ficha del cliente</h3>
             <div class="row">
                 <div class="input-field col s6">
                     <input disabled placeholder="Nombre" id="first_name" type="text" ng-model="details.petId.owner.firstName" class="validate disabled">
@@ -36,12 +36,13 @@
         </div>
 
         <hr/>
-        <div class="hoverable">
-            <h3 class="center">Mascotas</h3>
+        <div class="">
+            <h3 class="center">Ficha de la mascotas</h3>
             <div class="row">
-                <card class="center">
-                    <img class="z-depth-1 circle" ng-src="{{details.petId.picUrl}}"/>
-                </card>
+                <div class="parallax-container">
+                    <div class="parallax"><img ng-src="{{details.petId.picUrl}}"></div>
+                    <h1 class="center white-text">{{pet.name}}</h1>
+                </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
@@ -85,3 +86,11 @@
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.parallax').parallax();
+    });
+    $(window).on("load", function () {
+        Materialize.updateTextFields();
+    });
+</script>

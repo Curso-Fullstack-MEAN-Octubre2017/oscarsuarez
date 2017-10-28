@@ -33,26 +33,18 @@ angular.module('petStore')
         $locationProvider.html5Mode({enabled: true});
         $routeProvider
         //INDEX
-            .when("/", {
-                template: "<center><h2>Gestion Clínica veterinaria</h2><h3>2017</h3>" +
-                "</center>" +
-                "<div class='card-image center'><img class='responsive-img' src='banner.jpg'/></div>"
-            })
-
+            .when("/", {template: "<login-module></login-module>"})
             //ROUTES CUSTOMERS
             .when("/customers", {template: "<customer-module></customer-module>"})
             .when("/:action/customers/:id?", {template: "<customerdetail-module></customerdetail-module>"})
-
             //ROUTES PETS
             .when("/pet/:action/:id", {template: "<petdetail-module></petdetail-module>"})
-
             //ROUTES APPOINTMENTS
             .when("/appointments/:date?", {template: "<appointmentscalendar-module></appointmentscalendar-module>"})
             .when("/appointments/day/:date", {template: "<appointmentsday-module></appointmentsday-module>"})
             .when("/appointments/detail/:id", {template: "<appointmentsdetail-module></appointmentsdetail-module>"})
             .when("/appointments/add/:datetime", {template: "<appointmentspost-module></appointmentspost-module>"})
             .when("/appointments/edit/:id", {template: "<appointmentspost-module></appointmentspost-module>"})
-
             //ROUTE NOT FOUND
-            .otherwise({template: "<h4>Error 404</h4></h2>La página no existe</h2>"});
+            .otherwise({template: "<img class='img-responsive center' src='404.jpg' alt='404' /><h1>Oops !</h1><h3>La página no existe</h3> <a href='/'><div class='flex-text'>Volver a la página de inicio</div></a>"});
     });

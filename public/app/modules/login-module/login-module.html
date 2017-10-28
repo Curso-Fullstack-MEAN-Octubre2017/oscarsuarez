@@ -1,0 +1,22 @@
+<h2 class="center">Gestion Clínica veterinaria</h2>
+<h3 class="center">2017</h3>
+<div class='card-image center'>
+    <img class='responsive-img' src='cartoondog.png'/>
+</div>
+
+
+<div class="row">
+    <form name="formlogin">
+        <my-input data-size="s5" data-idfor="login" data-type="text" data-label="Login" data-model="log.user"/>
+        <my-input data-size="s5" data-idfor="password" data-type="password" data-label="Contraseña"
+                  data-model="log.pass"/>
+        <my-button data-size="large" data-color="orange waves-effect waves-light" data-icon="send"
+                   ng-click="submit(formlogin)"/>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        Materialize.updateTextFields();
+    });
+</script>

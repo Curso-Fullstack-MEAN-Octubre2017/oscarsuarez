@@ -4,7 +4,7 @@ angular.module('petdetailModule', [])
     .component('petdetailModule', {
 
         templateUrl: '/app/modules/petdetail-module/petdetail-module.html',
-        controller: function ($scope, $http, $routeParams, petsServices) {
+        controller: function ($scope, $http, $routeParams, petsServices, $location, $rootScope) {
 
             var id = $routeParams.id;
             var action = $routeParams.action;
@@ -15,6 +15,10 @@ angular.module('petdetailModule', [])
                     $scope.pet = res;
                     $scope.pet.birthDate = moment(res.birthDate).format('DD-MMM-YYYY', 'es');
                 });
+
+                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Detalle de mascota'});
+            } else {
+                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Nueva mascota'});
             }
 
             $scope.delete = function () {

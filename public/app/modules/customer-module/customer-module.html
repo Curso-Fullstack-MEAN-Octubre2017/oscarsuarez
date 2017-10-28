@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper">
         <form>
-            <div class="input-field">
+            <div class="input-field light-blue darken-2">
                 <input ng-model="search" id="search" type="search" required>
                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
@@ -13,13 +13,12 @@
 
 
 <div class="collection">
-    <a ng-repeat="cli in customersList | filter:search" href="edit/customers/{{cli._id}}" class="collection-item">{{cli.firstName}}
-        {{cli.lastName}}</a>
+    <a ng-repeat="cli in customersList | filter:search" href="edit/customers/{{cli._id}}" class="collection-item blue-text"><i class="material-icons">chrome_reader_mode</i> {{cli.dni}} <br><i class="material-icons">account_circle</i> {{cli.firstName}} {{cli.lastName}}</a>
 </div>
 <loader></loader>
 <div class="row">
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red" ng-href="create/customers">
+    <div class="action-btn">
+        <a class="btn-floating btn orange" ng-href="create/customers">
             <i class="large material-icons">add</i>
         </a>
     </div>

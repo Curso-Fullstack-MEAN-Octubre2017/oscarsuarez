@@ -9,7 +9,7 @@ var Customer = require('../models/customer');
 
 function getCustomers(req, res) {
     var query = Customer.find({});
-    query.select('firstName lastName')
+    query.select('firstName lastName dni')
         .exec(function (err, customers) {
             if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
             res.json(customers)

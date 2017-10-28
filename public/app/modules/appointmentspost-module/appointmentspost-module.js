@@ -3,7 +3,7 @@
 angular.module('appointmentspostModule', [])
     .component('appointmentspostModule', {
         templateUrl: '/app/modules/appointmentspost-module/appointmentspost-module.html',
-        controller: function ($scope, $http, $filter, $routeParams, $location, appointmentsServices) {
+        controller: function ($scope, $http, $filter, $routeParams, $location, appointmentsServices,$rootScope) {
 
             $scope.search = '';
             $scope.customersList = [];
@@ -17,8 +17,10 @@ angular.module('appointmentspostModule', [])
             var Appointment = {};
 
             if ($routeParams.id) {
+
+                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Edición de cita'});
+
                 var id = $routeParams.id;
-                console.log('estas en edit ' + id);
                 appointmentsServices.getAppointmentById(id).then(function (res) {
                     console.log(res);
                     $scope.datetime = res.dateTimeStart;
@@ -42,6 +44,9 @@ angular.module('appointmentspostModule', [])
                 });
 
             } else {
+
+                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Nueva cita'});
+
                 $scope.datetime = moment($routeParams.datetime, 'YYYYMMDDHHmm').toDate();
                 $scope.citaValida = false;
                 console.log('Estas en create ' + $routeParams.datetime);

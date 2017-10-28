@@ -4,9 +4,9 @@ angular.module('appointmentscalendarModule', [])
     .component('appointmentscalendarModule', {
 
         templateUrl: '/app/modules/appointmentscalendar-module/appointmentscalendar-module.html',
-        controller: function ($scope, $http, $routeParams, appointmentsServices) {
+        controller: function ($scope, $http, $routeParams, appointmentsServices,$rootScope,$location) {
 
-            console.log("Componente appointments calendar");
+            $rootScope.$emit("newLocation", {path: $location.path(), name: 'Calendario'});
 
             var date = moment().startOf('month');
             if ($routeParams.date) date = moment($routeParams.date, 'YYYYMM');

@@ -17,9 +17,16 @@
     </div>
     <!-- button save -->
     <div class="row">
-        <my-button data-size="large" data-icon="save" color="red" ng-click="submit(formCustomer)" />
+        <my-button data-size="large" data-icon="save" color="orange waves-effect waves-light" ng-click="submit(formCustomer)" />
     </div>
 </form>
 <div ng-if="action == 'edit'">
     <pet-module></pet-module>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.parallax').parallax();
+        Materialize.updateTextFields();
+    });
+</script>

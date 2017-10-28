@@ -3,7 +3,9 @@
 angular.module('customerModule', [])
     .component('customerModule', {
         templateUrl: '/app/modules/customer-module/customer-module.html',
-        controller: function ($scope, $http, $filter, customersServices) {
+        controller: function ($scope, $http, $filter, customersServices, $rootScope, $location) {
+
+            $rootScope.$emit("newLocation", {path: $location.path(), name: 'Clientes'});
 
             $scope.search = '';
             $scope.customersList = [];
@@ -13,6 +15,8 @@ angular.module('customerModule', [])
             };
 
             $scope.customersList = customersServices.query();
+
+
         }
     });
 

@@ -12,6 +12,11 @@ angular.module('inputTemplates', [])
                     size: '@',
                     icon: '@'
                 },
+                link: function () {
+                    $(document).ready(function () {
+                        Materialize.updateTextFields();
+                    });
+                },
                 template: '<div class="input-field col {{size}}">' +
                 '<i class="material-icons prefix">{{icon}}</i>' +
                 '<input id="{{idfor}}" type="{{type}}" class="validate" ng-model="model">' +
@@ -49,6 +54,11 @@ angular.module('inputTemplates', [])
                 color: '@',
                 icon: '@'
             },
+            link: function () {
+                $(document).ready(function () {
+                    Materialize.updateTextFields();
+                });
+            },
             template: '<div class="action-btn">' +
             '<button class="btn-floating btn-{{size}} {{color}}">' +
             '<i class="large material-icons">{{icon}}</i>' +
@@ -65,7 +75,7 @@ angular.module('inputTemplates', [])
                 idfor: '@',
                 label: '@',
                 size: '@',
-                icon:'@'
+                icon: '@'
             },
             link: function () {
                 $('.datepicker').pickadate({

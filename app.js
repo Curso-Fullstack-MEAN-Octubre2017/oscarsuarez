@@ -13,12 +13,13 @@ var q = require('q');
 var customerRoute = require('./routes/customer');
 var petRoute = require('./routes/pet');
 var appointmentRoute = require('./routes/appointment');
-
 var app = express();
 //connect to heroku with:
 //mongoose.connect(process.env.MONGODB_URI);
 
 //localhost MongoDb
+
+
 mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
 
 app.use(logger('dev'));
@@ -41,6 +42,7 @@ app.all("*", (req, res) => {
 });
 
 // insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
+//
 //require('./insertdata/appointment');
 
 // error handler
@@ -50,7 +52,7 @@ app.use(function (err, req, res, next) {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // log the error
-    console.log(err)
+    console.log(err);
     res.sendStatus(err.status || 500);
 });
 

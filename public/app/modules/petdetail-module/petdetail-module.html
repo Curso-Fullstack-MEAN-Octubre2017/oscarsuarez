@@ -1,9 +1,11 @@
 <form class="col s12 m12 l12" name="formPet" enctype="multipart/form-data">
-    <h5>Datos mascota</h5>
     <div class="row">
-        <card class="center">
-            <img class="z-depth-3" width="300" ng-src="{{pet.picUrl}}"/>
-        </card>
+
+        <div class="parallax-container">
+            <div class="parallax"><img ng-src="{{pet.picUrl}}"></div>
+        </div>
+        <h2 class="center light-blue-text darken-2">{{pet.name}}</h2>
+        <hr>
     </div>
     <div class="row">
         <my-input data-size="s6" data-idfor="chipNumber" data-type="text" data-model="pet.chipNumber"
@@ -21,10 +23,12 @@
     </div>
     <div class="row">
         <my-datepicker idfor="birthDate" data-size="s6" data-model="pet.birthDate" data-label="Fecha de cumpleaños"/>
-        <my-textarea data-size="s6" data-idfor="description" data-type="text" data-model="pet.description" data-label="Descripción"/>
+        <my-textarea data-size="s6" data-idfor="description" data-type="text" data-model="pet.description"
+                     data-label="Descripción"/>
     </div>
 
-    <my-button ng-if="!action" data-size="large" data-color="red" data-icon="save" ng-click="submit(formPet)"/>
+    <my-button ng-if="!action" data-size="large" data-color="orange waves-effect waves-light" data-icon="save"
+               ng-click="submit(formPet)"/>
 
     <div ng-if="action" class="fixed-action-btn horizontal">
         <a class="btn-floating btn-large blue">
@@ -44,3 +48,10 @@
         </ul>
     </div>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $('.parallax').parallax();
+        Materialize.updateTextFields();
+    });
+</script>

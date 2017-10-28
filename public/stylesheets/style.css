@@ -22,3 +22,22 @@ header, main, footer {
         padding-left: 0;
     }
 }
+
+.button-collapse {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.hamburguer {
+    font-size: 50px;
+}
+
+body{
+    background-image: url('../img/cartoondog2.png');
+    background-repeat: no-repeat;
+    background-size: 15%;
+    background-position-y: 93%;
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

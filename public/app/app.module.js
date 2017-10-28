@@ -13,6 +13,8 @@ angular.module('petStore', [
     'appointmentsdayModule',
     'appointmentsdetailModule',
     'appointmentspostModule',
+    'loginModule',
+    'breadcrumbsModule',
 
     // SERVICES
     'appointmentsServices',

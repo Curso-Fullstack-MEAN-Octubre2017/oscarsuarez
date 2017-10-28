@@ -4,11 +4,11 @@ angular.module('appointmentsdayModule', [])
     .component('appointmentsdayModule', {
 
         templateUrl: '/app/modules/appointmentsday-module/appointmentsday-module.html',
-        controller: function ($scope, $http, $routeParams, appointmentsServices) {
-
-            console.log("Componente appointments day");
+        controller: function ($scope, $http, $routeParams, appointmentsServices,$location,$rootScope) {
 
             var dates = moment($routeParams.date, 'YYYYMMDD');
+            $rootScope.$emit("newLocation", {path: $location.path(), name: moment(dates).format('DD MMMM YYYY')});
+
             appointmentsServices.getAppointmentsByMonth(dates).then(function (res) {
 
                 res = res[dates.format('YYYY-MM-DD')] || {};
