@@ -22,7 +22,7 @@ var app = express();
 //Conexion a mongo a traves de promesas para evitar el warning:
 //DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
+mongoose.connect('mongodb://jowy2000:compaqmv720@ds241065.mlab.com:41065/dbpetstore');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
