@@ -25,7 +25,9 @@ api.get('/pet/:id', (req, res) => {
     Controller.getPetById(req.params.id).then(successCallback(res), failCallback(res));
 });
 
-api.post('/pet', Controller.savePet);
+api.post('/pet', (req, res) => {
+    Controller.savePet(req.body).then(successCallback(res), failCallback(res));
+});
 
 api.put('/pet/:id', (req, res) => {
     Controller.updatePet(req.body).then(function (result) {
@@ -36,6 +38,8 @@ api.put('/pet/:id', (req, res) => {
     }, failCallback(res));
 });
 
-api.delete('/pet/:id', Controller.deletePet);
+api.delete('/pet/:id', (req, res) => {
+    Controller.deletePet(req.params.id).then(successCallback(res), failCallback(res));
+});
 
 module.exports = api;

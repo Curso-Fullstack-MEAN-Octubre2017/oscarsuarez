@@ -3,25 +3,23 @@
 var Appointment = require('../models/appointment');
 var Pet = require('../models/pet');
 var Customer = require('../models/customer');
-
+var Q = require('q');
 var moment = require('moment');
 
-function getAppointment(req, res) {
-
+function getAppointments() {
+    var q = Q.defer();
     Appointment.find({}).exec(function (err, appointments) {
-        if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-        res.json(appointments)
+        if (err) return q.reject(err);
+        q.resolve(appointments);
     });
+    return q.promise;
 }
 
-function getAppointmentById(req, res) {
-
-    var id = req.params.id;
+function getAppointmentById(id) {
+    var q = Q.defer();
     Appointment.findById(id, (err, appointment) => {
-        console.log(appointment);
-        if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-        if (!appointment) return res.status(404).send({message: `No existen citass`});
-        res.json(appointment);
+        if (err) q.reject(err);
+        q.resolve(appointment);
     }).populate(
         {
             path: 'petId',
@@ -30,48 +28,41 @@ function getAppointmentById(req, res) {
                 path: 'owner',
                 model: 'Customer',
             }
-        })
+        });
+    return q.promise;
 }
 
-function saveAppointment(req, res) {
-    var appointment = new Appointment(req.body);
-    console.log("POST: " + appointment);
+function saveAppointment(obj) {
+    var q = Q.defer();
+    var appointment = new Appointment(obj);
     appointment.save((err, appointmentStored) => {
-        if (err) return res.status(500).send({message: "Error al guardar la cita"});
-        if (!appointmentStored) return res.status(404).send({message: "No se ha registrado la cita"});
-        res.json(appointmentStored);
+        if (err) return q.reject(err);
+        q.resolve(appointmentStored);
     });
+    return q.promise;
 }
 
-function updateAppointment(req, res) {
-
-    Appointment.findByIdAndUpdate(req.params.id, req.body, (err, appointmentStored) => {
-        if (err) return res.status(500).send({message: "Error al guardar el cliente"});
-        if (!appointmentStored) return res.status(404).send({message: "No se ha registrado el cliente"});
-        res.json(appointmentStored);
+function updateAppointment(obj) {
+    var q = Q.defer();
+    Appointment.findByIdAndUpdate(obj._id, obj, (err, appointmentStored) => {
+        if (err) return q.reject(err);
+        q.resolve(appointmentStored);
     });
+    return q.promise;
 }
 
-function getAppointmentsByDate(req, res) {
-
-    var from = moment(req.params.from, "YYYYMM");
-    var to = moment(req.params.to, "YYYYMM");
-    var searchParams = {'dateTimeStart': {$gte: from, $lt: to}, 'Status': {$gt: -1}};
-
+function getAppointmentsByDate(searchParams) {
+    var q = Q.defer();
     Appointment.find(searchParams, (err, appointmentsResult) => {
-            if (err) return console.log('err', err);
-
+            if (err) return q.reject(err);
             var group_to_dates = appointmentsResult.reduce(function (obj, item) {
-
                 var date = moment(item.dateTimeStart).format('YYYY-MM-DD');
                 var starthour = moment(item.dateTimeStart).utc().format('HH:mm');
-
                 if (obj[date] == null) obj[date] = {};
                 if (obj[date][starthour] == null) obj[date][starthour] = item;
-
                 return obj;
             }, {});
-            res.json(group_to_dates);
+            q.resolve(group_to_dates);
         }
     ).populate(
         {
@@ -84,21 +75,23 @@ function getAppointmentsByDate(req, res) {
                 select: 'firstName lastName'
             }
         }
-    ).sort({'dateTimeStart': 1})
+    ).sort({'dateTimeStart': 1});
+    return q.promise;
 }
 
-function deleteAppointment(req, res) {
-    var id = req.params.id;
-    Appointment.remove({_id: id}, function (err) {
-        if (err) return res.status(500).send({message: `Error al borrar: ${err}`});
-        res.json({message: 'borrado correctamente'});
+function deleteAppointment(id) {
+    var q = Q.defer();
+    Appointment.remove({_id: id}, (err) => {
+        if (err) return q.reject(err);
+        q.resolve({message: 'borrado correctamente'});
     });
+    return q.promise;
 }
 
 
 module.exports = {
     saveAppointment,
-    getAppointment,
+    getAppointments,
     getAppointmentById,
     deleteAppointment,
     updateAppointment,

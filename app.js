@@ -19,7 +19,9 @@ var app = express();
 
 //localhost MongoDb
 
-
+//Conexion a mongo a traves de promesas para evitar el warning:
+//DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
 
 app.use(logger('dev'));
@@ -42,7 +44,6 @@ app.all("*", (req, res) => {
 });
 
 // insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
-//
 //require('./insertdata/appointment');
 
 // error handler

@@ -7,7 +7,6 @@ var Validators = require('../public/app/validation/validators');
 var Q = require('q');
 
 function getPetByOwnerId(req, res) {
-
     var id = req.params.id;
     Pet.find({owner: id}, (err, pets) => {
         console.log(pets);
@@ -26,29 +25,29 @@ function getPetById(id) {
     return q.promise;
 };
 
-function deletePet(req, res) {
-    var id = req.params.id;
-    Pet.remove({_id: id}, function (err) {
-        if (err) return res.status(500).send({message: `Error al borrar: ${err}`});
-        res.json({message: 'borrado correctamente'});
+function deletePet(id) {
+    var q = Q.defer();
+    Pet.remove({_id: id}, (err) => {
+        if (err) return q.reject(err);
+        q.resolve({message: 'borrado correctamente'});
     });
+    return q.promise;
 }
 
-function savePet(req, res) {
-    var pet = new Pet(req.body);
+function savePet(obj) {
+    var q = Q.defer();
+    var pet = new Pet(obj);
     const validationErrors = Validators.validatePet(pet);
     if (validationErrors) return res.status(400).send({message: validationErrors[Object.keys(validationErrors)[0]]});
-
     pet.save((err, petStored) => {
-        if (err) return res.status(500).send({message: "Error al guardar el cliente"});
-        if (!petStored) return res.status(404).send({message: "No se ha registrado el cliente"});
-        res.json(petStored);
+        if (err) q.reject(err);
+        q.resolve(petStored);
     });
+    return q.promise;
 }
 
 function updatePet(json) {
     var q = Q.defer();
-
     var v = json.__v;
     delete json.__v; // evitamos el conflicto entre $set e $inc
 
@@ -64,7 +63,6 @@ function updatePet(json) {
                 q.resolve(pet);
             }
         });
-
     return q.promise;
 }
 
