@@ -11,23 +11,22 @@ angular.module('petdetailModule', [])
 
             if (action == 'edit') {
                 $scope.action = true;
-                petsServices.getPetById(id).then(function (res) {
+                petsServices.get({id: id}, (res) => {
                     $scope.pet = res;
                     $scope.pet.birthDate = moment(res.birthDate).format('DD-MMM-YYYY', 'es');
                 });
-
                 $rootScope.$emit("newLocation", {path: $location.path(), name: 'Detalle de mascota'});
             } else {
                 $rootScope.$emit("newLocation", {path: $location.path(), name: 'Nueva mascota'});
             }
 
-            $scope.delete = function () {
-                petsServices.deletePet(id).then(
-                    function (res) {
+            $scope.delete = () => {
+                petsServices.delete({id: id},
+                    (res) => {
                         Materialize.toast('Borrado correctamente', 2000);
                         history.back();
                     },
-                    function (err) {
+                    (err) => {
                         Materialize.toast('Error al borrar', 2000);
                     });
             };
@@ -35,30 +34,29 @@ angular.module('petdetailModule', [])
             $scope.submit = function (formPet) {
 
                 if (action == 'edit') {
-                    console.log('edit');
 
                     if (Validators.validatePet($scope.pet))
                         return Materialize.toast('Error, comprueba los datos introducidos', 2000);
 
-                    petsServices.putPet($scope.pet).then(
-                        function (res) {
+                    petsServices.update({id: id}, $scope.pet, (res) => {
                             Materialize.toast('Mascota modificada correctamente', 2000);
                             history.back();
-                        }, function (err) {
+                        },
+                        (err) => {
                             Materialize.toast(err.message, 2000);
                         });
 
                 } else if (action == 'create') {
-                    console.log('create');
+
                     $scope.pet.owner = id;
                     //Al ser un nuevo pet hay que asignarle la id del dueño para relacionarlo
-                    petsServices.postPet($scope.pet).then(
-                        function (res) {
+                    petsServices.save({}, $scope.pet,
+                        (res) => {
                             Materialize.toast('Mascota creada correctamente', 2000);
                             history.back();
-                        }, function (err) {
+                        }, (err) => {
                             Materialize.toast('Error, comprueba los datos', 2000);
-                        })
+                        });
                 }
             }
         }

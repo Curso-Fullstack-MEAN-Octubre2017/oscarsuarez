@@ -11,12 +11,9 @@ angular.module('breadcrumbsModule', [])
             $rootScope.$on("newLocation", function (event, data) {
                 var index = -1;
 
-                var num = 6; //limitar numero de rutas que se muestran
-                if ($scope.breadlist.length == num) $scope.breadlist = [];
-
                 //no puedo comprobar si un objeto ya existe en la lista porque angular crea un hash único
                 //entonces cada objeto es diferente, entonces tengo que recorrer la lista y comprobar los parametros que me interesan
-                
+
                 $scope.breadlist.forEach(function (d) {
                     if (d.name == data.name)
                         index = $scope.breadlist.indexOf(d);

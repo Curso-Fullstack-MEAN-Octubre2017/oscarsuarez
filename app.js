@@ -14,15 +14,23 @@ var customerRoute = require('./routes/customer');
 var petRoute = require('./routes/pet');
 var appointmentRoute = require('./routes/appointment');
 var app = express();
-//connect to heroku with:
-//mongoose.connect(process.env.MONGODB_URI);
-
-//localhost MongoDb
 
 //Conexion a mongo a traves de promesas para evitar el warning:
 //DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://jowy2000:compaqmv720@ds241065.mlab.com:41065/dbpetstore');
+
+//PARA CONECTARSE A LA BASE DE DATOS ALOJADA EN MLAB PARA EL DESPLIEGUE EN HEROKU
+// AÑADIR USUARIO Y CONTRASEÑA, COMENTAR LINEA DE MONGOOSE.CONNECT LOCALHOST
+// Y DESCOMENTAR LINEA DE MONGOOSE.CONNECT HEROKU.
+
+var h_user = null;
+var h_password = null;
+
+const localhost = 'mongodb://localhost/petstore';
+const heroku_db = 'mongodb://' + h_user + ':' + h_password + 'd@ds241065.mlab.com:41065/dbpetstore';
+
+mongoose.connect(localhost, {useMongoClient: true});
+//mongoose.connect(heroku_db);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -43,7 +51,7 @@ app.all("*", (req, res) => {
     res.sendFile(path.resolve("public/index.html"));
 });
 
-// insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
+// Descomentar linea para insertar datos de citas para pruebas, mantener comentado si los datos ya fueron insertados una vez //
 //require('./insertdata/appointment');
 
 // error handler
