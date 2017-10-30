@@ -22,14 +22,14 @@
             {{l.obj.petId.name}} {{l.obj.petId.species}}
         </td>
         <td><img src="{{l.obj.petId.picUrl}}" alt="{{v.petId.picUrl}}" width="50"/></td>
-        <td><a ng-if="l.obj" href="appointments/detail/{{l.obj._id}}"
+        <td><a ng-if="l.obj" ng-click="godetails(l.obj._id)"
                class=" btn-floating btn waves-effect waves-light light-blue"><i
                 class="material-icons">assignment</i></a></td>
         <td>
-            <a ng-if="l.obj" href="appointments/edit/{{l.obj._id}}"
-               class=" btn-floating btn waves-effect waves-light red"><i
+            <a ng-if="l.obj" ng-click="goedit(l.obj._id)"
+               class=" btn-floating btn waves-effect waves-light orange"><i
                     class="material-icons">edit</i></a>
-            <a ng-if="!l.obj" href="appointments/add/{{l.hour | date: 'yyyyMMddHHmm'}}"
+            <a ng-if="!l.obj" ng-click="gocreate(l.hour)"
                class="  btn-floating btn waves-effect waves-light teal">
                 <i class="material-icons">add</i></a>
         </td>

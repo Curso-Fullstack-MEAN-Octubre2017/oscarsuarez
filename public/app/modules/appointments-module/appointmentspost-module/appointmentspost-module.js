@@ -2,8 +2,8 @@
 
 angular.module('appointmentspostModule', [])
     .component('appointmentspostModule', {
-        templateUrl: '/app/modules/appointmentspost-module/appointmentspost-module.html',
-        controller: function ($scope, $http, $filter, $routeParams, $location, appointmentsServices,$rootScope) {
+        templateUrl: '/app/modules/appointments-module/appointmentspost-module/appointmentspost-module.html',
+        controller: function ($scope, $filter, appointmentsServices) {
 
             $scope.search = '';
             $scope.customersList = [];
@@ -14,11 +14,14 @@ angular.module('appointmentspostModule', [])
                 petId: null,
                 dateTime: $scope.datetime
             };
+
             var Appointment = {};
+
+            $scope.$on('create-appointment-click',);
 
             if ($routeParams.id) {
 
-                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Edición de cita'});
+                //    $rootScope.$emit("newLocation", {path: $location.path(), name: 'Edición de cita'});
 
                 var id = $routeParams.id;
                 appointmentsServices.getAppointmentById(id).then(function (res) {
