@@ -9,6 +9,5 @@ angular.module('petsServices', []).factory('petsServices', function ($resource, 
             isArray: true,
             url: '/api/customers/:id/pets'
         }
-    })
-
+    });
 });

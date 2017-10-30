@@ -15,9 +15,9 @@ angular.module('petdetailModule', [])
                     $scope.pet = res;
                     $scope.pet.birthDate = moment(res.birthDate).format('DD-MMM-YYYY', 'es');
                 });
-                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Detalle de mascota'});
+                $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Detalle de mascota'});
             } else {
-                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Nueva mascota'});
+                $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Nueva mascota'});
             }
 
             $scope.delete = () => {

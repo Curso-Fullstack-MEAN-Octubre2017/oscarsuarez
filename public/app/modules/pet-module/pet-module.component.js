@@ -14,5 +14,4 @@ angular.module('petModule', [])
                 $scope.petList = res;
             });
         }
-    })
-;
+    });

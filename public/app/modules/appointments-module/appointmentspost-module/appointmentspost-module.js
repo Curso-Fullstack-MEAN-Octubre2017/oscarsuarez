@@ -3,86 +3,64 @@
 angular.module('appointmentspostModule', [])
     .component('appointmentspostModule', {
         templateUrl: '/app/modules/appointments-module/appointmentspost-module/appointmentspost-module.html',
-        controller: function ($scope, $filter, appointmentsServices) {
+        controller: function ($scope, $filter, appointmentsServices, customersServices, petsServices) {
 
-            $scope.search = '';
-            $scope.customersList = [];
-            $scope.resumen = {
-                customerId: null,
-                customerName: null,
-                petName: null,
-                petId: null,
-                dateTime: $scope.datetime
-            };
+            //$scope.search = '';
+            // $scope.customersList = [];
 
             var Appointment = {};
-
-            $scope.$on('create-appointment-click',);
-
-            if ($routeParams.id) {
-
-                //    $rootScope.$emit("newLocation", {path: $location.path(), name: 'Edición de cita'});
-
-                var id = $routeParams.id;
-                appointmentsServices.getAppointmentById(id).then(function (res) {
-                    console.log(res);
-                    $scope.datetime = res.dateTimeStart;
-                    $scope.citaValida = true;
-                    $scope.edit = true;
-                    $scope.resumen = {
-                        customerId: res.petId.owner._id,
-                        customerName: res.petId.owner.firstName,
-                        petName: res.petId.name,
-                        petId: res.petId._id,
-                        dateTime: res.dateTimeStart
-                    };
-                    Appointment = {
-                        dateTimeStart: res.dateTimeStart,
-                        dateTimeEnd: res.dateTimeEnd,
-                        petId: res.petId,
-                        vetId: res.vetId,
-                        Status: res.Status,
-                        _id: res._id
-                    }
-                });
-
-            } else {
-
-                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Nueva cita'});
-
-                $scope.datetime = moment($routeParams.datetime, 'YYYYMMDDHHmm').toDate();
-                $scope.citaValida = false;
-                console.log('Estas en create ' + $routeParams.datetime);
-                $scope.edit = false;
-            }
+            var data;
+            var appointment_id;
+            $scope.$on('post-appointment', (event, data_event) => {
+                data = data_event;
+                console.log(moment(data).isValid());
+                if (!moment(data).isValid()) {
+                    // EDITAMOS UNA CITA //
+                    appointment_id = data;
+                    appointmentsServices.getAppointmentById(appointment_id).then(function (res) {
+                        $scope.datetime = res.dateTimeStart;
+                        $scope.edit = true;
+                        Appointment = {
+                            dateTimeStart: res.dateTimeStart,
+                            dateTimeEnd: res.dateTimeEnd,
+                            petId: res.petId,
+                            vetId: res.vetId,
+                            Status: res.Status,
+                            _id: res._id
+                        }
+                    });
+                } else {
+                    $scope.datetime = moment(data, 'YYYYMMDDHHmm').toDate();
+                    $scope.edit = false;
+                }
+            });
 
             $scope.getData = function () {
                 return $filter('filter')($scope.customersList, $scope.search)
             };
 
-            $http.get('api/customers').then(function (res) {
-                $scope.customersList = res.data;
-            });
+            //Obtengo todos los clientes para buscar
+            $scope.customersList = customersServices.query();
 
+            //Cuando hago click en un cliente ...
             $scope.customerclick = function (id, name) {
-                $http.get('api/customers/' + id + '/pets').then(function (res) {
-                    $scope.customersPets = res.data;
-                    $scope.resumen.customerId = id;
-                    $scope.resumen.customerName = name;
-                    $scope.resumen.petId = '';
-                    $scope.resumen.petName = '';
-                    $scope.citaValida = false;
+                petsServices.getPetByOwnerId({id: id}, (res) => {
+                    $scope.customersPets = res;
+                    $scope.selectedCustomer = name;
+                    Materialize.toast('Seleccionaste a ' + name, 2000);
                 });
-                Materialize.toast('Seleccionaste a ' + name, 2000)
             };
 
+            //Cuando selecciono a una mascota
             $scope.petclick = function (id, name) {
-                $scope.resumen.petId = id;
-                $scope.resumen.petName = name;
+                Appointment.petId = id;
+                $scope.selectedPet = name;
                 Materialize.toast('Mascota seleccionada ' + name, 2000);
                 $scope.citaValida = true;
             };
 
+
+            //Si el input de busqueda esta vacio no muestra la lista de clientes
             $scope.change = function () {
                 if ($('#search').val() != "") {
                     $scope.hide = true;
@@ -93,27 +71,26 @@ angular.module('appointmentspostModule', [])
 
             $scope.confirmAppointment = function () {
                 if (!$scope.edit) {
-                    Appointment = {
-                        dateTimeStart: $scope.datetime,
-                        dateTimeEnd: moment($scope.datetime).add(30, 'minute'),
-                        petId: $scope.resumen.petId,
-                        vetId: null,
-                        Status: 0
-                    };
+                    //Creamos una nueva cita
+                    Appointment.dateTimeStart = $scope.datetime;
+                    Appointment.dateTimeEnd = moment($scope.datetime).add(30, 'minute');
+                    Appointment.vetId = null;
+                    Appointment.Status = 0;
+
                     appointmentsServices.addNewAppointment(Appointment).then(
                         function (res) {
                             Materialize.toast('Cita guardada correctamente', 2000);
-                            return $location.url('/appointments/');
+                            $scope.$emit('Appointment-change', $scope.datetime);
+                            $('#modal_post').modal('close');
                         },
                         function (error) {
                             Materialize.toast('Error al guardar la cita', 2000);
-                        }
-                    );
+                        });
                 } else {
-                    Appointment.petId = $scope.resumen.petId;
                     appointmentsServices.updateAppointment(Appointment).then(function (res) {
                             Materialize.toast('Cita modificada correctamente', 2000);
-                            return $location.url('/appointments/');
+                            $scope.$emit('Appointment-change', $scope.datetime);
+                            $('#modal_post').modal('close');
                         },
                         function (error) {
                             Materialize.toast('Error al modificar la cita', 2000);
@@ -122,13 +99,15 @@ angular.module('appointmentspostModule', [])
                 }
             };
             $scope.deleteAppointment = function () {
-                appointmentsServices.deleteAppointment($routeParams.id).then(function (res) {
+                appointmentsServices.deleteAppointment(appointment_id).then(function (res) {
                     Materialize.toast('Borrado correctamente', 2000);
-                    history.back();
+                    $('#modal_post').modal('close');
+                    $scope.$emit('Appointment-change', $scope.datetime);
                 }, function (err) {
                     Materialize.toast('Error al borrar', 2000);
                 })
             }
         }
-    });
+    })
+;
 

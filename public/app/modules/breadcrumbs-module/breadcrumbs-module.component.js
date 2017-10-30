@@ -8,7 +8,7 @@ angular.module('breadcrumbsModule', [])
             console.log("Estoy modulo en breadcrumbs");
             $scope.breadlist = [];
 
-            $rootScope.$on("newLocation", function (event, data) {
+            $rootScope.$on("breadcrumb", function (event, data) {
                 var index = -1;
 
                 //no puedo comprobar si un objeto ya existe en la lista porque angular crea un hash único

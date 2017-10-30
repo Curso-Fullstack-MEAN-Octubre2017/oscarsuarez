@@ -7,7 +7,7 @@ angular.module('appointmentsModule', [])
 
             console.log("Hello i'm de component Appointments! :) ");
             var date = moment($routeParams.date, 'YYYYMMDD');
-            $rootScope.$emit("newLocation", {path: $location.path(), name: moment(date).format('DD MMMM YYYY')});
+            $rootScope.$emit("breadcrumb", {path: $location.path(), name: moment(date).format('DD MMMM YYYY')});
 
             $scope.dates = date;
 
@@ -15,14 +15,13 @@ angular.module('appointmentsModule', [])
                 console.log('component appointments parent DETAILS: ', id);
                 $scope.$broadcast('show-details', id);
             });
-
-            $scope.$on('update-appointment-click', (event, id) => {
-                console.log('component appointment parent UPDATE');
-                $scope.$broadcast('update-appointment', id);
+            $scope.$on('post-appointment-click', (event, data) => {
+                $scope.$broadcast('post-appointment', data);
             });
-
-            $scope.$on('create-appointment-click', (event, date) => {
-                $scope.$broadcast('create-appointment', date);
+            $scope.$on('Appointment-change', (event, data) => {
+                console.log('appointment-change-data');
+                console.log(data);
+                $scope.$broadcast('reload-appointments', data);
             });
         }
     });

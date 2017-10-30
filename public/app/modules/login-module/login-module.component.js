@@ -6,7 +6,7 @@ angular.module('loginModule', [])
         templateUrl: '/app/modules/login-module/login-module.html',
         controller: function ($scope, $http, $routeParams, petsServices,$rootScope,$location) {
 
-            $rootScope.$emit("newLocation", {path: $location.path(), name: 'Inicio'});
+            $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Inicio'});
 
             $scope.log = {};
             $scope.submit = (formlogin) => {

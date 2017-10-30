@@ -13,9 +13,9 @@ angular.module('customerdetailModule', [])
             if (action == 'edit') {
                 $scope.customer = customersServices.get({id: id});
 
-                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Detalles de cliente'});
+                $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Detalles de cliente'});
             }else{
-                $rootScope.$emit("newLocation", {path: $location.path(), name: 'Nuevo cliente'});
+                $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Nuevo cliente'});
             }
 
 
