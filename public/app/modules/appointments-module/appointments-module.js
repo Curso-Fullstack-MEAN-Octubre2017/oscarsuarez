@@ -12,15 +12,14 @@ angular.module('appointmentsModule', [])
             $scope.dates = date;
 
             $scope.$on('show-details-click', (event, id) => {
-                console.log('component appointments parent DETAILS: ', id);
+                $('#modal_details').modal('open');
                 $scope.$broadcast('show-details', id);
             });
             $scope.$on('post-appointment-click', (event, data) => {
+                $('#modal_post').modal('open');
                 $scope.$broadcast('post-appointment', data);
             });
             $scope.$on('Appointment-change', (event, data) => {
-                console.log('appointment-change-data');
-                console.log(data);
                 $scope.$broadcast('reload-appointments', data);
             });
         }
