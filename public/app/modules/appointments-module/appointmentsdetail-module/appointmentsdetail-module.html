@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="flow-text center-align">Ficha Mascota</div>
+    <hr>
+    <div class="col s12 m12 l4">
+        <div class="card">
+            <img class="responsive-img" ng-src="{{details.petId.picUrl}}"/>
+            <div class="flow-text center-align blue-text">{{details.petId.name}}</div>
+        </div>
+    </div>
+    <p class="col s12 m12 l4">
+        <span class="flow-text">Nº Chip: <span class="blue-text"> {{details.petId.chipNumber}}</span></span><br>
+        <span class="flow-text">Raza: <span class="blue-text">{{details.petId.race}}</span></span><br>
+        <span class="flow-text">Especie:<span class="blue-text"> {{details.petId.species}}</span></span><br>
+        <span class="flow-text">Sexo:<span class="blue-text"> {{details.petId.sex}}</span></span><br>
+        <span class="flow-text">Nacimiento: <span class="blue-text"> {{details.petId.birthDate |date:'d MMMM y'}}</span><br>
+        </span>
+    </p>
+    <div class="col s12 m12 l4">
+        <p class="flow-text">Descripción</p>
+        <p class="light-blue-text">{{details.petId.description}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m12 l6">
+        <span class="flow-text">Ficha Cliente</span>
+        <hr/>
+        <span class="flow-text">Nombre: <span class="blue-text"> {{details.petId.owner.firstName}} {{details.petId.owner.lastName}}</span></span><br>
+        <span class="flow-text">Dni: <span class="blue-text"> {{details.petId.owner.dni}}</span></span><br>
+        <span class="flow-text">Telefono: <span class="blue-text"> {{details.petId.owner.phone}}</span></span><br>
+        <span class="flow-text">Email:<span class="blue-text"> {{details.petId.owner.email}}</span></span>
+    </div>
+
+    <div class="col s12 m12 l6">
+        <span class="flow-text">Detalle Cita</span>
+        <hr/>
+        <span class="flow-text">Hora de inicio: <span class="blue-text"> {{details.dateTimeStart |date: HH:mm}} {{details.petId.owner.lastName}}</span></span><br>
+        <span class="flow-text">Hora de fin: <span
+                class="blue-text"> {{details.dateTimeEnd |date: HH:mm}}</span></span><br>
+        <span class="flow-text">Estado:
+                <span class="blue-text">
+                    <span ng-switch="details.Status">
+                        <span ng-switch-when='-1'>CANCELADA</span>
+                        <span ng-switch-when='0'>PENDIENTE</span>
+                        <span ng-switch-when='1'>EN CURSO</span>
+                        <span ng-switch-when='2'>TERMINADA</span>
+                        <span ng-switch-default>SIN ESTADO</span>
+                    </span>
+                </span>
+            </span>
+        <br>
+        <span class="flow-text">Nota:</span>
+        <br><span class="blue-text">{{details.Note}}</span>
+    </div>
+</div>
+</div>
+<script>
+    Materialize.updateTextFields();
+</script>

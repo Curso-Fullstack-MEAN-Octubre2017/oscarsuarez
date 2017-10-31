@@ -32,7 +32,7 @@ header, main, footer {
     font-size: 50px;
 }
 
-body{
+body {
     background-image: url('../img/cartoondog2.png');
     background-repeat: no-repeat;
     background-size: 15%;
@@ -40,4 +40,9 @@ body{
     background-position-x: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+.modal {
+    width: 80% !important;
+    max-height: 85% !important
 }

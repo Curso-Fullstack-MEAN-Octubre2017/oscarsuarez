@@ -20,8 +20,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/locale/es.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="app/validation/validators.js"></script>
+
     <!-- Conf, Modulos y Servicios AngularJs -->
     <script src="app/app.module.js"></script>
     <script src="app/app.config.js"></script>
@@ -30,10 +32,11 @@
     <script src="app/modules/customerdetail-module/customerdetail-module.component.js"></script>
     <script src="app/modules/petdetail-module/petdetail-module.component.js"></script>
     <script src="app/modules/pet-module/pet-module.component.js"></script>
+    <script src="app/modules/appointments-module/appointments-module.js"></script>
     <script src="app/modules/appointmentscalendar-module/appointmentscalendar-module.component.js"></script>
-    <script src="app/modules/appointmentsday-module/appointmentsday-module.js"></script>
-    <script src="app/modules/appointmentsdetail-module/appointmentsdetail-module.js"></script>
-    <script src="app/modules/appointmentspost-module/appointmentspost-module.js"></script>
+    <script src="app/modules/appointments-module/appointmentsday-module/appointmentsday-module.js"></script>
+    <script src="app/modules/appointments-module/appointmentsdetail-module/appointmentsdetail-module.js"></script>
+    <script src="app/modules/appointments-module/appointmentspost-module/appointmentspost-module.js"></script>
     <script src="app/modules/breadcrumbs-module/breadcrumbs-module.component.js"></script>
     <script src="app/events/loader/loader.js"></script>
     <script src="app/directives/input-templates.js"></script>
@@ -58,8 +61,8 @@
             <li><a class="waves-effect white-text hoverable" href="appointments"><i class="material-icons white-text">date_range</i>Calendario
                 de citas</a>
             </li>
-            <li><a class="waves-effect white-text hoverable" href="customers"><i
-                    class="material-icons white-text">pets</i>Mascotas y clientes</a></li>
+            <li><a class="waves-effect white-text hoverable" href="customers">
+                <i class="material-icons white-text">pets</i>Mascotas y clientes</a></li>
             <li>
                 <div class="divider"></div>
             </li>
@@ -68,12 +71,10 @@
     </header>
     <main>
         <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="container">
-                    <ng-view>
-                        <!-- contenido de la web incrustado -->
-                    </ng-view>
-                </div>
+            <div class="container">
+                <ng-view>
+                    <!-- contenido de la web incrustado -->
+                </ng-view>
             </div>
         </div>
     </main>

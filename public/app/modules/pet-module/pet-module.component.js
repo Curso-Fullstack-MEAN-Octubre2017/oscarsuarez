@@ -10,9 +10,8 @@ angular.module('petModule', [])
             $scope.customerId = id;
             $scope.petList = [];
 
-            petsServices.getPetsByOwnerId(id).then(function (res) {
+            petsServices.getPetByOwnerId({id: id}, (res) => {
                 $scope.petList = res;
-            })
+            });
         }
-    })
-;
+    });

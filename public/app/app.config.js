@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('petStore')
-    .factory('loadingInterceptor', function ($rootScope) {
+    .factory('loadingInterceptor', function ($rootScope, $q) {
         var interceptor = {
             'request': function (config) {
                 $rootScope.$broadcast("http:request", config);
@@ -13,11 +13,11 @@ angular.module('petStore')
             },
             'requestError': function (rejection) {
                 $rootScope.$broadcast("http:requestError", rejection);
-                return rejection;
+                return $q.reject(rejection);
             },
             'responseError': function (rejection) {
                 $rootScope.$broadcast("http:responseError", rejection);
-                return rejection;
+                return $q.reject(rejection);
             }
         };
         return interceptor;
@@ -41,7 +41,7 @@ angular.module('petStore')
             .when("/pet/:action/:id", {template: "<petdetail-module></petdetail-module>"})
             //ROUTES APPOINTMENTS
             .when("/appointments/:date?", {template: "<appointmentscalendar-module></appointmentscalendar-module>"})
-            .when("/appointments/day/:date", {template: "<appointmentsday-module></appointmentsday-module>"})
+            .when("/appointments/day/:date", {template: "<appointments-module></appointments-module>"})
             .when("/appointments/detail/:id", {template: "<appointmentsdetail-module></appointmentsdetail-module>"})
             .when("/appointments/add/:datetime", {template: "<appointmentspost-module></appointmentspost-module>"})
             .when("/appointments/edit/:id", {template: "<appointmentspost-module></appointmentspost-module>"})

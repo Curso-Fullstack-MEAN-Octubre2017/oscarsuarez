@@ -1,0 +1,38 @@
+<div class="flow-text center">{{today |date:'d MMMM yyyy'}}</div>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>Hora:</th>
+        <th>Dueño</th>
+        <th>Mascota</th>
+        <th>Foto</th>
+        <th>Detalle</th>
+        <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="l in hoursList" class="flow-text hoverable">
+        <td ng-if="l.obj">
+            <blockquote>{{l.hour | date:'HH:mm'}}</blockquote>
+        </td>
+        <td ng-if="!l.obj">{{l.hour | date:'HH:mm'}}</td>
+        <td>{{l.obj.petId.owner.firstName}} {{l.obj.petId.owner.lastName}}</td>
+        <td>
+            {{l.obj.petId.name}} {{l.obj.petId.species}}
+        </td>
+        <td><img src="{{l.obj.petId.picUrl}}" alt="{{v.petId.picUrl}}" width="50"/></td>
+        <td><a ng-if="l.obj" ng-click="godetails(l.obj._id)"
+               class=" btn-floating btn waves-effect waves-light light-blue"><i
+                class="material-icons">assignment</i></a></td>
+        <td>
+            <a ng-if="l.obj" ng-click="gopostappointment(l.obj._id)"
+               class=" btn-floating btn waves-effect waves-light orange"><i
+                    class="material-icons">edit</i></a>
+            <a ng-if="!l.obj" ng-click="gopostappointment(l.hour)"
+               class="  btn-floating btn waves-effect waves-light teal">
+                <i class="material-icons">add</i></a>
+        </td>
+    </tr>
+    </tbody>
+</table>

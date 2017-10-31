@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col s12 m12 l12">
+        <span class="center-align flow-text">{{datetime |date : 'd MMMM yyyy'}} a las {{datetime |date : 'HH:mm'}}</span>
+        <nav>
+            <div class="nav-wrapper light-blue darken-2">
+                <form>
+                    <div class="input-field">
+                        <input ng-model="search" ng-change="change()" autocomplete="off" name="search" id="search"
+                               type="search"/>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i> Busca por nombre de
+                            cliente o Dni</label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col l6 m12 s12">
+        <div ng-if="show_customersList" class="collection">
+            <a ng-repeat="cli in customersList | filter:search" ng-click="customerclick(cli)"
+               class="collection-item blue-text"><i class="material-icons">chrome_reader_mode</i> {{cli.dni}} <br><i
+                    class="material-icons">account_circle</i> {{cli.firstName}} {{cli.lastName}}</a>
+        </div>
+    </div>
+    <div ng-if="show_petsList" class="col s12 m12  l6">
+        <ul class="collection">
+            <li ng-repeat="p in customersPets track by $index" class="collection-item avatar"
+                ng-click="petclick(p)">
+                <img src="{{p.picUrl}}" alt="" class="circle">
+                <span class="title">{{p.name}}</span>
+                <p>{{p.race}}<br>
+                    {{p.species}}
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div ng-if="show_resume" class="center">
+    <div class="col s12 m12  l12 card">
+        <span class="flow-text">Resumen de la cita</span>
+        <hr/>
+        <span class="flow-text">Cita para el {{datetime |date : 'dd MMMM yyyy'}} a las {{datetime |date : 'HH:mm'}} </span>
+        <br><span ng-if="selectedCustomer">Cliente seleccionado: {{selectedCustomer.firstName}} {{selectedCustomer.lastName}}</span>
+        <br><span ng-if="selectedPet">Mascota seleccionada: {{selectedPet.name}}</span><br>
+        <hr/>
+        <br/>
+        <div class="row">
+            <my-textarea data-size="l12 m12 s12" data-idfor="appointment_note" data-type="text"
+                         data-model="Appointment.Note"
+                         data-label="Apunte para la cita"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l6">
+            <div input type="submit">
+                <a class="waves-effect waves-light btn-large" ng-click="confirmAppointment()">
+                    <i class="material-icons right">send</i>Confirmar</a></div>
+        </div>
+        <div class="col s12 m12 l6">
+            <div ng-if="delete_button" class="col s12 m12 l12"><a class="waves-effect red waves-light btn-large"
+                                                                  ng-click="deleteAppointment()">
+                <i class="material-icons right">delete</i>Eliminar</a></div>
+        </div>
+    </div>
+</div>

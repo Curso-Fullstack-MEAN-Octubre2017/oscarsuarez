@@ -1,33 +1,35 @@
-<center>
-<div class="row">
-    <ul class="pagination">
-        <li class="disabled"><a href="appointments/{{lastmonth}}"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="" class="orange flow-text"><h5>{{month}} {{year}}</h5></a></li>
-        <li class="waves-effect"><a href="appointments/{{nextmonth}}"><i class="material-icons">chevron_right</i></a>
-        </li>
-    </ul>
-</div>
+<div class="center">
     <div class="row">
-    <table class="centered">
-        <thead>
-        <tr>
-            <th ng-repeat="dayname in weeksday">{{dayname}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="days in weeks">
-            <td ng-repeat="day in days track by $index">
-                <a href="appointments/day/{{day.day | date:'yyyyMMdd'}}">
-                    <div ng-class="{true: 'light-blue z-depth-1 lighten-5 hoverable',false: 'z-depth-1 hoverable'}[day.appointments >0]">
-                        <span class="flow-text">{{day.day |date: 'dd' }}</span> <br ng-if="day.appointments > -1"/>
-                        <i ng-if="day.appointments > -1" class="material-icons">assignment</i> {{day.appointments}}
-                    </div>
-                </a>
-            </td>
-            <!-- "track by $index" indica que el ng-repeat muestre el dato por su indice en la lista en ver de por un id.
-             hashkey generado por angular que no permite duplicados  -->
-        </tr>
-        </tbody>
-    </table>
-</center>
+        <ul class="pagination">
+            <li class="disabled"><a href="appointments/{{lastmonth}}"><i class="material-icons">chevron_left</i></a>
+            </li>
+            <li class="active"><a href="" class="orange flow-text"><h5>{{month}} {{year}}</h5></a></li>
+            <li class="waves-effect"><a href="appointments/{{nextmonth}}"><i
+                    class="material-icons">chevron_right</i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <table class="centered">
+            <thead>
+            <tr>
+                <th ng-repeat="dayname in weeksday">{{dayname}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="days in weeks">
+                <td ng-repeat="day in days track by $index">
+                    <a href="appointments/day/{{day.day | date:'yyyyMMdd'}}">
+                        <div ng-class="{true: 'light-blue z-depth-1 lighten-5 hoverable',false: 'z-depth-1 hoverable'}[day.appointments >0]">
+                            <span class="flow-text">{{day.day |date: 'dd' }}</span> <br ng-if="day.appointments > -1"/>
+                            <i ng-if="day.appointments > -1" class="material-icons">assignment</i> {{day.appointments}}
+                        </div>
+                    </a>
+                </td>
+                <!-- "track by $index" indica que el ng-repeat muestre el dato por su indice en la lista en ver de por un id.
+                 hashkey generado por angular que no permite duplicados  -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
