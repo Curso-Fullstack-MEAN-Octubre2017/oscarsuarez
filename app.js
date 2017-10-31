@@ -15,6 +15,9 @@ var petRoute = require('./routes/pet');
 var appointmentRoute = require('./routes/appointment');
 var app = express();
 
+app.io = require('socket.io')();
+require("./routes/socketio-manager.js")(app.io);
+
 //Conexion a mongo a traves de promesas para evitar el warning:
 //DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 mongoose.Promise = global.Promise;

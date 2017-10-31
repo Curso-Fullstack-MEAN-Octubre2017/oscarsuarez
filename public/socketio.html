@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO Message Emiter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input[type=text] {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        *
+
+        /
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<ul id="messages"></ul>
+<form action="">
+    <select id="e">
+        <option value="appointments:evento1">appointments:evento1</option>
+        <option value="appointments:evento2">appointments:evento2</option>
+        <option value="appointments:evento3">appointments:evento3</option>
+    </select>
+    <input id="m" autocomplete="off"/>
+    <input type="submit" value="Send"/>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script>
+    var socket = io.connect();
+    socket.on('connected', function (data) {
+        socket.emit('join', "Ivan");
+    });
+
+    $('form').submit(function () {
+        socket.emit('send:event', {eventName: $('#e').val(), eventData: $('#m').val()});
+        $('#m').val('');
+        return false;
+    });
+
+    socket.on('connected', function (msg) {
+        $('#messages').append($('<li>').text(msg));
+    });
+
+    socket.on('log:message', function (msg) {
+        $('#messages').append($('<li>').text(msg));
+    });
+
+</script>
+</body>
+</html>

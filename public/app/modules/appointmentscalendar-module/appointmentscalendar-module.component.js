@@ -4,7 +4,14 @@ angular.module('appointmentscalendarModule', [])
     .component('appointmentscalendarModule', {
 
         templateUrl: '/app/modules/appointmentscalendar-module/appointmentscalendar-module.html',
-        controller: function ($scope, $http, $routeParams, appointmentsServices,$rootScope,$location) {
+        controller: function ($scope, $http, $routeParams, appointmentsServices, $rootScope, $location) {
+
+            /* prueba de socketio */
+            var socket = io.connect();
+            socket.on('appointments:evento1', function (data) {
+                console.log("Recibido el evento appointments:evento1", data);
+                /* realizar operaciones relacionadas con este evento */
+            });
 
             $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Calendario'});
 

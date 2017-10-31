@@ -21,6 +21,7 @@
     "nodemon": "^1.12.1",
     "q": "^1.5.1",
     "serve-favicon": "~2.4.5",
+    "socket.io": "^2.0.4",
     "validate.js": "^0.12.0"
   }
 }
