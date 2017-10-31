@@ -1,108 +1,58 @@
 <div class="row">
+    <div class="flow-text center-align">Ficha Mascota</div>
+    <hr>
     <div class="col s12 m12 l4">
         <div class="card">
-            <img class="img-responsive" ng-src="{{details.petId.picUrl}}" />
+            <img class="responsive-img" ng-src="{{details.petId.picUrl}}"/>
+            <div class="flow-text center-align blue-text">{{details.petId.name}}</div>
         </div>
     </div>
-    <div class="col s12 m12 l8">
-
+    <p class="col s12 m12 l4">
+        <span class="flow-text">Nº Chip: <span class="blue-text"> {{details.petId.chipNumber}}</span></span><br>
+        <span class="flow-text">Raza: <span class="blue-text">{{details.petId.race}}</span></span><br>
+        <span class="flow-text">Especie:<span class="blue-text"> {{details.petId.species}}</span></span><br>
+        <span class="flow-text">Sexo:<span class="blue-text"> {{details.petId.sex}}</span></span><br>
+        <span class="flow-text">Nacimiento: <span class="blue-text"> {{details.petId.birthDate |date:'d MMMM y'}}</span><br>
+        </span>
+    </p>
+    <div class="col s12 m12 l4">
+        <p class="flow-text">Descripción</p>
+        <p class="light-blue-text">{{details.petId.description}}</p>
     </div>
-    <form class="col s12">
-        <div class="">
-            <h3 class="center">Ficha del cliente</h3>
-            <div class="row">
-                <div class="input-field col s6">
-                    <input disabled placeholder="Nombre" id="first_name" type="text"
-                           ng-model="details.petId.owner.firstName" class="validate disabled">
-                    <label class="active" for="first_name">Nombre</label>
-                </div>
-                <div class="input-field col s6">
-                    <input disabled placeholder="Apellidos" id="last_name" ng-model="details.petId.owner.lastName"
-                           type="text" class="validate">
-                    <label class="active" for="last_name">Apellidos</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s4">
-                    <input disabled placeholder="DNI" id="dni" ng-model="details.petId.owner.dni" type="text"
-                           class="validate">
-                    <label class="active" for="dni">DNI</label>
-                </div>
-                <div class="input-field col s4">
-                    <input disabled placeholder="Telefono" id="telefono" ng-model="details.petId.owner.phone"
-                           type="text" class="validate">
-                    <label class="active" for="telefono">Telefono</label>
-                </div>
-                <div class="input-field col s4">
-                    <input disabled placeholder="Email" id="email" type="email" ng-model="details.petId.owner.email"
-                           class="validate">
-                    <label class="active" for="email">Email</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                <textarea disabled id="note" placeholder="Notas" type="note" class="validate materialize-textarea"
-                          ng-model="details.petId.owner.note"></textarea>
-                    <label class="active" for="note">Notas</label>
-                </div>
-            </div>
-        </div>
+</div>
 
+<div class="row">
+    <div class="col s12 m12 l6">
+        <span class="flow-text">Ficha Cliente</span>
         <hr/>
-        <div class="">
-            <h3 class="center">Ficha de la mascotas</h3>
-            <div class="row">
-                <div class="center">
-                    <img class="img-responsive" ng-src="{{details.petId.picUrl}}">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <input disabled id="chipNumber" placeholder="Numero Chip" type="text" class="validate"
-                           ng-model="details.petId.chipNumber">
-                    <label class="active" for="chipNumber">Chip number</label>
-                </div>
-                <div class="input-field col s6">
-                    <input disabled id="name" type="text" placeholder="Name" ng-model="details.petId.name">
-                    <label class="active" for="name">Name</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <input disabled id="species" type="text" placeholder="Especie" class="validate"
-                           ng-model="details.petId.species">
-                    <label class="active" for="species">Species</label>
-                </div>
-                <div class="input-field col s6">
-                    <input disabled id="sex" type="text" placeholder="Sex" class="validate"
-                           ng-model="details.petId.sex">
-                    <label class="active" for="sex">Sex</label>
-                </div>
-            </div>
-            <div class="row">
+        <span class="flow-text">Nombre: <span class="blue-text"> {{details.petId.owner.firstName}} {{details.petId.owner.lastName}}</span></span><br>
+        <span class="flow-text">Dni: <span class="blue-text"> {{details.petId.owner.dni}}</span></span><br>
+        <span class="flow-text">Telefono: <span class="blue-text"> {{details.petId.owner.phone}}</span></span><br>
+        <span class="flow-text">Email:<span class="blue-text"> {{details.petId.owner.email}}</span></span>
+    </div>
 
-                <div class="input-field col s12">
-                    <input disabled id="race" type="text" placeholder="Raza" class="validate"
-                           ng-model="details.petId.race"/>
-                    <label class="active" for="race" data-error="wrong" data-success="right">Raza</label>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="input-field col s12">
-                    <input disabled id="birthDate" type="text" placeholder="BirthDate" class="datepicker"
-                           ng-model="details.petId.birthDate">
-                    <label class="active" for="birthDate">Fecha de nacimiento</label>
-                </div>
-
-                <div class="input-field col s12">
-            <textarea disabled id="description" type="text" placeholder="description"
-                      class="validate materialize-textarea"
-                      ng-model="details.petId.description"></textarea>
-                </div>
-            </div>
-        </div>
-    </form>
+    <div class="col s12 m12 l6">
+        <span class="flow-text">Detalle Cita</span>
+        <hr/>
+        <span class="flow-text">Hora de inicio: <span class="blue-text"> {{details.dateTimeStart |date: HH:mm}} {{details.petId.owner.lastName}}</span></span><br>
+        <span class="flow-text">Hora de fin: <span
+                class="blue-text"> {{details.dateTimeEnd |date: HH:mm}}</span></span><br>
+        <span class="flow-text">Estado:
+                <span class="blue-text">
+                    <span ng-switch="details.Status">
+                        <span ng-switch-when='-1'>CANCELADA</span>
+                        <span ng-switch-when='0'>PENDIENTE</span>
+                        <span ng-switch-when='1'>EN CURSO</span>
+                        <span ng-switch-when='2'>TERMINADA</span>
+                        <span ng-switch-default>SIN ESTADO</span>
+                    </span>
+                </span>
+            </span>
+        <br>
+        <span class="flow-text">Nota:</span>
+        <br><span class="blue-text">{{details.Note}}</span>
+    </div>
+</div>
 </div>
 <script>
     Materialize.updateTextFields();
