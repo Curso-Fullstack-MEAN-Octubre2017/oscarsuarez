@@ -11,5 +11,6 @@ ui.lnf.xml
 vcs.xml
 .idea
 ignore.xml
+node_modules
 debugger.xml
 /codestyles/

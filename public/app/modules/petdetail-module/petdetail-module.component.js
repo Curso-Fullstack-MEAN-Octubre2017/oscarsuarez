@@ -1,63 +1,74 @@
-'use strict';
+'use strict'
 
 angular.module('petdetailModule', [])
-    .component('petdetailModule', {
+  .component('petdetailModule', {
 
-        templateUrl: '/app/modules/petdetail-module/petdetail-module.html',
-        controller: function ($scope, $http, $routeParams, petsServices, $location, $rootScope) {
+    templateUrl: '/app/modules/petdetail-module/petdetail-module.html',
+    controller: function ($scope, $http, $routeParams, petsServices, $location, $rootScope) {
 
-            var id = $routeParams.id;
-            var action = $routeParams.action;
+      var id = $routeParams.id
+      var action = $routeParams.action
 
-            if (action == 'edit') {
-                $scope.action = true;
-                petsServices.get({id: id}, (res) => {
-                    $scope.pet = res;
-                    $scope.pet.birthDate = moment(res.birthDate).format('DD-MMM-YYYY', 'es');
-                });
-                $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Detalle de mascota'});
-            } else {
-                $rootScope.$emit("breadcrumb", {path: $location.path(), name: 'Nueva mascota'});
-            }
+      //FILL SELECT WITH ANIMAL SPECIES//
+      $scope.selectSpecies = ['Perro', 'Gato', 'Conejo', 'Cobaya', 'Huron', 'Rata', 'Iguana', 'Otro']
 
-            $scope.delete = () => {
-                petsServices.delete({id: id},
-                    (res) => {
-                        Materialize.toast('Borrado correctamente', 2000);
-                        history.back();
-                    },
-                    (err) => {
-                        Materialize.toast('Error al borrar', 2000);
-                    });
-            };
+      if (action == 'edit') {
+        $scope.action = true
+        petsServices.get({id: id}, (res) => {
+          $scope.pet = res
+          $scope.pet.birthDate = moment(res.birthDate).format('DD-MMM-YYYY', 'es')
+          $('input[name=radio_sex][value=' + res.sex + ']').prop('checked', true)
+          console.log(res.species)
+          $('#select_species').val(res.species)
+          $('#select_species').change()
+        })
+        $rootScope.$emit('breadcrumb', {path: $location.path(), name: 'Detalle de mascota'})
+      } else {
+        $rootScope.$emit('breadcrumb', {path: $location.path(), name: 'Nueva mascota'})
+      }
 
-            $scope.submit = function (formPet) {
+      $scope.delete = () => {
+        petsServices.delete({id: id},
+          (res) => {
+            Materialize.toast('Borrado correctamente', 2000)
+            history.back()
+          },
+          (err) => {
+            Materialize.toast('Error al borrar', 2000)
+          })
+      }
 
-                if (action == 'edit') {
+      $scope.submit = function (formPet) {
 
-                    if (Validators.validatePet($scope.pet))
-                        return Materialize.toast('Error, comprueba los datos introducidos', 2000);
+        if (action == 'edit') {
 
-                    petsServices.update({id: id}, $scope.pet, (res) => {
-                            Materialize.toast('Mascota modificada correctamente', 2000);
-                            history.back();
-                        },
-                        (err) => {
-                            Materialize.toast(err.message, 2000);
-                        });
+          if (Validators.validatePet($scope.pet))
+            return Materialize.toast('Error, comprueba los datos introducidos', 2000)
 
-                } else if (action == 'create') {
+          $scope.pet.sex = $('input[name=radio_sex]:checked').val()
+          $scope.pet.species = $('#select_species').val()
 
-                    $scope.pet.owner = id;
-                    //Al ser un nuevo pet hay que asignarle la id del dueño para relacionarlo
-                    petsServices.save({}, $scope.pet,
-                        (res) => {
-                            Materialize.toast('Mascota creada correctamente', 2000);
-                            history.back();
-                        }, (err) => {
-                            Materialize.toast('Error, comprueba los datos', 2000);
-                        });
-                }
-            }
+          petsServices.update({id: id}, $scope.pet, (res) => {
+              Materialize.toast('Mascota modificada correctamente', 2000)
+              history.back()
+            },
+            (err) => {
+              Materialize.toast(err.message, 2000)
+            })
+
+        } else if (action == 'create') {
+
+          $scope.pet.owner = id
+          //Al ser un nuevo pet hay que asignarle la id del dueño para relacionarlo
+          $scope.pet.sex = $('input[name=radio_sex]:checked').val()
+          petsServices.save({}, $scope.pet,
+            (res) => {
+              Materialize.toast('Mascota creada correctamente', 2000)
+              history.back()
+            }, (err) => {
+              Materialize.toast('Error, comprueba los datos', 2000)
+            })
         }
-    });
+      }
+    }
+  })
