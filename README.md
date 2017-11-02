@@ -53,8 +53,7 @@
 
 ![calendario-citas](https://user-images.githubusercontent.com/24917434/32315625-274c4ab4-bfad-11e7-8b93-32180ac8986e.png)
 
- 
-# Servicios REST publicados
+ # Servicios REST publicados
 
 ### Implementación CRUD Pet
 
@@ -74,39 +73,41 @@
   Enlace al inicio de la función donde se realiza la petición a la base de datos y obtiene el resultado de la misma
   [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/controllers/pet.js#L18](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/controllers/pet.js#L18)
 
-#Controlador Angular
+# Controlador Angular
 
-- **--**** Componente.js**
+### Componente.js
+
 Línea donde se define el nombre del módulo y el del componente.
-Y a continuación se le indica la ruta de la plantilla HTML.
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L3](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L3)
+- Y a continuación se le indica la ruta de la plantilla HTML.
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L3](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L3)
 
-Linea donde empieza la petición http get para obtener el json con los detalles del pet
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L23](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L23)
+- Linea donde empieza la petición http get para obtener el json con los detalles del pet
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L23](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L23)
 
-En la siguiente línea se asigna la respuesta a la variable scope.
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L25](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L25)
+- En la siguiente línea se asigna la respuesta a la variable scope.
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L25](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.component.js#L25)
 
-- **--**** Componente.html**
+### Componente.html
 
-Ejemplo donde se muestra un dato a través de la directiva ng-model de angular
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.html#L10](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.html#L10)
+- Ejemplo donde se muestra un dato a través de la directiva ng-model de angular
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.html#L10](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/detailpet-module/detailpet-module.html#L10)
 
-- **--**** Configuración del Módulo**
+### Configuración del Módulo
 
-en App.module.js se incluye los nombres de los módulos que se van usar en la aplicación.
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/master/public/app/app.module.js](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/master/public/app/app.module.js)
+- en App.module.js se incluye los nombres de los módulos que se van usar en la aplicación.
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/master/public/app/app.module.js](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/master/public/app/app.module.js)
 
--   **Ruta Angular**
+### Ruta Angular
 
-En el archivo app.config.js es donde se hace las llamadas a los modules en función de la ruta en la que estamos
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/app.config.js#L17](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/app.config.js#L17)
+- En el archivo app.config.js es donde se hace las llamadas a los modules en función de la ruta en la que estamos
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/app.config.js#L17](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/app/app.config.js#L17)
 
-En el index.html se importa la ruta al módulo
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/index.html#L31](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/index.html#L31)
+- En el index.html se importa la ruta al módulo
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/index.html#L31](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/dafe3f949e75624d6e01e14f75d193d0951d0182/public/index.html#L31)
+
+#Servicios REST publicados
 
 ## Appointments
-
 | METODO | URL | BODY | RESPONSE |
 | --- | --- | --- | --- |
 | GET | /api/appointments | Null | Res.json([appointments]) |
@@ -116,7 +117,6 @@ En el index.html se importa la ruta al módulo
 | PUT | /api/appointments/:id | {JSON} | Res.json(updatedAppointment) |
 
 ## Pets
-
 | METODO | URL | BODY | RESPONSE |
 | --- | --- | --- | --- |
 | GET | /api/customers/:id/pets | Null | Res.json([pets]) |
@@ -126,7 +126,6 @@ En el index.html se importa la ruta al módulo
 | PUT | /api/pet/:id | {JSON} | Res.json(updatedPet) |
 
 ## Customers
-
 | METODO | URL | BODY | RESPONSE |
 | --- | --- | --- | --- |
 | GET | /api/customers | Null | Res.json([customers]) |
@@ -159,12 +158,12 @@ Facilita la reutilización de funciones inyectando el servicio en diferentes com
  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/services/appointments-services.js#L4](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/services/appointments-services.js#L4)
 
 ### Servicios con Resource
-Facilita la creación de métodos CRUD en servicios Angular.
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/services/customers-services.js#L6](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/services/customers-services.js#L6)
+- Facilita la creación de métodos CRUD en servicios Angular.
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/services/customers-services.js#L6](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/services/customers-services.js#L6)
 
 ### Control de concurrencia optimista (OCC)
-Comprueba que se actualiza un dato siempre sobre su última versión.
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/controllers/pet.js#L55](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/controllers/pet.js#L55)
+- Comprueba que se actualiza un dato siempre sobre su última versión.
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/controllers/pet.js#L55](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/controllers/pet.js#L55)
 
 ### Separación de responsabilidades
 En la ruta simplemente envío la información y recibo la respuesta en forma de promesa, El controlador se encarga de la lógica
@@ -179,11 +178,10 @@ Impedir que datos incorrectos se inserten en la base de datos
 
 ### Eventos
 Es una forma de poder avisar a componentes cuando una acción es realizada.
-Ejemplo donde se emite un evento
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointmentsday-module/appointmentsday-module.js#L36](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointmentsday-module/appointmentsday-module.js#L36)
-
-Ejemplo donde se recepciona ese evento
-[https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointments-module.js#L14](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointments-module.js#L14)
+ - Ejemplo donde se emite un evento
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointmentsday-module/appointmentsday-module.js#L36](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointmentsday-module/appointmentsday-module.js#L36)
+ - Ejemplo donde se recepciona ese evento
+  - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointments-module.js#L14](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointments-module.js#L14)
 
 ### SocketIo – Abre un stream de conexión  entre el cliente y el servidor lo que permite que el servidor ante cualquier cambio actualice los datos de los clientes suscritos sin que ellos tengan que solicitarlo.
 [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/routes/socketio-manager.js#L1](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/routes/socketio-manager.js#L1)
@@ -230,12 +228,12 @@ El componente padre engloba a los hijos y es notificado de cualquier cambio en s
  ![memoria_curso_fullstack_--020](https://user-images.githubusercontent.com/24917434/32315946-77ddf40e-bfae-11e7-9103-71166f94eeb4.jpg)
 
 # Despliegue de la app a producción
-- Base de datos: [www.mlab.com](http://www.mlab.com)
 ![memoria_curso_fullstack_--023](https://user-images.githubusercontent.com/24917434/32315935-76bdf218-bfae-11e7-8c35-951cac16e269.png)
+- Base de datos: [www.mlab.com](http://www.mlab.com)
 
-- Servidor: [www.heroku.com](http://www.heroku.com)
 ![memoria_curso_fullstack_--021](https://user-images.githubusercontent.com/24917434/32315948-77fb260a-bfae-11e7-861b-ffc2773d11ff.png)
+- Servidor: [www.heroku.com](http://www.heroku.com)
 - Url: [https://pet-store-app.herokuapp.com/](https://pet-store-app.herokuapp.com/)
 
 Curso FULLSTACK – Oscar Suarez – Octubre/Noviembre 2017
-GitHub: [www.github.com/suarezoscar](http://www.github.com/suarezoscar)
+# GitHub: [www.github.com/suarezoscar](http://www.github.com/suarezoscar)
