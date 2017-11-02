@@ -28,7 +28,8 @@ mongoose.Promise = global.Promise;
 
 //const conString = 'mongodb://localhost/petstore';
 const conString = 'mongodb://jowy2000:DB_PETPASS1@ds241065.mlab.com:41065/dbpetstor';
-mongoose.connect(conString);
+
+mongoose.connect(conString, {useMongoClient: true});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
