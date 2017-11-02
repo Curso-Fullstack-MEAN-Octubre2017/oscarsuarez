@@ -26,11 +26,8 @@ mongoose.Promise = global.Promise;
 // AÑADIR USUARIO Y CONTRASEÑA, COMENTAR LINEA DE MONGOOSE.CONNECT LOCALHOST
 // Y DESCOMENTAR LINEA DE MONGOOSE.CONNECT HEROKU.
 
-var h_user = "jowy2000";
-var h_password = "DB_PETPASS1";
-
 const localhost = 'mongodb://localhost/petstore';
-const heroku_db = 'mongodb://' + h_user + ':' + h_password + 'd@ds241065.mlab.com:41065/dbpetstore';
+const heroku_db = 'mongodb://jowy2000:DB_PETPASS1@ds241065.mlab.com:41065/dbpetstor';
 
 //mongoose.connect(localhost, {useMongoClient: true});
 mongoose.connect(heroku_db);
