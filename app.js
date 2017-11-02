@@ -22,7 +22,7 @@ require('./routes/socketio-manager.js')(app.io)
 //DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated
 mongoose.Promise = global.Promise
 
-//SI NO EXISTE VARIABLE DE ENTORNO PORT ES QUE SE EJECUTA DESDE LOCALHOST //
+//SI NO EXISTE VARIABLE DE ENTORNO PORT ES QUE SE EJECUTA DESDE LOCALHOST//
 if (process.env.PORT) {
   mongoose.connect(process.env.MONGODB_URI)
 } else {

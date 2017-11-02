@@ -183,7 +183,8 @@ Es una forma de poder avisar a componentes cuando una acción es realizada.
  - Ejemplo donde se recepciona ese evento
   - [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointments-module.js#L14](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/public/app/modules/appointments-module/appointments-module.js#L14)
 
-### SocketIo – Abre un stream de conexión  entre el cliente y el servidor lo que permite que el servidor ante cualquier cambio actualice los datos de los clientes suscritos sin que ellos tengan que solicitarlo.
+### SocketIo 
+- Abre un stream de conexión  entre el cliente y el servidor lo que permite que el servidor ante cualquier cambio actualice los datos de los clientes suscritos sin que ellos tengan que solicitarlo.
 [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/routes/socketio-manager.js#L1](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/blob/ab6d7e01c79a4f3bc0d8139db2696bfe01b704f4/routes/socketio-manager.js#L1)
 
 ### Controladores anidados
@@ -220,8 +221,8 @@ El componente padre engloba a los hijos y es notificado de cualquier cambio en s
   ![memoria_curso_fullstack_--018](https://user-images.githubusercontent.com/24917434/32315942-77a24cba-bfae-11e7-8b40-f2c929f600fd.jpg)
   
 ## Detalle de cita
-    [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/tree/master/public/app/modules/appointments-module/appointmentsdetail-module](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/tree/master/public/app/modules/appointments-module/appointmentsdetail-module)
-    ![memoria_curso_fullstack_--019](https://user-images.githubusercontent.com/24917434/32315944-77bfdd02-bfae-11e7-8825-d84bb45ba7db.jpg)
+   [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/tree/master/public/app/modules/appointments-module/appointmentsdetail-module](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/tree/master/public/app/modules/appointments-module/appointmentsdetail-module)
+   ![memoria_curso_fullstack_--019](https://user-images.githubusercontent.com/24917434/32315944-77bfdd02-bfae-11e7-8825-d84bb45ba7db.jpg)
     
 ## Crear/Editar Cita
  [https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/tree/master/public/app/modules/appointments-module/appointmentspost-module](https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez/tree/master/public/app/modules/appointments-module/appointmentspost-module)
@@ -233,7 +234,6 @@ El componente padre engloba a los hijos y es notificado de cualquier cambio en s
 
 ![memoria_curso_fullstack_--021](https://user-images.githubusercontent.com/24917434/32315948-77fb260a-bfae-11e7-861b-ffc2773d11ff.png)
 - Servidor: [www.heroku.com](http://www.heroku.com)
-- Url: [https://pet-store-app.herokuapp.com/](https://pet-store-app.herokuapp.com/)
-
+## Url: [https://pet-store-app.herokuapp.com/](https://pet-store-app.herokuapp.com/)
+## GitHub: [www.github.com/suarezoscar](http://www.github.com/suarezoscar)
 Curso FULLSTACK – Oscar Suarez – Octubre/Noviembre 2017
-# GitHub: [www.github.com/suarezoscar](http://www.github.com/suarezoscar)
