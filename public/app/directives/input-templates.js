@@ -24,6 +24,19 @@ angular.module('inputTemplates', [])
                 '</div>'
             }
         })
+    .directive('initComponents',
+        function () {
+            return {
+                restrict: 'E',
+                link: function () {
+                    $(document).ready(function () {
+                        Materialize.updateTextFields();
+                        $('select').material_select();
+                        $('.parallax').parallax();
+                    });
+                },
+            }
+        })
     .directive('myTextarea',
         function () {
             return {

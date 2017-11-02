@@ -26,9 +26,8 @@ mongoose.Promise = global.Promise;
 // AÑADIR USUARIO Y CONTRASEÑA, COMENTAR LINEA DE MONGOOSE.CONNECT LOCALHOST
 // Y DESCOMENTAR LINEA DE MONGOOSE.CONNECT HEROKU.
 
-
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
+//mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost/petstore', {useMongoClient: true});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
