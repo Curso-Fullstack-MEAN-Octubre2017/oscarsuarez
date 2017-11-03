@@ -14,3 +14,8 @@ ignore.xml
 node_modules
 debugger.xml
 /codestyles/
+baseRefactoring.xml
+ignore.xml
+jf.storage.xml
+markdown.xml
+insertdata
