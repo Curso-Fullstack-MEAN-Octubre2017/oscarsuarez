@@ -1,4 +1,14 @@
 ![memoria_curso_fullstack_--002](https://user-images.githubusercontent.com/24917434/32314961-7f535aac-bfaa-11e7-9361-ae5be4b16ea9.jpg)
+## Instalar el proyecto
+
+> git clone https://github.com/Curso-Fullstack-MEAN-Octubre2017/oscarsuarez.git
+
+> cd oscarsuarez
+
+> npm install
+
+> npm start
+
 # Arquitectura de MEAN
 
 ![memoria_curso_fullstack_--003](https://user-images.githubusercontent.com/24917434/32315057-dff66a16-bfaa-11e7-990e-966d7d6309d2.png)
